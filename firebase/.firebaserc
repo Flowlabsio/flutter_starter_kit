@@ -1,0 +1,10 @@
+{
+  "projects": {
+    "dev": "<project-name>-dev",
+    "stg": "<project-name>-stg",
+    "prod": "<project-name>-prod"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}
