@@ -12,11 +12,7 @@ enum CustomSnackbarStatus {
 class CustomSnackbar {
   CustomSnackbar._singleton();
 
-  static final CustomSnackbar _instance = CustomSnackbar._singleton();
-
-  factory CustomSnackbar() {
-    return _instance;
-  }
+  static final CustomSnackbar instance = CustomSnackbar._singleton();
 
   bool isSnackbarActive = false;
 
@@ -25,13 +21,13 @@ class CustomSnackbar {
   ) {
     hideSnackBar();
 
-    final currentState = AppKeys().scaffoldMessengerKey.currentState;
+    final currentState = AppKeys.instance.scaffoldMessengerKey.currentState;
 
     return currentState!.showSnackBar(snackBar);
   }
 
   void hideSnackBar() {
-    final currentState = AppKeys().scaffoldMessengerKey.currentState;
+    final currentState = AppKeys.instance.scaffoldMessengerKey.currentState;
 
     if (currentState == null) return;
 
@@ -188,9 +184,10 @@ class CustomSnackbar {
 
     isSnackbarActive = true;
 
-    final context = AppKeys().getRootContext();
+    final context = AppKeys.instance.getRootContext();
 
     final colorsProvider = Theme.of(context).colors;
+    final textStylesProvider = Theme.of(context).textStyles;
 
     Color backgroundColor = colorsProvider.primary;
 
@@ -238,7 +235,7 @@ class CustomSnackbar {
                     boxShadow: boxShadow ??
                         [
                           BoxShadow(
-                            color: UIColor.black.withOpacity(.3),
+                            color: UIColor.black.withValues(alpha: 0.3),
                             spreadRadius: UISpacing.px1,
                             blurRadius: UISpacing.space1x,
                             offset: const Offset(0, 2),
@@ -251,7 +248,7 @@ class CustomSnackbar {
                         child: Text(
                           text,
                           style: textStyle ??
-                              UITextStyle.bodySmall.copyWith(
+                              textStylesProvider.bodySmall.copyWith(
                                 color: colorsProvider.onPrimary,
                               ),
                         ),

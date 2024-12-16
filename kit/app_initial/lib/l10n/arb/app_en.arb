@@ -1,0 +1,161 @@
+{
+  "@@locale": "en",
+  "appName": "<app-name>",
+  "@appName": {},
+  "profile": "Profile",
+  "@profile": {},
+  "settings": "Settings",
+  "@settings": {},
+  "home": "Home",
+  "@home": {},
+  "firstName": "First Name",
+  "@firstName": {},
+  "lastName": "Last Name",
+  "@lastName": {},
+  "email": "Email",
+  "@email": {},
+  "automatic": "Automatic",
+  "@automatic": {},
+  "system": "System",
+  "@system": {},
+  "save": "Save",
+  "@save": {},
+  "or": "OR",
+  "@or": {},
+  "signOut": "Sign Out",
+  "@signOut": {},
+  "signIn": "Sign In",
+  "@signIn": {},
+  "signUp": "Sign Up",
+  "@signUp": {},
+  "cancel": "Cancel",
+  "@cancel": {},
+  "delete": "Delete",
+  "@delete": {},
+  "send": "Send",
+  "@send": {},
+  "open": "Open",
+  "@open": {},
+  "camera": "Camera",
+  "@camera": {},
+  "gallery": "Gallery",
+  "@gallery": {},
+  "takePicture": "Take Picture",
+  "@takePicture": {},
+  "deletePicture": "Delete Picture",
+  "@deletePicture": {},
+  "deleteAccount": "Delete Account",
+  "@deleteAccount": {},
+  "password": "Password",
+  "@password": {},
+  "repeatPassword": "Repeat Password",
+  "@repeatPassword": {},
+  "forgotMyPassword": "I forgot my password",
+  "@forgotMyPassword": {},
+  "signInWithGoogle": "Sign In with Google",
+  "@signInWithGoogle": {},
+  "signInWithApple": "Sign In with Apple",
+  "@signInWithApple": {},
+  "generalError": "An error occurred.",
+  "@generalError": {},
+  "contactSupport": "Contact Support",
+  "@contactSupport": {},
+  "home_welcomeUser": "Hi, {name}",
+  "@home_welcomeUser": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "forgotPassword_emailSent": "Email to reset password was sent",
+  "@forgotPassword_emailSent": {},
+  "forgotPassword_title": "Forgot Password",
+  "@forgotPassword_title": {},
+  "profile_userUpdated": "Profile updated successfully",
+  "@profile_userUpdated": {},
+  "profile_messageActivePermission": "We need your permission to use the camera",
+  "@profile_messageActivePermission": {},
+  "profile_imageUpdated": "Image updated successfully",
+  "@profile_imageUpdated": {},
+  "profile_imageDeleted": "Image deleted successfully",
+  "@profile_imageDeleted": {},
+  "signIn_emailDoesNotVerified": "Please validate your email to continue",
+  "@signIn_emailDoesNotVerified": {},
+  "signIn_invalidCredential": "Check your credentials",
+  "@signIn_invalidCredential": {},
+  "signIn_wrongPassword": "Wrong password",
+  "@signIn_wrongPassword": {},
+  "signIn_userDisabled": "User disabled",
+  "@signIn_userDisabled": {},
+  "signUp_emailAlreadyInUse": "The email is already in use",
+  "@signUp_emailAlreadyInUse": {},
+  "signUp_weakPassword": "Password is too weak",
+  "@signUp_weakPassword": {},
+  "signUp_InvalidEmailFormat": "The email is invalid",
+  "@signUp_InvalidEmailFormat": {},
+  "settings_titleConfirmDeleteAccount": "This action is irreversible",
+  "@settings_titleConfirmDeleteAccount": {},
+  "settings_messageConfirmDeleteAccount": "Before deleting your account, you must reauthenticate",
+  "@settings_messageConfirmDeleteAccount": {},
+  "settings_language": "Language",
+  "@settings_language": {},
+  "settings_languageSpanish": "Spanish",
+  "@settings_languageSpanish": {},
+  "settings_languageEnglish": "English",
+  "@settings_languageEnglish": {},
+  "validation_any": "At least one of the required fields must be filled.",
+  "@validation_any": {},
+  "validation_compare": "The fields must match.",
+  "@validation_compare": {},
+  "validation_contains": "The input must contain the required value.",
+  "@validation_contains": {},
+  "validation_creditCard": "Please enter a valid credit card number.",
+  "@validation_creditCard": {},
+  "validation_email": "Please enter a valid email address.",
+  "@validation_email": {},
+  "validation_equals": "The values do not match.",
+  "@validation_equals": {},
+  "validation_max": "Value must be less than or equal to {max}.",
+  "@validation_max": {
+    "placeholders": {
+      "max": {
+        "type": "num"
+      }
+    }
+  },
+  "validation_maxLength": "Maximum length is {max} characters.",
+  "@validation_maxLength": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "validation_min": "Value must be greater than or equal to {min}.",
+  "@validation_min": {
+    "placeholders": {
+      "min": {
+        "type": "num"
+      }
+    }
+  },
+  "validation_minLength": "Minimum length is {min} characters.",
+  "@validation_minLength": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "validation_mustMatch": "The fields must match.",
+  "@validation_mustMatch": {},
+  "validation_number": "Please enter a valid number.",
+  "@validation_number": {},
+  "validation_pattern": "The input does not match the required pattern.",
+  "@validation_pattern": {},
+  "validation_required": "This field is required.",
+  "@validation_required": {},
+  "validation_requiredTrue": "This field must be selected.",
+  "@validation_requiredTrue": {}
+}
