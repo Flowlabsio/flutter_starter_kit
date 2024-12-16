@@ -97,4 +97,6 @@ abstract class UIColor {
   Color get success;
   Color get info;
   Color get warning;
+  Color get appleLogo;
+  Color get googleLogo;
 }

@@ -154,4 +154,10 @@ class UIColorLight extends UIColor {
 
   @override
   Color get warning => const Color(0xFFEEAB46);
+
+  @override
+  Color get appleLogo => Color(0xFF000000);
+
+  @override
+  Color get googleLogo => Color(0xFF4285F4);
 }

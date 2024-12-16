@@ -154,4 +154,10 @@ class UIColorDark extends UIColor {
 
   @override
   Color get warning => const Color(0xFFC78A31);
+
+  @override
+  Color get appleLogo => Color(0xFF444444);
+
+  @override
+  Color get googleLogo => Color(0xFF4285F4);
 }

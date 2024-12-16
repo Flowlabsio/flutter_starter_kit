@@ -1,10 +1,9 @@
 import 'package:app_ui/src/src.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class UITextStyle {
   static final _baseTextStyle = TextStyle(
-    fontFamily: GoogleFonts.roboto().fontFamily,
+    // fontFamily: GoogleFonts.roboto().fontFamily,
     fontWeight: UIFontWeight.regular,
   );
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:app_ui/app_ui.dart';
 
 abstract class UIButtonStyle {
-  ButtonStyle get primary {
+  ButtonStyle get primaryFilled {
     return ButtonStyle(
       minimumSize: WidgetStateProperty.all(
         const Size(UISpacing.zero, UISpacing.space12x),
@@ -24,4 +24,6 @@ abstract class UIButtonStyle {
       ),
     );
   }
+
+  ButtonStyle get primaryOutline;
 }

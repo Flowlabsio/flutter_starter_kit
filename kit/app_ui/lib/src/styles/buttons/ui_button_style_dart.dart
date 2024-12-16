@@ -13,8 +13,8 @@ class UIButtonStyleDark extends UIButtonStyle {
   UIColor uiColor = UIColorDark();
 
   @override
-  ButtonStyle get primary {
-    return super.primary.copyWith(
+  ButtonStyle get primaryFilled {
+    return super.primaryFilled.copyWith(
           foregroundColor: WidgetStateProperty.all<Color>(
             uiColor.onPrimary,
           ),
@@ -30,6 +30,43 @@ class UIButtonStyleDark extends UIButtonStyle {
                 return uiColor.primary;
               }
               return uiColor.primary;
+            },
+          ),
+        );
+  }
+
+  @override
+  ButtonStyle get primaryOutline {
+    return super.primaryFilled.copyWith(
+          foregroundColor: WidgetStateProperty.all<Color>(
+            uiColor.primary,
+          ),
+          backgroundColor: WidgetStateProperty.resolveWith<Color>(
+            (Set<WidgetState> states) {
+              if (states.contains(WidgetState.disabled)) {
+                return UIColor.transparent;
+              }
+              if (states.contains(WidgetState.pressed)) {
+                return UIColor.transparent;
+              }
+              if (states.contains(WidgetState.hovered)) {
+                return UIColor.transparent;
+              }
+              return UIColor.transparent;
+            },
+          ),
+          side: WidgetStateProperty.resolveWith<BorderSide>(
+            (Set<WidgetState> states) {
+              if (states.contains(WidgetState.disabled)) {
+                return BorderSide(color: uiColor.outline, width: UISpacing.px1);
+              }
+              if (states.contains(WidgetState.pressed)) {
+                return BorderSide(color: uiColor.outline, width: UISpacing.px1);
+              }
+              if (states.contains(WidgetState.hovered)) {
+                return BorderSide(color: uiColor.outline, width: UISpacing.px1);
+              }
+              return BorderSide(color: uiColor.outline, width: UISpacing.px1);
             },
           ),
         );

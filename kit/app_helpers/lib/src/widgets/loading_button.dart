@@ -11,8 +11,8 @@ class LoadingButton extends StatefulWidget {
 
   const LoadingButton({
     super.key,
-    required this.isLoading,
     required this.child,
+    this.isLoading = false,
     this.onPressed,
     this.style,
     this.loader,
