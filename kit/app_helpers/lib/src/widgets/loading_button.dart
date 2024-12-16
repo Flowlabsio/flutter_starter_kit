@@ -1,21 +1,37 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 
+enum ButtonType {
+  elevated,
+  filled,
+  tonal,
+  outlined,
+  text;
+}
+
 class LoadingButton extends StatefulWidget {
   final bool isLoading;
   final Widget child;
+  final ButtonType type;
   final VoidCallback? onPressed;
   final ButtonStyle? style;
   final Widget? loader;
+  final double? strokeWidth;
+  final Color? loaderColor;
   final AnimatedSwitcherTransitionBuilder? transitionBuilder;
+  final Duration duration;
 
   const LoadingButton({
     super.key,
-    required this.isLoading,
     required this.child,
+    required this.type,
+    this.isLoading = false,
+    this.duration = const Duration(milliseconds: 300),
     this.onPressed,
     this.style,
     this.loader,
+    this.strokeWidth,
+    this.loaderColor,
     this.transitionBuilder,
   });
 
@@ -24,10 +40,7 @@ class LoadingButton extends StatefulWidget {
 }
 
 class _LoadingButtonState extends State<LoadingButton> {
-  final GlobalKey _childKey = GlobalKey();
-
-  late double _childWidth;
-  late double _childHeight;
+  late double _childHeight = 0;
 
   @override
   void initState() {
@@ -36,10 +49,8 @@ class _LoadingButtonState extends State<LoadingButton> {
   }
 
   void _updateChildSize() {
-    final renderBox =
-        _childKey.currentContext?.findRenderObject() as RenderBox?;
+    final renderBox = context.findRenderObject() as RenderBox?;
     setState(() {
-      _childWidth = renderBox?.size.width ?? 0;
       _childHeight = renderBox?.size.height ?? 0;
     });
   }
@@ -51,37 +62,74 @@ class _LoadingButtonState extends State<LoadingButton> {
     );
   }
 
+  void _onPressed() {
+    if (widget.isLoading) return;
+    widget.onPressed?.call();
+  }
+
   @override
   Widget build(BuildContext context) {
-     final colorsProvider = Theme.of(context).colors;
+    final colorsProvider = Theme.of(context).colors;
 
-    return FilledButton(
-      onPressed: widget.isLoading ? null : widget.onPressed,
-      style: widget.style,
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 300),
+    final content = AnimatedSwitcher(
+        duration: widget.duration,
         transitionBuilder: widget.transitionBuilder ?? _defaultFadeTransition,
         child: widget.isLoading
-            ? SizedBox(
-                width: _childWidth,
-                height: _childHeight,
-                child: Center(
+            ? widget.loader ??
+                SizedBox(
+                  width: _childHeight * 0.5,
+                  height: _childHeight * 0.5,
                   child: SizedBox(
                     width: _childHeight,
                     height: _childHeight,
-                    child: widget.loader ??
-                        CircularProgressIndicator(
-                          strokeWidth: 2.0,
-                          color: colorsProvider.onPrimary,
-                        ),
+                    child: CircularProgressIndicator(
+                      strokeWidth: widget.strokeWidth ?? UISpacing.px1,
+                      color: widget.loaderColor ?? colorsProvider.onPrimary,
+                    ),
                   ),
-                ),
-              )
-            : Container(
-                key: _childKey,
-                child: widget.child,
-              ),
-      ),
-    );
+                )
+            : widget.child);
+
+    if (widget.type == ButtonType.elevated) {
+      return ElevatedButton(
+        onPressed: widget.onPressed == null ? null : _onPressed,
+        style: widget.style,
+        child: content,
+      );
+    }
+
+    if (widget.type == ButtonType.outlined) {
+      return OutlinedButton(
+        onPressed: widget.onPressed == null ? null : _onPressed,
+        style: widget.style,
+        child: content,
+      );
+    }
+
+    if (widget.type == ButtonType.text) {
+      return TextButton(
+        onPressed: widget.onPressed == null ? null : _onPressed,
+        style: widget.style,
+        child: content,
+      );
+    }
+
+    if (widget.type == ButtonType.tonal) {
+      return FilledButton.tonal(
+        onPressed: widget.onPressed == null ? null : _onPressed,
+        style: widget.style,
+        child: content,
+      );
+    }
+
+    if (widget.type == ButtonType.filled) {
+      return FilledButton(
+        onPressed: widget.onPressed == null ? null : _onPressed,
+        style: widget.style,
+        child: content,
+      );
+    }
+
+    throw Exception('Button type not supported');
   }
 }

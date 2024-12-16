@@ -25,23 +25,31 @@ abstract class UIColor {
     return colorMap;
   }
 
-  final MaterialColor primarySchema =
-      MaterialColor(0xFF65558F, generateColorMap(const Color(0xFF65558F)));
+  static const _primaryGenerator = 0xFF135986;
+  static const _secondaryGenerator = 0xFF86929F;
+  static const _tertiaryGenerator = 0xFF998BA8;
+  static const _errorGenerator = 0xFFFF5449;
+  static const _neutralGenerator = 0xFF909093;
+  static const _neutralVariantGenerator = 0xFF8D9197;
 
-  final MaterialColor secondarySchema =
-      MaterialColor(0xFF625B71, generateColorMap(const Color(0xFF625B71)));
+  final MaterialColor primarySchema = MaterialColor(
+      _primaryGenerator, generateColorMap(const Color(_primaryGenerator)));
 
-  final MaterialColor tertiarySchema =
-      MaterialColor(0xFF7D5260, generateColorMap(const Color(0xFF7D5260)));
+  final MaterialColor secondarySchema = MaterialColor(
+      _secondaryGenerator, generateColorMap(const Color(_secondaryGenerator)));
 
-  final MaterialColor errorSchema =
-      MaterialColor(0xFFB3261E, generateColorMap(const Color(0xFFB3261E)));
+  final MaterialColor tertiarySchema = MaterialColor(
+      _tertiaryGenerator, generateColorMap(const Color(_tertiaryGenerator)));
 
-  final MaterialColor neutralSchema =
-      MaterialColor(0xFF000000, generateColorMap(const Color(0xFF000000)));
+  final MaterialColor errorSchema = MaterialColor(
+      _errorGenerator, generateColorMap(const Color(_errorGenerator)));
 
-  final MaterialColor neutralVariantSchema =
-      MaterialColor(0xFF000000, generateColorMap(const Color(0xFF000000)));
+  final MaterialColor neutralSchema = MaterialColor(
+      _neutralGenerator, generateColorMap(const Color(_neutralGenerator)));
+
+  final MaterialColor neutralVariantSchema = MaterialColor(
+      _neutralVariantGenerator,
+      generateColorMap(const Color(_neutralVariantGenerator)));
 
   Color get primary;
   Color get onPrimary;
@@ -97,4 +105,6 @@ abstract class UIColor {
   Color get success;
   Color get info;
   Color get warning;
+  Color get appleLogo;
+  Color get googleLogo;
 }

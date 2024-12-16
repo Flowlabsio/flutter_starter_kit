@@ -4,11 +4,7 @@ class UIAssetDark implements UIAsset {
 
   UIAssetDark._singleton();
 
-  static final UIAssetDark _instance = UIAssetDark._singleton();
-
-  factory UIAssetDark() {
-    return _instance;
-  }
+  static final UIAssetDark instance = UIAssetDark._singleton();
 
   @override
   String get folderAssetPath => 'packages/app_ui/assets/dark';

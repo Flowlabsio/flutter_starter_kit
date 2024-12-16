@@ -5,7 +5,7 @@ abstract class UISpacing {
   static const px2 = 2.0;
   static const px3 = 3.0;
 
-  static const infinite = double.infinity;
+  static const infinity = double.infinity;
   static const zero = 0.0;
 
   static const space1x = 1.0 * spaceUnit;

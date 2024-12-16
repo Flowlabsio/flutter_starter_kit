@@ -5,27 +5,45 @@ extension ThemeDataExtension on ThemeData {
   UIIcon get icons {
     final isDarkMode = brightness == Brightness.dark;
     if (isDarkMode) {
-      return UIIconDark();
+      return UIIconDark.instance;
     } else {
-      return UIIconLight();
+      return UIIconLight.instance;
     }
   }
 
   UIColor get colors {
     final isDarkMode = brightness == Brightness.dark;
     if (isDarkMode) {
-      return UIColorDark();
+      return UIColorDark.instance;
     } else {
-      return UIColorLight();
+      return UIColorLight.instance;
     }
   }
 
-  UIButtonStyle get buttons {
+  UIButtonStyle get buttonStyles {
     final isDarkMode = brightness == Brightness.dark;
     if (isDarkMode) {
-      return UIButtonStyleDark();
+      return UIButtonStyleDark.instance;
     } else {
-      return UIButtonStyleLight();
+      return UIButtonStyleLight.instance;
+    }
+  }
+
+  UIInputStyle get inputStyles {
+    final isDarkMode = brightness == Brightness.dark;
+    if (isDarkMode) {
+      return UIInputStyleDark.instance;
+    } else {
+      return UIInputStyleLight.instance;
+    }
+  }
+
+  UITextStyle get textStyles {
+    final isDarkMode = brightness == Brightness.dark;
+    if (isDarkMode) {
+      return UITextStyleDark.instance;
+    } else {
+      return UITextStyleLight.instance;
     }
   }
 }

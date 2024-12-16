@@ -1,0 +1,167 @@
+{
+  "@@locale": "es",
+  "appName": "<app-name>",
+  "@appName": {},
+  "profile": "Perfil",
+  "@profile": {},
+  "settings": "Configuración",
+  "@settings": {},
+  "home": "Inicio",
+  "@home": {},
+  "firstName": "Nombre",
+  "@firstName": {},
+  "lastName": "Apellido",
+  "@lastName": {},
+  "email": "Correo electrónico",
+  "@email": {},
+  "automatic": "Automático",
+  "@automatic": {},
+  "system": "Sistema",
+  "@system": {},
+  "save": "Guardar",
+  "@save": {},
+  "or": "O",
+  "@or": {},
+  "signOut": "Cerrar sesión",
+  "@signOut": {},
+  "signIn": "Iniciar sesión",
+  "@signIn": {},
+  "signUp": "Registrarse",
+  "@signUp": {},
+  "cancel": "Cancelar",
+  "@cancel": {},
+  "delete": "Eliminar",
+  "@delete": {},
+  "send": "Enviar",
+  "@send": {},
+  "open": "Abrir",
+  "@open": {},
+  "camera": "Camara",
+  "@camera": {},
+  "gallery": "Galería",
+  "@gallery": {},
+  "takePicture": "Tomar foto",
+  "@takePicture": {},
+  "deletePicture": "Eliminar foto",
+  "@deletePicture": {},
+  "deleteAccount": "Eliminar cuenta",
+  "@deleteAccount": {},
+  "password": "Contraseña",
+  "@password": {},
+  "repeatPassword": "Repetir contraseña",
+  "@repeatPassword": {},
+  "forgotMyPassword": "Olvidé mi contraseña",
+  "@forgotMyPassword": {},
+  "signInWithGoogle": "Iniciar sesión con Google",
+  "@signInWithGoogle": {},
+  "signInWithApple": "Iniciar sesión con Apple",
+  "@signInWithApple": {},
+  "connected": "Conectado",
+  "@connected": {},
+  "notConnected": "Sin conexión",
+  "@notConnected": {},
+  "generalError": "Ocurrió un error.",
+  "@generalError": {},
+  "contactSupport": "Contactar soporte",
+  "@contactSupport": {},
+  "home_welcomeUser": "Hola, {name}",
+  "@home_welcomeUser": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "forgotPassword_emailSent": "Se envió un correo para restablecer la contraseña",
+  "@forgotPassword_emailSent": {},
+  "forgotPassword_title": "Recuperar contraseña",
+  "@forgotPassword_title": {},
+  "profile_userUpdated": "Perfil actualizado con éxito",
+  "@profile_userUpdated": {},
+  "profile_messageActivePermission": "Necesitamos tu permiso para usar la cámara",
+  "@profile_messageActivePermission": {},
+  "profile_imageUpdated": "Imagen actualizada con éxito",
+  "@profile_imageUpdated": {},
+  "profile_imageDeleted": "Imagen eliminada con éxito",
+  "@profile_imageDeleted": {},
+  "signIn_emailDoesNotVerified": "Por favor, valida tu correo para continuar",
+  "@signIn_emailDoesNotVerified": {},
+  "signIn_invalidCredential": "Verifica tus credenciales",
+  "@signIn_invalidCredential": {},
+  "signIn_wrongPassword": "Contraseña incorrecta",
+  "@signIn_wrongPassword": {},
+  "signIn_userDisabled": "Usuario deshabilitado",
+  "@signIn_userDisabled": {},
+  "signIn_emailValidationSent": "Hemos enviado un correo para validar tu cuenta",
+  "@signIn_emailValidationSent": {},
+  "signUp_emailAlreadyInUse": "El correo ya está en uso",
+  "@signUp_emailAlreadyInUse": {},
+  "signUp_weakPassword": "La contraseña es demasiado débil",
+  "@signUp_weakPassword": {},
+  "signUp_InvalidEmailFormat": "El correo es inválido",
+  "@signUp_InvalidEmailFormat": {},
+  "settings_titleConfirmDeleteAccount": "Esta acción es irreversible",
+  "@settings_titleConfirmDeleteAccount": {},
+  "settings_messageConfirmDeleteAccount": "Antes de eliminar tu cuenta, debes reautenticarte",
+  "@settings_messageConfirmDeleteAccount": {},
+  "settings_language": "Idioma",
+  "@settings_language": {},
+  "settings_languageSpanish": "Español",
+  "@settings_languageSpanish": {},
+  "settings_languageEnglish": "Inglés",
+  "@settings_languageEnglish": {},
+  "validation_any": "Al menos uno de los campos obligatorios debe estar lleno.",
+  "@validation_any": {},
+  "validation_compare": "Los campos deben coincidir.",
+  "@validation_compare": {},
+  "validation_contains": "La entrada debe contener el valor requerido.",
+  "@validation_contains": {},
+  "validation_creditCard": "Por favor, introduce un número de tarjeta de crédito válido.",
+  "@validation_creditCard": {},
+  "validation_email": "Por favor, introduce una dirección de correo electrónico válida.",
+  "@validation_email": {},
+  "validation_equals": "Los valores no coinciden.",
+  "@validation_equals": {},
+  "validation_max": "El valor debe ser menor o igual a {max}.",
+  "@validation_max": {
+    "placeholders": {
+      "max": {
+        "type": "num"
+      }
+    }
+  },
+  "validation_maxLength": "La longitud máxima es de {max} caracteres.",
+  "@validation_maxLength": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "validation_min": "El valor debe ser mayor o igual a {min}.",
+  "@validation_min": {
+    "placeholders": {
+      "min": {
+        "type": "num"
+      }
+    }
+  },
+  "validation_minLength": "La longitud mínima es de {min} caracteres.",
+  "@validation_minLength": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "validation_mustMatch": "Los campos deben coincidir.",
+  "@validation_mustMatch": {},
+  "validation_number": "Por favor, introduce un número válido.",
+  "@validation_number": {},
+  "validation_pattern": "La entrada no coincide con el patrón requerido.",
+  "@validation_pattern": {},
+  "validation_required": "Este campo es obligatorio.",
+  "@validation_required": {},
+  "validation_requiredTrue": "Este campo debe ser seleccionado.",
+  "@validation_requiredTrue": {}
+}

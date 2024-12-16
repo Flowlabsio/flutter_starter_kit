@@ -2,21 +2,10 @@ import 'package:app_core/app_core.dart';
 import 'package:flutter/material.dart';
 import 'package:app_ui/app_ui.dart';
 
-enum CustomSnackbarStatus {
-  info,
-  success,
-  error,
-  warning,
-}
-
 class CustomSnackbar {
   CustomSnackbar._singleton();
 
-  static final CustomSnackbar _instance = CustomSnackbar._singleton();
-
-  factory CustomSnackbar() {
-    return _instance;
-  }
+  static final CustomSnackbar instance = CustomSnackbar._singleton();
 
   bool isSnackbarActive = false;
 
@@ -25,56 +14,26 @@ class CustomSnackbar {
   ) {
     hideSnackBar();
 
-    final currentState = AppKeys().scaffoldMessengerKey.currentState;
+    final currentState = AppKeys.instance.scaffoldMessengerKey.currentState;
 
     return currentState!.showSnackBar(snackBar);
   }
 
   void hideSnackBar() {
-    final currentState = AppKeys().scaffoldMessengerKey.currentState;
+    final currentState = AppKeys.instance.scaffoldMessengerKey.currentState;
 
     if (currentState == null) return;
 
     currentState.hideCurrentSnackBar();
   }
 
-  void success({
-    required String text,
-    bool showIcon = true,
-    bool showCloseButton = true,
-    bool force = false,
-    Widget? content,
-    Widget? icon,
-    Duration? duration,
-    TextStyle? textStyle,
-    EdgeInsets? padding,
-    EdgeInsets? contentPadding,
-    List<BoxShadow>? boxShadow,
-    BorderRadius? borderRadius,
-    void Function()? onTap,
-  }) {
-    show(
-      text: text,
-      status: CustomSnackbarStatus.success,
-      showIcon: showIcon,
-      showCloseButton: showCloseButton,
-      content: content,
-      icon: icon,
-      duration: duration,
-      textStyle: textStyle,
-      padding: padding,
-      contentPadding: contentPadding,
-      boxShadow: boxShadow,
-      borderRadius: borderRadius,
-      onTap: onTap,
-    );
-  }
-
   void info({
-    required String text,
     bool showIcon = true,
     bool showCloseButton = true,
-    bool force = false,
+    bool force = true,
+    String? text,
+    Color? backgroundColor,
+    Color? textColor,
     Widget? content,
     Widget? icon,
     Duration? duration,
@@ -85,11 +44,17 @@ class CustomSnackbar {
     BorderRadius? borderRadius,
     void Function()? onTap,
   }) {
+    final context = AppKeys.instance.getRootContext();
+
+    final colorsProvider = Theme.of(context).colors;
+
     show(
-      text: text,
-      status: CustomSnackbarStatus.info,
       showIcon: showIcon,
       showCloseButton: showCloseButton,
+      force: force,
+      text: text,
+      backgroundColor: colorsProvider.primary,
+      textColor: textColor,
       content: content,
       icon: icon,
       duration: duration,
@@ -103,10 +68,12 @@ class CustomSnackbar {
   }
 
   void error({
-    required String text,
     bool showIcon = true,
     bool showCloseButton = true,
-    bool force = false,
+    bool force = true,
+    String? text,
+    Color? backgroundColor,
+    Color? textColor,
     Widget? content,
     Widget? icon,
     Duration? duration,
@@ -117,43 +84,17 @@ class CustomSnackbar {
     BorderRadius? borderRadius,
     void Function()? onTap,
   }) {
-    show(
-      text: text,
-      status: CustomSnackbarStatus.error,
-      showIcon: showIcon,
-      showCloseButton: showCloseButton,
-      content: content,
-      icon: icon,
-      duration: duration,
-      textStyle: textStyle,
-      padding: padding,
-      contentPadding: contentPadding,
-      boxShadow: boxShadow,
-      borderRadius: borderRadius,
-      onTap: onTap,
-    );
-  }
+    final context = AppKeys.instance.getRootContext();
 
-  void warning({
-    required String text,
-    bool showIcon = true,
-    bool showCloseButton = true,
-    bool force = false,
-    Widget? content,
-    Widget? icon,
-    Duration? duration,
-    TextStyle? textStyle,
-    EdgeInsets? padding,
-    EdgeInsets? contentPadding,
-    List<BoxShadow>? boxShadow,
-    BorderRadius? borderRadius,
-    void Function()? onTap,
-  }) {
+    final colorsProvider = Theme.of(context).colors;
+
     show(
-      text: text,
-      status: CustomSnackbarStatus.warning,
       showIcon: showIcon,
       showCloseButton: showCloseButton,
+      force: force,
+      text: text,
+      backgroundColor: colorsProvider.error,
+      textColor: textColor,
       content: content,
       icon: icon,
       duration: duration,
@@ -167,11 +108,12 @@ class CustomSnackbar {
   }
 
   void show({
-    required String text,
-    required CustomSnackbarStatus status,
     bool showIcon = true,
     bool showCloseButton = true,
-    bool force = false,
+    bool force = true,
+    String? text,
+    Color? backgroundColor,
+    Color? textColor,
     Widget? content,
     Widget? icon,
     Duration? duration,
@@ -188,23 +130,12 @@ class CustomSnackbar {
 
     isSnackbarActive = true;
 
-    final context = AppKeys().getRootContext();
+    final context = AppKeys.instance.getRootContext();
 
     final colorsProvider = Theme.of(context).colors;
+    final textStylesProvider = Theme.of(context).textStyles;
 
-    Color backgroundColor = colorsProvider.primary;
-
-    if (status == CustomSnackbarStatus.error) {
-      backgroundColor = colorsProvider.error;
-    }
-
-    if (status == CustomSnackbarStatus.warning) {
-      backgroundColor = colorsProvider.warning;
-    }
-
-    if (status == CustomSnackbarStatus.info) {
-      backgroundColor = colorsProvider.info;
-    }
+    Color bgColor = backgroundColor ?? colorsProvider.primary;
 
     showSnackBar(
       SnackBar(
@@ -230,7 +161,7 @@ class CustomSnackbar {
                         bottom: UISpacing.space4x,
                       ),
                   decoration: BoxDecoration(
-                    color: backgroundColor,
+                    color: bgColor,
                     borderRadius: borderRadius ??
                         BorderRadius.circular(
                           UISpacing.space1x,
@@ -238,7 +169,7 @@ class CustomSnackbar {
                     boxShadow: boxShadow ??
                         [
                           BoxShadow(
-                            color: UIColor.black.withOpacity(.3),
+                            color: colorsProvider.shadow.withValues(alpha: 0.3),
                             spreadRadius: UISpacing.px1,
                             blurRadius: UISpacing.space1x,
                             offset: const Offset(0, 2),
@@ -247,15 +178,16 @@ class CustomSnackbar {
                   ),
                   child: Row(
                     children: [
-                      Expanded(
-                        child: Text(
-                          text,
-                          style: textStyle ??
-                              UITextStyle.bodySmall.copyWith(
-                                color: colorsProvider.onPrimary,
-                              ),
+                      if (text != null)
+                        Expanded(
+                          child: Text(
+                            text,
+                            style: textStyle ??
+                                textStylesProvider.bodySmall.copyWith(
+                                  color: textColor ?? colorsProvider.onPrimary,
+                                ),
+                          ),
                         ),
-                      ),
                       if (showCloseButton)
                         SizedBox(
                           width: UISpacing.space5x,
