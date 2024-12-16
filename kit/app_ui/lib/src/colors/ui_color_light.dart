@@ -4,11 +4,7 @@ import 'package:flutter/material.dart';
 class UIColorLight extends UIColor {
   UIColorLight._singleton();
 
-  static final UIColorLight _instance = UIColorLight._singleton();
-
-  factory UIColorLight() {
-    return _instance;
-  }
+  static final UIColorLight instance = UIColorLight._singleton();
 
   @override
   Color get primary => primarySchema[40]!;
@@ -154,4 +150,10 @@ class UIColorLight extends UIColor {
 
   @override
   Color get warning => const Color(0xFFEEAB46);
+
+  @override
+  Color get appleLogo => const Color(0xFF000000);
+
+  @override
+  Color get googleLogo => const Color(0xFF4285F4);
 }

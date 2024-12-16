@@ -5,11 +5,7 @@ import 'package:flutter/material.dart';
 class CustomDialog {
   CustomDialog._singleton();
 
-  static final CustomDialog _instance = CustomDialog._singleton();
-
-  factory CustomDialog() {
-    return _instance;
-  }
+  static final CustomDialog instance = CustomDialog._singleton();
 
   Future<bool> confirm({
     BuildContext? buildContext,
@@ -54,14 +50,9 @@ class CustomDialog {
     Color? shadowColor,
     bool barrierDismissible = true,
   }) async {
-    final context = buildContext ?? AppKeys().getRootContext();
-
-    final colorsProvider = Theme.of(context).colors;
-
-    final value = await showDialog<T>(
-      barrierColor: colorsProvider.inverseSurface.withOpacity(0.2),
+    return await showDialog<T>(
       barrierDismissible: barrierDismissible,
-      context: buildContext ?? AppKeys().getRootContext(),
+      context: buildContext ?? AppKeys.instance.getRootContext(),
       builder: (BuildContext context) {
         return AlertDialog(
           titlePadding: title != null
@@ -87,13 +78,11 @@ class CustomDialog {
           title: title,
           content: content,
           actions: actions,
-          backgroundColor: backgroundColor ?? colorsProvider.surface,
-          surfaceTintColor: surfaceTintColor ?? colorsProvider.surfaceContainer,
-          shadowColor: shadowColor ?? colorsProvider.shadow,
+          backgroundColor: backgroundColor,
+          surfaceTintColor: surfaceTintColor,
+          shadowColor: shadowColor,
         );
       },
     );
-
-    return value;
   }
 }

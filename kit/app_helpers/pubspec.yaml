@@ -2,7 +2,6 @@ name: app_helpers
 description: "Kit Helper"
 version: 0.0.1
 publish_to: none
-homepage:
 
 environment:
   sdk: ^3.5.4

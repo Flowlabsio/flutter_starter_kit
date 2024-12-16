@@ -1,5 +1,9 @@
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/material.dart';
 
 abstract class UIIcon {
-  SvgPicture logo({double? size});
+  Widget logo({double? size});
+
+  Widget google({double? size});
+
+  Widget apple({double? size});
 }

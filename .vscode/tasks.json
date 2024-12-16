@@ -1,0 +1,47 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "dev",
+      "type": "shell",
+      "command": "make",
+      "args": ["dev"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never",
+      }
+    },
+    {
+      "label": "stg",
+      "type": "shell",
+      "command": "make",
+      "args": ["stg"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never",
+      }
+    },
+    {
+      "label": "prod",
+      "type": "shell",
+      "command": "make",
+      "args": ["prod"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "never",
+      }
+    }
+  ]
+}

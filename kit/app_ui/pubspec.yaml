@@ -2,7 +2,6 @@ name: app_ui
 description: "UI Kit"
 version: 0.0.1
 publish_to: none
-homepage:
 
 environment:
   sdk: ^3.5.4
@@ -11,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  font_awesome_flutter: ^10.8.0
   flutter_svg: ^2.0.16
   google_fonts: ^6.2.1
 

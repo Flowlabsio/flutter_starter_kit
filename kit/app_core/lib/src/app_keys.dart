@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 class AppKeys {
   AppKeys._singleton();
 
-  static final AppKeys _instance = AppKeys._singleton();
-
-  factory AppKeys() {
-    return _instance;
-  }
+  static final AppKeys instance = AppKeys._singleton();
 
   GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 
