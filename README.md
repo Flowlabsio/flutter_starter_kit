@@ -1,3 +1,7 @@
+<img alt="image" src="https://flow-labs.io/img/logo/logo-black.png" />
+
+Developed by [Flow Labs](https://flow-labs.io/)
+
 # Flutter Kit
 
 This starter kit was created to address the challenges of initializing a project. At [Flow-Labs](https://flow-labs.io/), we identified recurring patterns when starting a project: state management, authentication, forms, alerts, snackbars, styles, authentication, users, rules and more. The idea behind this repository is to consolidate all the knowledge we’ve gained from building apps into a single resource.
@@ -6,16 +10,25 @@ This kit is not a "framework"; rather, it's a guide for initializing a project w
 
 The goal of this repository is to be a helpful starting point without imposing rigid constraints on developers.
 
-The kit has two configurations
-
+* Download Kit
 * <a href="#firebase">Firebase</a> 
   * <a href="#install-firebase-cli">Install firebase CLI</a> 
   * <a href="#create-firebase-projects">Create firebase projects</a> 
-  * <a href="#emulators">Emulators</a> 
 * <a href="#flutter-app">Flutter App</a> 
-  * Install Very Good Ventures CLI
+  * Install VGV CLI
   * Create the app
   * Install the kit
+* <a href="#emulators">Emulators</a> 
+
+## Download Kit
+```
+git clone https://github.com/Flowlabsio/flutter_starter_kit.git <project-name>
+
+cd <project-name>
+
+# Open project with vscode
+code .
+```
 
 ## <a name="#firebase">Firebase</a>
 
@@ -34,45 +47,27 @@ firebase login
 
 ### <a name="#create-firebase-projects">Create firebase projects</a> 
 
-Open ```firebase/Makefile``` and rename the var ```PROJECT_NAME``` (required) and in ```.firebaserc``` (optional)
+We will go to make the firebase projects for each environment
+
+Open ```firebase/Makefile``` and rename the var ```PROJECT_NAME``` 
 
 Create the projects with this command:
 
 ```
-cd firebase && make create_firebase_project
+cd firebase
+
+make create_firebase_project
 ```
 
-### <a name="#emulators">Emulators</a> 
-
-To use the emulators, it's necessary to choose a real firebase project, use one of created before (recommended dev environment).
+This command could be failed because the name is used on another project, and the names of the projects could be unique, if that happen try to run the next command for each failed project
 
 ```
-firebase use <project-name>-<env>
-```
-
-Some services like Firestore doesn't need to be activated in the console of firebase to use it, but other services like auth with google, needed to be activated in the console and use the real credentials as google key, reversed, etc.
-
-To start the emulator run
-
-```
-firebase emulators:start --debug
-```
-
-Install the function dependencies (if you want to use it)
-
-```
-cd firebase/functions
-
-python3 -m venv venv
-
-source venv/bin/activate
-
-pip install -r requirements.txt
+firebase projects:create <project-name>-<env>
 ```
 
 ## <a name="#flutter-app">Flutter App</a>
 
-This starter kit use the template of Very Good Ventures to generate the app. Therefore we will follow the next steps to install the CLI and generate the app. 
+This starter kit use the template of Very Good Ventures to generate the app. The team believe it's a great standard to lunch an app. Therefore we will follow the next steps to install the CLI and generate the app. 
 
 ### Config initial project
 
@@ -88,18 +83,13 @@ And then run one by one the commands to create the project and leave every file 
 ### Positioned in the root of the project
 
 # Create the project
-very_good create flutter_app <app-name>
+very_good create flutter_app <project-name>
 
 # Copy project files
-rsync -avh <app-name>/ .
+rsync -avh --ignore-existing <project-name>/ .
 
 # Delete the other project
-rm -rf <app-name>
-
-# Rename folder
-cd ..
-mv flutter_starter_kit <app-name>
-cd <app-name>
+rm -rf <project-name>
 ```
 
 ### Add dependencies
@@ -401,4 +391,33 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   runApp(await builder());
 }
 
+```
+
+
+### <a name="#emulators">Emulators</a> 
+
+To use the emulators, it's necessary to choose a real firebase project, use one of created before (recommended dev environment).
+
+```
+firebase use <project-name>-<env>
+```
+
+Some services like Firestore doesn't need to be activated in the console of firebase to use it, but other services like auth with google, needed to be activated in the console and use the real credentials as google key, reversed, etc.
+
+To start the emulator run
+
+```
+firebase emulators:start --debug
+```
+
+Install the function dependencies (if you want to use it)
+
+```
+cd firebase/functions
+
+python3 -m venv venv
+
+source venv/bin/activate
+
+pip install -r requirements.txt
 ```
