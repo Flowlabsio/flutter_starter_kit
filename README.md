@@ -1,6 +1,6 @@
 <img alt="image" src="https://flow-labs.io/img/logo/logo-black.png" />
 
-Developed by [Flow Labs](https://flow-labs.io/)
+Developed by [Flow Labs](https://flow-labs.io/) 🚀
 
 # Flutter Kit
 
