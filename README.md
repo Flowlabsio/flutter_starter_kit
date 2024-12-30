@@ -9,7 +9,7 @@ The goal of this repository is to be a helpful starting point without imposing r
 The kit has two configurations
 
 * Firebase
-  * [Install firebase CLI](#1.1)
+  * [Install firebase CLI](#install-firebase)
   * Create firebase projects
   * Run emulators
 * Flutter App
@@ -19,7 +19,7 @@ The kit has two configurations
 
 ## Firebase
 
-### <a name="#1.1">Install firebase CLI</a>
+### <a name="#install-firebase">Install firebase CLI</a>
 
 ```
 # Download CLI
