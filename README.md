@@ -8,16 +8,16 @@ The goal of this repository is to be a helpful starting point without imposing r
 
 The kit has two configurations
 
-* Firebase
+* <a href="#firebase">Firebase</a> 
   * <a href="#install-firebase-cli">Install firebase CLI</a> 
-  * Create firebase projects
-  * Run emulators
-* Flutter App
+  * <a href="#create-firebase-projects">Create firebase projects</a> 
+  * <a href="#emulators">Emulators</a> 
+* <a href="#flutter-app">Flutter App</a> 
   * Install Very Good Ventures CLI
   * Create the app
   * Install the kit
 
-## Firebase
+## <a name="#firebase">Firebase</a>
 
 ### <a name="#install-firebase-cli">Install firebase CLI</a>
 
@@ -32,7 +32,7 @@ npm install -g firebase-tools
 firebase login
 ```
 
-### Create firebase projects
+### <a name="#create-firebase-projects">Create firebase projects</a> 
 
 Open ```firebase/Makefile``` and rename the var ```PROJECT_NAME``` (required) and in ```.firebaserc``` (optional)
 
@@ -42,7 +42,7 @@ Create the projects with this command:
 cd firebase && make create_firebase_project
 ```
 
-### Work with the emulators
+### <a name="#emulators">Emulators</a> 
 
 To use the emulators, it's necessary to choose a real firebase project, use one of created before (recommended dev environment).
 
@@ -70,12 +70,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Add to the flutter project
-
-
-
-
-## Flutter App
+## <a name="#flutter-app">Flutter App</a>
 
 This starter kit use the template of Very Good Ventures to generate the app. Therefore we will follow the next steps to install the CLI and generate the app. 
 
