@@ -103,25 +103,66 @@ flutter pub add app_core --path=./kit/app_core
 flutter pub add app_helpers --path=./kit/app_helpers
 
 flutter pub add go_router \
-equatable \
-flutter_native_splash \
-reactive_forms \
-google_sign_in \
-firebase_core \
-firebase_auth \
-cloud_firestore \
-get_it \
-sign_in_with_apple \ 
-shared_preferences
-
-flutter pub add --dev change_app_package_name
+  equatable \
+  flutter_native_splash \
+  reactive_forms \
+  google_sign_in \
+  firebase_core \
+  firebase_auth \
+  cloud_firestore \
+  get_it \
+  sign_in_with_apple \
+  shared_preferences
 ```
 
-Call these two methods in the bootstrap (```lib/bootstrap.dart```)
+Replace the folder ```lib/l10n/arb``` for ```kit/app_initial/lib/l10n/arb```
+
+Move the ```kit/app_initial/lib/src``` to ```lib/```
+
+Run this command to update the dependencies
 
 ```
+./replace_text.sh ./lib/src "app_initial" "<project-name>"
+
+flutter pub get
+```
+
+Delete the folder ```kit/app_initial```
+
+Paste in the file ```lib/bootstrap.dart``` this content, replace the ```<project-name>```
+
+```
+import 'dart:async';
+import 'dart:developer';
+
+import 'package:<project-name>/src/facades/facades.dart';
+import 'package:bloc/bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:<project-name>/firebase_options.dart';
+
+class AppBlocObserver extends BlocObserver {
+  const AppBlocObserver();
+
+  @override
+  void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
+    super.onChange(bloc, change);
+  }
+
+  @override
+  void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
+    log('onError(${bloc.runtimeType}, $error, $stackTrace)');
+    super.onError(bloc, error, stackTrace);
+  }
+}
+
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
-  ...
+  FlutterError.onError = (details) {
+    log(details.exceptionAsString(), stackTrace: details.stack);
+  };
+
+  Bloc.observer = const AppBlocObserver();
 
   FlutterNativeSplash.preserve(
     widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
@@ -131,48 +172,74 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  await Preference.instance.init();
+
   runApp(await builder());
 }
 ```
 
-Set in the ```vscode/launch.json``` the next update in every lunch item
+Paste in the file ```lib/app/view/app.dart``` this content, replace the ```<project-name>```
 
 ```
-"args": [
-  "--flavor",
-  "staging",
-  "--target",
-  "lib/main_staging.dart",
-  "--dart-define-from-file",
-  "env.json"
-]
-```
+import 'dart:async';
 
-### App Initial
+import 'package:<project-name>/l10n/l10n.dart';
+import 'package:<project-name>/src/facades/facades.dart';
+import 'package:<project-name>/src/facades/router.dart' as router;
+import 'package:app_core/app_core.dart';
+import 'package:app_ui/app_ui.dart';
+import 'package:flutter/material.dart';
 
-Move the ```kit/app_initial``` to your project (```lib```) and fix the reference import errors
-
-Go to the ```lib/app/view/app.dart``` an update the main
-
-```
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
 
   @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  late final StreamSubscription<Preference> _subscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _subscription = Preference.instance.stream.listen((_) {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final themeMode = Preference.instance.themeMode;
+    final locale = Preference.instance.locale;
+
     return MaterialApp.router(
-      scaffoldMessengerKey: AppKeys().scaffoldMessengerKey,
+      scaffoldMessengerKey: AppKeys.instance.scaffoldMessengerKey,
       theme: UITheme.light,
       darkTheme: UITheme.dark,
+      themeMode: themeMode,
+      locale: locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      routerConfig: AppRouter().router,
+      routerConfig: router.Router.instance.goRouter,
+      onGenerateTitle: (context) {
+        Localization.buildContext = context;
+        return context.l10n.appName;
+      },
     );
   }
 }
+
 ```
 
-### Set Firebase in the project
+### Set Firabase environments in the project
 
 Before to start with this step remember to finish all the steps about create projects in the "Firebase" section
 
@@ -209,6 +276,16 @@ Repeat this process for each environment.
 This id need to match with the ios-bundle-id and android-package-name setted in ```flutterfire config```
 
 Android
+
+Intall the package ```change_app_package_name```
+
+
+```
+flutter pub add --dev change_app_package_name
+```
+
+Run the command
+
 ```
 dart run change_app_package_name:main com.<org>.<project-name> --android
 ```
