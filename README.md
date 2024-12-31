@@ -1,4 +1,4 @@
-<img alt="image" src="https://flow-labs.io/img/logo/logo-white.png" />
+<img alt="image" src="https://flow-labs.io/img/logo/logo-white.png" style="width: 300px;"/>
 
 Developed by [Flow Labs](https://flow-labs.io/) 🚀
 
