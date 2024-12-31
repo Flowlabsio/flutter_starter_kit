@@ -461,56 +461,58 @@ If you can't find the ```REVERSED_CLIENT_ID``` it's because the Sign in with Goo
 
 #### Andoird
 
----
+#### Set Namespace
 
-### Set Bundle Id and Namespace
-
-Thosos ids need to match with the ios-bundle-id and android-package-name setted in ```flutterfire config```
-
-Android
-
-Intall the next package
+1. Intall the next package
 
 ```
 flutter pub add --dev change_app_package_name
 ```
 
-Run the command
+2. Run the command
 
 ```
 dart run change_app_package_name:main com.<org>.<project-name> --android
 ```
 
-In ```android/local.properties```
+#### Update min-sdk-version
+
+2. Go to ```android/app/build.gradle``` and set ```minSdkVersion```
 
 ```
-flutter.minSdkVersion=23
+...
+minSdkVersion 23
+...
 ```
 
-And ```android/app/build.gradle```
+#### Sign in with Google
 
+1. Excecute
 ```
-minSdkVersion localProperties.getProperty('flutter.minSdkVersion').toInteger()
-```
-
-In the ```Podfile``` set the min version in ```13``` (required by firebase_auth)
-
-```
-platform :ios, '13.0'
+keytool -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore -storepass android -keypass android
 ```
 
-### Generate fingerprint android in firebase console
-```
-cd android
+2. Copy the ```SHA1``` and go to the firebase console
 
-./gradlew signingReport or gradlew signingReport
+3. Go to "Project settings"
 
-# Paste your SHA1 key in the console
+<img width="260" alt="image" src="https://github.com/user-attachments/assets/af28b3fe-1257-4814-8740-e622b872580a" />
 
-TODO: IMAGE
+And select the android app
+
+<img width="968" alt="image" src="https://github.com/user-attachments/assets/802c553c-0930-4b5b-a507-5984e251429e" />
+
+4. Press in "Add fingerprint"
+
+<img width="321" alt="image" src="https://github.com/user-attachments/assets/e385dc4d-d255-446a-8994-639b98d42c56" />
+
+5. Paste the  ```SHA1``` and "Save"
+
+if you got some error, try to run the app with  ```flutter run --flavor development -t lib/main_development.dart``` to update the libraries
+
+6. Update the environment files with the command ```./configure_firebase.sh``` (check the documentation about generate if you forgot the proccess)
 
 
-```
 Will need to update ```google-services.json``` and ```firebase_options``` (repeat the process with ```flutterfire config``` command)
 
 ### Apple Sign In
