@@ -512,156 +512,39 @@ if you got some error, try to run the app with  ```flutter run --flavor developm
 
 6. Update the environment files with the command ```./configure_firebase.sh``` (check the documentation about generate if you forgot the proccess)
 
+#### Sign in with Apple (Not ready)
 
-Will need to update ```google-services.json``` and ```firebase_options``` (repeat the process with ```flutterfire config``` command)
+1. Go to https://developer.apple.com/account/resources/identifiers/list/serviceId
 
-### Apple Sign In
+and press where say "Register an Service ID"
 
-#### iOS
+<img width="1282" alt="image" src="https://github.com/user-attachments/assets/307b304d-8a93-47cb-9d5e-bbd46f2be054" />
 
-```
-open ios/Runner.xcworkspace
+2. Choose "Service Id" and press "Continue"
 
-Go to "Runner" 
-* Choose a "Team"
-* Check the "Bundle ids" match with Firebase
-* Go to "Capability" and add "Sign in with Apple"
-```
+<img width="1273" alt="image" src="https://github.com/user-attachments/assets/54e23f6c-0a31-469b-a7ad-42640efe7df5" />
 
-#### Android
+3. Fill the form
 
-Add a new <meta-data> tag under <application> in the ```android/app/src/main/AndroidManifest.xml```
+<img width="1286" alt="image" src="https://github.com/user-attachments/assets/10fecbac-c23c-4e37-a509-23758e06224d" />
 
-```
-<meta-data
-  android:name="flutterEmbedding"
-  android:value="2" 
-/>
-```
+You can choose another "Identifier" ```com.<org>.<project-name>.auth```
+
+4. Registe the Service ID
+
+5. Click your service created
+
+<img width="544" alt="image" src="https://github.com/user-attachments/assets/55c2bdeb-8926-420d-8d2c-e52eac6f8ec5" />
+
+6. Check the "Sign in with Apple" and press "Configuration"
+
+<img width="667" alt="image" src="https://github.com/user-attachments/assets/2ab9f7a4-9aff-42c6-89bd-296a16a0fccb" />
 
 will be necessary set ```webAuthenticationOptions```
 
 <img width="1243" alt="image" src="https://github.com/user-attachments/assets/6e3ef9d1-87a7-4ebf-a4ca-02c9901ab5f7" />
 
 <img width="820" alt="image" src="https://github.com/user-attachments/assets/eef52c35-9758-47d8-87d9-28b4deb20595" />
-
-
-To register a ```clientId``` got to ```https://developer.apple.com/account/resources/identifiers/list/serviceId``` 
-```
-webAuthenticationOptions: WebAuthenticationOptions(
-  clientId: 'register the service id',
-  redirectUri: Uri.parse('go to firebase console to copy this url'),
-),
-```
-
-
-app.dart
-```
-import 'dart:async';
-
-import 'package:app_core/app_core.dart';
-import 'package:app_initial/app_initial.dart' as ai;
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:myapp/l10n/l10n.dart';
-
-class App extends StatefulWidget {
-  const App({super.key});
-
-  @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  late final StreamSubscription<ai.Preference> _subscription;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _subscription = ai.Preference.instance.stream.listen((_) {
-      setState(() {});
-    });
-  }
-
-  @override
-  void dispose() {
-    _subscription.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final themeMode = ai.Preference.instance.themeMode;
-    final locale = ai.Preference.instance.locale;
-
-    return MaterialApp.router(
-      scaffoldMessengerKey: AppKeys.instance.scaffoldMessengerKey,
-      theme: UITheme.light,
-      darkTheme: UITheme.dark,
-      themeMode: themeMode,
-      locale: locale,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      routerConfig: ai.Router.instance.goRouter,
-      onGenerateTitle: (context) {
-        ai.Localization.buildContext = context;
-        return context.l10n.appName;
-      },
-    );
-  }
-}
-
-```
-
-bootstrap.dart
-```
-import 'dart:async';
-import 'dart:developer';
-
-import 'package:app_initial/app_initial.dart';
-import 'package:bloc/bloc.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:myapp/firebase_options.dart';
-
-class AppBlocObserver extends BlocObserver {
-  const AppBlocObserver();
-
-  @override
-  void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
-    super.onChange(bloc, change);
-  }
-
-  @override
-  void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    log('onError(${bloc.runtimeType}, $error, $stackTrace)');
-    super.onError(bloc, error, stackTrace);
-  }
-}
-
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
-  FlutterError.onError = (details) {
-    log(details.exceptionAsString(), stackTrace: details.stack);
-  };
-
-  Bloc.observer = const AppBlocObserver();
-
-  FlutterNativeSplash.preserve(
-    widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
-  );
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  await Preference.instance.init();
-
-  runApp(await builder());
-}
-
-```
 
 
 ### <a name="#emulators">Emulators</a> 
