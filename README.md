@@ -1,4 +1,4 @@
-<img alt="image" src="https://flow-labs.io/img/logo/logo-white.png" />
+<img width="995" alt="image" src="https://github.com/user-attachments/assets/53b0d2ef-2006-4310-98bb-115803c8cdf1" /><img alt="image" src="https://flow-labs.io/img/logo/logo-white.png" />
 
 Developed by [Flow Labs](https://flow-labs.io/) 🚀
 
@@ -89,7 +89,7 @@ The Sign-in methods should be three
 
 ##### Google
 
-1. Chose the google option
+1. Choose the google option
 
 <img width="975" alt="image" src="https://github.com/user-attachments/assets/af44ab9d-4d3e-4eb3-9e97-41cbf75ec66f" />
 
@@ -100,6 +100,34 @@ The Sign-in methods should be three
 3. Set the facing name (you can change this later). You will see this title when you try to sign-in with google in the app. In production environment only set the name of the project. And set support email (you can change this later).
 
 <img width="674" alt="image" src="https://github.com/user-attachments/assets/18eaef44-9ce5-4a67-afc6-0c5dfde0f419" />
+
+##### Apple
+
+1. Choose the apple option
+
+<img width="983" alt="image" src="https://github.com/user-attachments/assets/ec300031-ba91-4856-866a-64fb14e67f3d" />
+
+2. Set enable
+
+<img width="147" alt="image" src="https://github.com/user-attachments/assets/437a27ff-2b6b-4539-b6b0-a2391d25686a" />
+
+3. Save
+
+<img width="782" alt="image" src="https://github.com/user-attachments/assets/56db5852-625f-425e-a32d-ddf694a2ef86" />
+
+##### Email and password
+
+1. Choose the apple option
+
+<img width="976" alt="image" src="https://github.com/user-attachments/assets/c16de8b8-0281-497c-b80b-649010ea49be" />
+
+2. Set enable
+
+<img width="147" alt="image" src="https://github.com/user-attachments/assets/437a27ff-2b6b-4539-b6b0-a2391d25686a" />
+
+3. Save
+
+<img width="995" alt="image" src="https://github.com/user-attachments/assets/cbb4575e-3478-459d-b07c-0b2b10551990" />
 
 ## <a name="#flutter-app">Flutter App</a>
 
