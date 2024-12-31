@@ -52,7 +52,7 @@ firebase login
 
 ### <a name="#create-firebase-projects">Create firebase projects</a> 
 
-We will go to make the firebase projects for each environment
+We will go to create the firebase projects for each environment
 
 Open ```firebase/Makefile``` and rename the var ```PROJECT_NAME``` 
 
@@ -101,6 +101,10 @@ The Sign-in methods should be three
 
 <img width="674" alt="image" src="https://github.com/user-attachments/assets/18eaef44-9ce5-4a67-afc6-0c5dfde0f419" />
 
+4. Save
+
+<img width="965" alt="image" src="https://github.com/user-attachments/assets/d09b178b-f92a-4d1c-8f5d-1fb510406190" />
+
 ##### Apple
 
 1. Choose the apple option
@@ -117,7 +121,7 @@ The Sign-in methods should be three
 
 ##### Email and password
 
-1. Choose the apple option
+1. Choose the email/password option
 
 <img width="976" alt="image" src="https://github.com/user-attachments/assets/c16de8b8-0281-497c-b80b-649010ea49be" />
 
