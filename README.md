@@ -133,6 +133,24 @@ The Sign-in methods should be three
 
 <img width="995" alt="image" src="https://github.com/user-attachments/assets/cbb4575e-3478-459d-b07c-0b2b10551990" />
 
+#### Firebase Database
+
+1. Enter in
+
+<img width="239" alt="image" src="https://github.com/user-attachments/assets/fdb2eb7c-659a-4b13-b2bf-0dfa2a5c4b46" />
+
+2. Press on "Create Database"
+
+<img width="481" alt="image" src="https://github.com/user-attachments/assets/b93863d1-48d7-4b8e-92c1-003ec6171c47" />
+
+3. Choose a location
+
+<img width="844" alt="image" src="https://github.com/user-attachments/assets/139e5e8e-d6ad-4982-b191-1feeda49d0a2" />
+
+4. Set "test mode" and press "Create" (we will update the rules latter)
+
+<img width="857" alt="image" src="https://github.com/user-attachments/assets/76d7052c-52a3-4ffe-8840-0adaf25b870e" />
+
 ## <a name="#flutter-app">Flutter App</a>
 
 This starter kit use the template of Very Good Ventures to generate the app. The team believe it's a great standard to lunch an app. Therefore we will follow the next steps to install the CLI and generate the app. 
