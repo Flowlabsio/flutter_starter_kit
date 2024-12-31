@@ -101,6 +101,8 @@ The Sign-in methods should be three
 
 <img width="674" alt="image" src="https://github.com/user-attachments/assets/18eaef44-9ce5-4a67-afc6-0c5dfde0f419" />
 
+<img width="307" alt="image" src="https://github.com/user-attachments/assets/bba70a65-bf52-4eae-9c74-10a2201dcb29" />
+
 4. Save
 
 <img width="965" alt="image" src="https://github.com/user-attachments/assets/d09b178b-f92a-4d1c-8f5d-1fb510406190" />
@@ -374,7 +376,7 @@ Repeat this process for each environment.
 
 ### Apple
 
-#### Bundle Id
+#### General configurations
 
 1. Open xcode
 
@@ -394,22 +396,65 @@ open ios/Runner.xcworkspace
 
 <img width="1079" alt="image" src="https://github.com/user-attachments/assets/bb7d4493-2563-4c46-bfb0-18e60eb24684" />
 
-#### Capability
-
-1. Press
-
-<img width="309" alt="image" src="https://github.com/user-attachments/assets/c4a50499-1e6a-4c6c-882b-ce7f9d372d6a" />
-
-2. Add "Sign in with Apple"
-
-<img width="721" alt="image" src="https://github.com/user-attachments/assets/5444dbb2-3083-42eb-81fe-909abb1b0b79" />
-
-#### Podifle
-
-1. In the ```Podfile``` set the min version in ```13``` (required by firebase_auth). Go to ```ios/Podfile```, past
+5. In the ```Podfile``` set the min version in ```13``` (required by firebase_auth). Go to ```ios/Podfile```, past
 
 ```
 platform :ios, '13.0'
+```
+
+#### Sign in with Apple
+
+1. Press on "Runner"
+
+<img width="272" alt="image" src="https://github.com/user-attachments/assets/a7e74389-2a77-410e-86e9-a369139e4709" />
+
+2. Go to "Signing & Capabilities"
+
+<img width="900" alt="image" src="https://github.com/user-attachments/assets/15b685d3-8951-4cc0-8bbc-0e2e4a3c319d" />
+
+3. Press
+
+<img width="309" alt="image" src="https://github.com/user-attachments/assets/c4a50499-1e6a-4c6c-882b-ce7f9d372d6a" />
+
+4. Add "Sign in with Apple"
+
+<img width="721" alt="image" src="https://github.com/user-attachments/assets/5444dbb2-3083-42eb-81fe-909abb1b0b79" />
+
+#### Sign in with Google
+
+1. Go to ```firebase/environments/<env>/GoogleService-Info.plist``` and copy the value of the key ```REVERSED_CLIENT_ID``` and past it in the  ```firebase/environments/<env>/Info.plist``` in the ```CFBundleURLSchemes```
+
+If you can't find the ```REVERSED_CLIENT_ID``` it's because the Sign in with Google configuration in firabase is missing.
+
+```
+<dict>
+    <!-- Put me in the [my_project]/ios/Runner/Info.plist file -->
+    <!-- Google Sign-in Section -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <!-- TODO Replace this value: -->
+                <!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+                <string>[REVERSED_CLIENT_ID]</string>
+            </array>
+        </dict>
+    </array>
+    ...
+</dict>
+```
+
+2. Go to ```firebase/environments/<env>/GoogleService-Info.plist``` and copy the value of the key ```CLIENT_ID``` and past it in the ```firebase/environments/<env>/env.json``` in the ```GOOGLE_CLIENT_ID```
+
+```
+{
+  ...
+  "GOOGLE_CLIENT_ID": "<CLIENT_ID>",
+  ...
+}
 ```
 
 ---
