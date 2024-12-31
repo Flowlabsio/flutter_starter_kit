@@ -14,8 +14,13 @@ The goal of this repository is to be a helpful starting point without imposing r
 * <a href="#firebase">Firebase</a> 
   * <a href="#install-firebase-cli">Install firebase CLI</a> 
   * <a href="#create-firebase-projects">Create firebase projects</a> 
+  * <a href="#create-firebase-projects">Configuration services</a> 
 * <a href="#flutter-app">Flutter App</a> 
-  * Install VGV CLI
+  * Configuration initial project  
+    * Install VGV project
+    * Add dependencies
+    * Adding the initial app
+    * Set Firabase environments in the project
   * Create the app
   * Install the kit
 * <a href="#emulators">Emulators</a> 
@@ -65,19 +70,50 @@ This command could be failed because the name is used on another project, and th
 firebase projects:create <project-name>-<env>
 ```
 
+### <a name="#install-firebase-cli">Configuration services</a>
+
+This configuration is the basic setup to use the ```app_initial``` this app use two services in Firabase, Authentication and Firestore Database
+
+<img width="213" alt="image" src="https://github.com/user-attachments/assets/05213068-45e4-4f47-94e6-53e336f840aa" />
+
+You must to cofig every services in each environment
+
+#### Authentication
+
+The Sign-in methods should be three
+1. Email and password
+2. Google
+3. Apple
+
+<img width="1007" alt="image" src="https://github.com/user-attachments/assets/1ed8e897-a498-452a-a6ea-96677453332a" />
+
+##### Google
+
+1. Chose the google option
+
+<img width="975" alt="image" src="https://github.com/user-attachments/assets/af44ab9d-4d3e-4eb3-9e97-41cbf75ec66f" />
+
+2. Set enable
+
+<img width="147" alt="image" src="https://github.com/user-attachments/assets/437a27ff-2b6b-4539-b6b0-a2391d25686a" />
+
+3. Set the facing name (you can change this later). You will see this title when you try to sign-in with google in the app. In production environment only set the name of the project. And set support email (you can change this later).
+
+<img width="674" alt="image" src="https://github.com/user-attachments/assets/18eaef44-9ce5-4a67-afc6-0c5dfde0f419" />
+
 ## <a name="#flutter-app">Flutter App</a>
 
 This starter kit use the template of Very Good Ventures to generate the app. The team believe it's a great standard to lunch an app. Therefore we will follow the next steps to install the CLI and generate the app. 
 
-### Config initial project
+### Install VGV project
 
-First, install the CLI:
+First, install the VGV CLI
 
 ```
 dart pub global activate very_good_cli
 ```
 
-And then run one by one the commands to create the project and leave every file and file in the root 
+And then run one by one the commands to create the project and leave every file and file in the root folder
 
 ```
 ### Positioned in the root of the project
@@ -97,7 +133,6 @@ rm -rf <project-name>
 App dependencies:
 
 ```
-# Required
 flutter pub add app_ui --path=./kit/app_ui
 flutter pub add app_core --path=./kit/app_core
 flutter pub add app_helpers --path=./kit/app_helpers
@@ -115,21 +150,15 @@ flutter pub add go_router \
   shared_preferences
 ```
 
-Replace the folder ```lib/l10n/arb``` for ```kit/app_initial/lib/l10n/arb```
+### Adding the initial app
 
-Move the ```kit/app_initial/lib/src``` to ```lib/```
+1. Replace the folder ```lib/l10n/arb``` by ```kit/app_initial/lib/l10n/arb```
 
-Run this command to update the dependencies
+2. Move the ```kit/app_initial/lib/src``` to ```lib/```
 
-```
-./replace_text.sh ./lib/src "app_initial" "<project-name>"
+3. Delete the folder ```kit/app_initial```
 
-flutter pub get
-```
-
-Delete the folder ```kit/app_initial```
-
-Paste in the file ```lib/bootstrap.dart``` this content, replace the ```<project-name>```
+4. Paste in the file ```lib/bootstrap.dart``` this content
 
 ```
 import 'dart:async';
@@ -178,7 +207,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 }
 ```
 
-Paste in the file ```lib/app/view/app.dart``` this content, replace the ```<project-name>```
+5. Paste in the file ```lib/app/view/app.dart``` this content
 
 ```
 import 'dart:async';
@@ -236,7 +265,14 @@ class _AppState extends State<App> {
     );
   }
 }
+```
 
+6. Run this command to fix the path's dependencies
+
+```
+./replace_text.sh ./lib "app_initial" "<project-name>"
+
+flutter pub get
 ```
 
 ### Set Firabase environments in the project
@@ -249,7 +285,7 @@ Instal flutterfire_cli to config the firebase console with the app
 dart pub global activate flutterfire_cli
 ```
 
-Then config each flavour (```dev```, ```stg```, ```prod```)
+Then config run this command
 
 ```
 flutterfire config \
@@ -258,7 +294,19 @@ flutterfire config \
     --android-package-name=com.<org>.<project-name>.<env>
 ```
 
-After run that command. Will apear four new files in the project.
+Set the platforms
+
+<img width="823" alt="image" src="https://github.com/user-attachments/assets/47e51403-2d00-4ba1-be47-f906a59c512f" />
+
+If you go to 
+
+<img width="435" alt="image" src="https://github.com/user-attachments/assets/86f3db88-9b5f-465b-9e44-92156e15fb9b" />
+
+At the seccion "Your apps", you will see your apps
+
+<img width="996" alt="image" src="https://github.com/user-attachments/assets/63f3b9e7-38fd-41ed-b6bf-3877e3a7ba81" />
+
+Will apear four new files in the project.
 
 ```
 * lib/firebase_options.dart
