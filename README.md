@@ -1,4 +1,4 @@
-<img width="995" alt="image" src="https://github.com/user-attachments/assets/53b0d2ef-2006-4310-98bb-115803c8cdf1" /><img alt="image" src="https://flow-labs.io/img/logo/logo-white.png" />
+<img alt="image" src="https://flow-labs.io/img/logo/logo-white.png" />
 
 Developed by [Flow Labs](https://flow-labs.io/) 🚀
 
