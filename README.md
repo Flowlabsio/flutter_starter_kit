@@ -352,16 +352,57 @@ That new files was saved in the ```firebase/environments/<env>``` folder, and wh
 
 Repeat this process for each environment.
 
+## Set plaforms
+
+### Apple
+
+#### Bundle Id
+
+1. Open xcode
+
+```
+open ios/Runner.xcworkspace
+```
+
+2. Press on "Runner"
+
+<img width="272" alt="image" src="https://github.com/user-attachments/assets/a7e74389-2a77-410e-86e9-a369139e4709" />
+
+3. Go to "Signing & Capabilities"
+
+<img width="900" alt="image" src="https://github.com/user-attachments/assets/15b685d3-8951-4cc0-8bbc-0e2e4a3c319d" />
+
+4. Set the bundle id and team for each team (remember that the bundle id must match with the bundle id create in firebase console)
+
+<img width="1079" alt="image" src="https://github.com/user-attachments/assets/bb7d4493-2563-4c46-bfb0-18e60eb24684" />
+
+#### Capability
+
+1. Press
+
+<img width="309" alt="image" src="https://github.com/user-attachments/assets/c4a50499-1e6a-4c6c-882b-ce7f9d372d6a" />
+
+2. Add "Sign in with Apple"
+
+<img width="721" alt="image" src="https://github.com/user-attachments/assets/5444dbb2-3083-42eb-81fe-909abb1b0b79" />
+
+#### Podifle
+
+1. In the ```Podfile``` set the min version in ```13``` (required by firebase_auth). Go to ```ios/Podfile```, past
+
+```
+platform :ios, '13.0'
+```
+
 ---
 
 ### Set Bundle Id and Namespace
 
-This id need to match with the ios-bundle-id and android-package-name setted in ```flutterfire config```
+Thosos ids need to match with the ios-bundle-id and android-package-name setted in ```flutterfire config```
 
 Android
 
-Intall the package ```change_app_package_name```
-
+Intall the next package
 
 ```
 flutter pub add --dev change_app_package_name
