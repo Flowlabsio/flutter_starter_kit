@@ -376,7 +376,7 @@ Repeat this process for each environment.
 
 ### Apple
 
-#### General configurations
+#### Set BundleId
 
 1. Open xcode
 
@@ -396,7 +396,9 @@ open ios/Runner.xcworkspace
 
 <img width="1079" alt="image" src="https://github.com/user-attachments/assets/bb7d4493-2563-4c46-bfb0-18e60eb24684" />
 
-5. In the ```Podfile``` set the min version in ```13``` (required by firebase_auth). Go to ```ios/Podfile```, past
+#### Set min-version-ios
+
+In the ```Podfile``` set the min version in ```13``` (required by firebase_auth). Go to ```ios/Podfile```, past
 
 ```
 platform :ios, '13.0'
@@ -456,6 +458,8 @@ If you can't find the ```REVERSED_CLIENT_ID``` it's because the Sign in with Goo
   ...
 }
 ```
+
+#### Andoird
 
 ---
 
