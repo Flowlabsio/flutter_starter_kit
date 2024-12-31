@@ -320,10 +320,11 @@ dart pub global activate flutterfire_cli
 Then config run this command
 
 ```
-flutterfire config \
-    --project=<project-name>-<env> \
-    --ios-bundle-id=com.<org>.<project-name>.<env> \
-    --android-package-name=com.<org>.<project-name>.<env>
+./configure_firebase.sh \
+    --project="<project-name>-<env>" \
+    --ios-bundle-id="com.<org>.<project-name>.<env>" \
+    --android-package-name="com.<org>.<project-name>.<env>" \
+    --env="<env>"
 ```
 
 Set the platforms
@@ -347,9 +348,11 @@ Will apear four new files in the project.
 * firebase.json
 ```
 
-Copy every file and pase it int the ```firebase/environments/<env>```.
+That new files was saved in the ```firebase/environments/<env>``` folder, and when you run your project with vscode will switch the files depending the environment
 
 Repeat this process for each environment.
+
+---
 
 ### Set Bundle Id and Namespace
 
