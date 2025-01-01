@@ -512,7 +512,7 @@ if you got some error, try to run the app with  ```flutter run --flavor developm
 
 6. Update the environment files with the command ```./configure_firebase.sh``` (check the documentation about generate if you forgot the proccess)
 
-#### Sign in with Apple (Not ready)
+#### Sign in with Apple (Documentation not ready)
 
 1. Go to https://developer.apple.com/account/resources/identifiers/list/serviceId
 
