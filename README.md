@@ -264,12 +264,14 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 ```
 import 'dart:async';
 
+import 'package:app_core/app_core.dart';
 import 'package:<project-name>/l10n/l10n.dart';
 import 'package:<project-name>/src/facades/facades.dart';
 import 'package:<project-name>/src/facades/router.dart' as router;
-import 'package:app_core/app_core.dart';
+import 'package:<project-name>/src/helpers/helpers.dart';
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -301,19 +303,22 @@ class _AppState extends State<App> {
     final themeMode = Preference.instance.themeMode;
     final locale = Preference.instance.locale;
 
-    return MaterialApp.router(
-      scaffoldMessengerKey: AppKeys.instance.scaffoldMessengerKey,
-      theme: UITheme.light,
-      darkTheme: UITheme.dark,
-      themeMode: themeMode,
-      locale: locale,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      routerConfig: router.Router.instance.goRouter,
-      onGenerateTitle: (context) {
-        Localization.buildContext = context;
-        return context.l10n.appName;
-      },
+    return ReactiveFormConfig(
+      validationMessages: validationMessages,
+      child: MaterialApp.router(
+        scaffoldMessengerKey: AppKeys.instance.scaffoldMessengerKey,
+        theme: UIThemeLight.instance.theme,
+        darkTheme: UIThemeDark.instance.theme,
+        themeMode: themeMode,
+        locale: locale,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        routerConfig: router.Router.instance.goRouter,
+        onGenerateTitle: (context) {
+          Localization.buildContext = context;
+          return context.l10n.appName;
+        },
+      ),
     );
   }
 }
