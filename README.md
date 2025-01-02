@@ -40,6 +40,10 @@ This kit is not a "framework"; rather, it's a guide for initializing a project w
     * Light
     * Dark
 * Delete user
+* Export data
+  * Auth
+  * Firestore
+* Emulators 
 
 ## Index
 
