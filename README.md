@@ -11,11 +11,11 @@ This kit is not a "framework"; rather, it's a guide for initializing a project w
 The goal of this repository is to be a helpful starting point without imposing rigid constraints on developers.
 
 * Download Kit
-* <a href="#firebase">Firebase</a> 
-  * <a href="#install-firebase-cli">Install firebase CLI</a> 
-  * <a href="#create-firebase-projects">Create firebase projects</a> 
-  * <a href="#create-firebase-projects">Configuration services</a> 
-* <a href="#flutter-app">Flutter App</a> 
+* Firebase 
+  * Install firebase CLI 
+  * Create firebase projects
+  * Configuration services 
+* Flutter App
   * Configuration initial project  
     * Install VGV project
     * Add dependencies
@@ -23,7 +23,7 @@ The goal of this repository is to be a helpful starting point without imposing r
     * Set Firabase environments in the project
   * Create the app
   * Install the kit
-* <a href="#emulators">Emulators</a> 
+* Emulators
 
 ## Download Kit
 ```
@@ -35,9 +35,9 @@ cd <project-name>
 code .
 ```
 
-## <a name="#firebase">Firebase</a>
+## Firebase
 
-### <a name="#install-firebase-cli">Install firebase CLI</a>
+### Install firebase CLI
 
 ```
 # Download CLI
@@ -50,7 +50,7 @@ npm install -g firebase-tools
 firebase login
 ```
 
-### <a name="#create-firebase-projects">Create firebase projects</a> 
+### Create firebase projects 
 
 We will go to create the firebase projects for each environment
 
@@ -70,7 +70,7 @@ This command could be failed because the name is used on another project, and th
 firebase projects:create <project-name>-<env>
 ```
 
-### <a name="#install-firebase-cli">Configuration services</a>
+### Configuration services
 
 This configuration is the basic setup to use the ```app_initial``` this app use two services in Firabase, Authentication and Firestore Database
 
@@ -153,7 +153,7 @@ The Sign-in methods should be three
 
 <img width="857" alt="image" src="https://github.com/user-attachments/assets/76d7052c-52a3-4ffe-8840-0adaf25b870e" />
 
-## <a name="#flutter-app">Flutter App</a>
+## Flutter App
 
 This starter kit use the template of Very Good Ventures to generate the app. The team believe it's a great standard to lunch an app. Therefore we will follow the next steps to install the CLI and generate the app. 
 
