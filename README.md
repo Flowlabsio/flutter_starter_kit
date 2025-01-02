@@ -416,7 +416,7 @@ dart run change_app_package_name:main com.<org>.<project-name> --android
 
 #### Update min-sdk-version
 
-2. Go to ```android/app/build.gradle``` and set ```minSdkVersion```
+Go to ```android/app/build.gradle``` and set ```minSdkVersion```
 
 ```
 ...
@@ -432,6 +432,8 @@ keytool -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore -sto
 ```
 
 2. Copy the ```SHA1``` and go to the firebase console
+
+<img width="1054" alt="image" src="https://github.com/user-attachments/assets/b7cb95ac-d6ce-4ae3-a5ad-35acf33967f3" />
 
 3. Go to "Project settings"
 
