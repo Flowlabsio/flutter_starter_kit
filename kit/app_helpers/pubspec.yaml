@@ -1,0 +1,23 @@
+name: app_helpers
+description: "Kit Helper"
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ^3.5.4
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  app_ui:
+    path: ../app_ui
+  app_core:
+    path: ../app_core
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:

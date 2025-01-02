@@ -1,4 +1,4 @@
-PROJECT_NAME = santi
+PROJECT_NAME = <project-name>
 ENVIRONMENTS = dev stg prod
 
 create_firebase_project:
