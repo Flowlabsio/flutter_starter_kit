@@ -26,6 +26,9 @@ The goal of this repository is to be a helpful starting point without imposing r
 * Emulators
 
 ## Download Kit
+
+This is the first step to do somthing with the kit
+
 ```
 git clone https://github.com/Flowlabsio/flutter_starter_kit.git <project-name>
 
@@ -54,9 +57,11 @@ firebase login
 
 We will go to create the firebase projects for each environment
 
-Open ```firebase/Makefile``` and rename the var ```PROJECT_NAME``` 
+1. Open ```firebase/Makefile``` and rename the var ```PROJECT_NAME```
 
-Create the projects with this command:
+Aclaration: If you will have more than three envirnments, add you other envirnments in the var ```ENVIRONMENTS``` on ```firebase/Makefile``` 
+
+2. Create the projects for each envirnments
 
 ```
 cd firebase
@@ -64,11 +69,13 @@ cd firebase
 make create_firebase_project
 ```
 
-This command could be failed because the name is used on another project, and the names of the projects could be unique, if that happen try to run the next command for each failed project
+This command could be failed because the name is used on another project (and the names of the projects could be unique), if that happen try to run the next command for each failed project
 
 ```
 firebase projects:create <project-name>-<env>
 ```
+
+Or go to the console and drop the projects created and start again this process
 
 ### Configuration services
 
@@ -76,7 +83,7 @@ This configuration is the basic setup to use the ```app_initial``` this app use 
 
 <img width="213" alt="image" src="https://github.com/user-attachments/assets/05213068-45e4-4f47-94e6-53e336f840aa" />
 
-You must to cofig every services in each environment
+You must to cofig every services in each environment. Or if you want to only start with ```development``` you can only set that and then the another environments
 
 #### Authentication
 
@@ -159,13 +166,13 @@ This starter kit use the template of Very Good Ventures to generate the app. The
 
 ### Install VGV project
 
-First, install the VGV CLI
+1. Install the VGV CLI
 
 ```
 dart pub global activate very_good_cli
 ```
 
-And then run one by one the commands to create the project and leave every file and file in the root folder
+2. Run one by one the commands to create the project and leave every file and file in the root folder
 
 ```
 ### Positioned in the root of the project
