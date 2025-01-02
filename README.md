@@ -558,17 +558,11 @@ To use the emulators, it's necessary to choose a real firebase project, use one 
 
 Aclaration: If you want to use any service in the amulator, that service must be activated in the firebase project, for example "Google Sign In", the provider of google should be activated to use it in the emulator
 
-### Use emulators
-
-```
-firebase use <project-name>-<env>
-```
-
-Some services like Firestore doesn't need to be activated in the console of firebase to use it, but other services like auth with google, needed to be activated in the console and use the real credentials as google key, reversed, etc.
-
 To start the emulator run
 
 ```
+cd firebase
+
 firebase emulators:start --debug --import export/ --export-on-exit export/
 ```
 
@@ -584,17 +578,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-In the app, call this methods
-
-```
-// Connect to Firestore emulator
-FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
-
-// Connect to Auth emulator
-FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-```
-
-You can add that in the ```bootstrap.dart```
+In the app, call this methods, you can add that in the ```bootstrap.dart```
 
 ```
 /// USE EMULATORS
@@ -614,4 +598,34 @@ firebase use <project-name>-<env>
 
 # Export data
 firebase auth:export export/firebase_users.json --format=JSON --project <project-name>-<env> 
+```
+
+### Firestore
+
+1. Install ```firestore-export-import```
+
+```
+npm install firestore-export-import
+```
+
+2. You have to generate new private key from "Project Settings" from Firebase Console.
+
+<img width="433" alt="image" src="https://github.com/user-attachments/assets/5d15ad77-76a9-469a-b982-3aab63a1c23c" />
+
+3. Go to "Service Account" tab
+
+<img width="771" alt="image" src="https://github.com/user-attachments/assets/3b577447-8b84-46b1-80f3-ade8332c8106" />
+
+4. And press "Generate new private key"
+
+<img width="954" alt="image" src="https://github.com/user-attachments/assets/17030fa6-06e0-42d4-8b5b-1ec25bb7c70a" />
+
+5. Move the key ```serviceAccountKey.json``` to the folder ```firebase/```
+
+6. Run
+
+```
+cd firebase
+
+firestore-export -a ./<service-account-key>.json -b ./<data-namefile>.json
 ```
