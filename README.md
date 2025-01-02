@@ -14,17 +14,34 @@ The goal of this repository is to be a helpful starting point without imposing r
 * Firebase 
   * Install firebase CLI 
   * Create firebase projects
-  * Configuration services 
+  * Configuration services
+    * Authentication
+      * Google
+      * Apple
+      * Email and password
+    * Firebase Database
+* Set plaforms
+  * IOS
+    * Set BundleId
+    * Set Min Version iOS
+    * Sign in with Apple
+    * Sign in with Google 
+  * Android
+    * Set Namespace
+    * Update min-sdk-version
+    * Sign in with Google
 * Flutter App
-  * Configuration initial project  
+  * Configuration initial project
     * Install VGV project
     * Add dependencies
-    * Adding the initial app
+    * Copy the app_initial
     * Set Firabase environments in the project
   * Create the app
   * Install the kit
 * Emulators
-  * Run emulator
+  * Run emulators
+  * Functions
+  * Config App
 * Export data from Firebase
   * Firebase Auth
   * Firestore 
@@ -317,7 +334,7 @@ Repeat this process for each environment (if you configurated the other environm
 
 ## Set plaforms
 
-### Apple
+### IOS
 
 #### Set BundleId
 
@@ -402,7 +419,7 @@ If you can't find the ```REVERSED_CLIENT_ID``` it's because the Sign in with Goo
 }
 ```
 
-### Andoird
+### Android
 
 #### Set Namespace
 
