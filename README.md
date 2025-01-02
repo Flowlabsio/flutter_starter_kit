@@ -594,6 +594,14 @@ FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
 FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
 ```
 
+You can add that in the ```bootstrap.dart```
+
+```
+/// USE EMULATORS
+FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+```
+
 ## Export data from Firebase
 
 Aclaration: There isn't a way to export the data and insert in the emulator
