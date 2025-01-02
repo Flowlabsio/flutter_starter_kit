@@ -592,13 +592,13 @@ FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
 FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
 ```
 
-#### Import
-
-There isn't a way to export the data and insert in the emulator
+## Export data from Firebase
 
 To export the data from firestore and import the data in the emulators we need to follow some steps
 
-##### Firebase Auth
+Aclaration: There isn't a way to export the data and insert in the emulator
+
+### Firebase Auth
 
 1. Export data
 
