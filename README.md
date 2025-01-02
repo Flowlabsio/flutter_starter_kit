@@ -594,13 +594,9 @@ FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
 
 ## Export data from Firebase
 
-To export the data from firestore and import the data in the emulators we need to follow some steps
-
 Aclaration: There isn't a way to export the data and insert in the emulator
 
 ### Firebase Auth
-
-1. Export data
 
 ```
 firebase auth:export export/firebase_users.json --format=JSON --project <project-name>-<env> 
