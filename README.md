@@ -24,7 +24,10 @@ The goal of this repository is to be a helpful starting point without imposing r
   * Create the app
   * Install the kit
 * Emulators
+  * Run emulator
 * Export data from Firebase
+  * Firebase Auth
+  * Firestore 
 
 ## Download Kit
 
@@ -458,6 +461,8 @@ To use the emulators, it's necessary to choose a real firebase project, use one 
 
 Aclaration: If you want to use any service in the amulator, that service must be activated in the firebase project, for example "Google Sign In", the provider of google should be activated to use it in the emulator
 
+### Run emulators
+
 To start the emulator run
 
 ```
@@ -465,6 +470,8 @@ cd firebase
 
 firebase emulators:start --debug --import export/ --export-on-exit export/
 ```
+
+### Functions
 
 Install the function dependencies (if you want to use it)
 
@@ -477,6 +484,8 @@ source venv/bin/activate
 
 pip install -r requirements.txt
 ```
+
+### Config App
 
 In the app, call this methods, you can add that in the ```bootstrap.dart```
 
