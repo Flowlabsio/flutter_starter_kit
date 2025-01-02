@@ -8,6 +8,13 @@ This starter kit was created to address the challenges of initializing a project
 
 This kit is not a "framework"; rather, it's a guide for initializing a project with useful tools, popular libraries, folder structures, widgets, and more. The key idea is flexibility: developers have the freedom to choose their preferred structure. The goal of this repository is to be a helpful starting point without imposing rigid constraints on developers.
 
+## Screenshots
+
+![Jan-02-2025 21-03-45](https://github.com/user-attachments/assets/045dc628-f343-4fad-819c-2041f563da8b)
+![Jan-02-2025 21-10-08](https://github.com/user-attachments/assets/e41d62e6-2498-4820-b950-fc7a0384668f)
+![Jan-02-2025 21-10-27](https://github.com/user-attachments/assets/9c89a8a6-886e-410e-a55a-1982ab844679)
+![Jan-02-2025 21-10-32](https://github.com/user-attachments/assets/3864c504-81bc-4e5e-96f2-7835760b98b5)
+
 ## Platforms
 
 * Android
