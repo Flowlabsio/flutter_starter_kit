@@ -447,46 +447,9 @@ And select the android app
 
 <img width="321" alt="image" src="https://github.com/user-attachments/assets/e385dc4d-d255-446a-8994-639b98d42c56" />
 
-5. Paste the  ```SHA1``` and "Save"
-
-if you got some error, try to run the app with  ```flutter run --flavor development -t lib/main_development.dart``` to update the libraries
+5. Paste the  ```SHA1``` and press "Save"
 
 6. Update the environment files with the command ```./configure_firebase.sh``` (check the documentation about generate if you forgot the proccess)
-
-#### Sign in with Apple (Documentation not ready)
-
-1. Go to https://developer.apple.com/account/resources/identifiers/list/serviceId
-
-and press where say "Register an Service ID"
-
-<img width="1282" alt="image" src="https://github.com/user-attachments/assets/307b304d-8a93-47cb-9d5e-bbd46f2be054" />
-
-2. Choose "Service Id" and press "Continue"
-
-<img width="1273" alt="image" src="https://github.com/user-attachments/assets/54e23f6c-0a31-469b-a7ad-42640efe7df5" />
-
-3. Fill the form
-
-<img width="1286" alt="image" src="https://github.com/user-attachments/assets/10fecbac-c23c-4e37-a509-23758e06224d" />
-
-You can choose another "Identifier" ```com.<org>.<project-name>.auth```
-
-4. Registe the Service ID
-
-5. Click your service created
-
-<img width="544" alt="image" src="https://github.com/user-attachments/assets/55c2bdeb-8926-420d-8d2c-e52eac6f8ec5" />
-
-6. Check the "Sign in with Apple" and press "Configuration"
-
-<img width="667" alt="image" src="https://github.com/user-attachments/assets/2ab9f7a4-9aff-42c6-89bd-296a16a0fccb" />
-
-will be necessary set ```webAuthenticationOptions```
-
-<img width="1243" alt="image" src="https://github.com/user-attachments/assets/6e3ef9d1-87a7-4ebf-a4ca-02c9901ab5f7" />
-
-<img width="820" alt="image" src="https://github.com/user-attachments/assets/eef52c35-9758-47d8-87d9-28b4deb20595" />
-
 
 ### Emulators
 
