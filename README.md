@@ -556,6 +556,8 @@ will be necessary set ```webAuthenticationOptions```
 
 To use the emulators, it's necessary to choose a real firebase project, use one of created before (recommended dev environment).
 
+Aclaration: If you want to use any service in the amulator, that service must be activated in the firebase project, for example "Google Sign In", the provider of google should be activated to use it in the emulator
+
 ### Use emulators
 
 ```
@@ -599,5 +601,9 @@ Aclaration: There isn't a way to export the data and insert in the emulator
 ### Firebase Auth
 
 ```
+# Select the project
+firebase use <project-name>-<env>
+
+# Export data
 firebase auth:export export/firebase_users.json --format=JSON --project <project-name>-<env> 
 ```
