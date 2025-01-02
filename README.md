@@ -605,7 +605,7 @@ firebase auth:export export/firebase_users.json --format=JSON --project <project
 1. Install ```firestore-export-import```
 
 ```
-npm install firestore-export-import
+npm install -g firestore-export-import
 ```
 
 2. You have to generate new private key from "Project Settings" from Firebase Console.
