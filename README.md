@@ -30,12 +30,8 @@ This kit is not a "framework"; rather, it's a guide for initializing a project w
 * Validate Email
 * Forgot Password
 * Profile
-  * Firstname
-  * Lastname
 * Preferences
   * Lenguage
-    * English
-    * Spanish
   * Theme
     * Light
     * Dark
