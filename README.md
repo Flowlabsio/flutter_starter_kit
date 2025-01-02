@@ -46,6 +46,14 @@ This kit is not a "framework"; rather, it's a guide for initializing a project w
       * Apple
       * Email and password
     * Firebase Database
+* Flutter App
+  * Configuration initial project
+    * Install VGV project
+    * Add dependencies
+    * Copy the app_initial
+    * Set Firabase environments in the project
+  * Create the app
+  * Install the kit
 * Set plaforms
   * IOS
     * Set BundleId
@@ -56,14 +64,6 @@ This kit is not a "framework"; rather, it's a guide for initializing a project w
     * Set Namespace
     * Update min-sdk-version
     * Sign in with Google
-* Flutter App
-  * Configuration initial project
-    * Install VGV project
-    * Add dependencies
-    * Copy the app_initial
-    * Set Firabase environments in the project
-  * Create the app
-  * Install the kit
 * Emulators
   * Run emulators
   * Functions
