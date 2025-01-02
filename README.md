@@ -497,7 +497,7 @@ await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
 
 ## Export data from Firebase
 
-Aclaration: There isn't a way to export the data and insert in the emulator
+Aclaration: There isn't a "native" way to export the data from firebase and insert in the emulator, 
 
 ### Firebase Auth
 
