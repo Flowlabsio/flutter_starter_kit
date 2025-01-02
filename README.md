@@ -6,9 +6,35 @@ Developed by [Flow Labs](https://flow-labs.io/) 🚀
 
 This starter kit was created to address the challenges of initializing a project. At Flow Labs, we identified recurring patterns when starting a project: state management, authentication, forms, alerts, snackbars, styles, authentication, users, rules and more. The idea behind this repository is to consolidate all the knowledge we’ve gained from building apps into a single resource.
 
-This kit is not a "framework"; rather, it's a guide for initializing a project with useful tools, popular libraries, folder structures, widgets, and more. The key idea is flexibility: developers have the freedom to choose their preferred structure. 
+This kit is not a "framework"; rather, it's a guide for initializing a project with useful tools, popular libraries, folder structures, widgets, and more. The key idea is flexibility: developers have the freedom to choose their preferred structure. The goal of this repository is to be a helpful starting point without imposing rigid constraints on developers.
 
-The goal of this repository is to be a helpful starting point without imposing rigid constraints on developers.
+## Platforms
+
+* Android
+* IOS
+
+## Features
+
+* Sign In
+  * Google
+  * Apple
+* Sign Up 
+  * Email/Password
+* Validate Email
+* Forgot Password
+* Profile
+  * Firstname
+  * Lastname
+* Preferences
+  * Lenguage
+    * English
+    * Spanish
+  * Theme
+    * Light
+    * Dark
+* Delete user
+
+## Index
 
 * Download Kit
 * Firebase 
