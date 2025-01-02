@@ -175,7 +175,7 @@ dart pub global activate very_good_cli
 2. Run one by one the commands to create the project and leave every file and file in the root folder
 
 ```
-### Positioned in the root of the project
+# Go to the root of the project
 
 # Create the project
 very_good create flutter_app <project-name>
@@ -188,8 +188,6 @@ rm -rf <project-name>
 ```
 
 ### Add dependencies
-
-App dependencies:
 
 ```
 flutter pub add app_ui --path=./kit/app_ui
@@ -209,129 +207,32 @@ flutter pub add go_router \
   shared_preferences
 ```
 
-### Adding the initial app
+### Copy the app_initial
 
-1. Replace the folder ```lib/l10n/arb``` by ```kit/app_initial/lib/l10n/arb```
+1. Delete the folder ```lib/app```, ```lib/counter```, ```test/counter```
+
+2. Go to ```test/app/view/app_test.dart``` and paste this
+
+```
+import 'package:flutter_test/flutter_test.dart';
+
+void main() {
+  group('App', () {
+    testWidgets('', (tester) async {
+      expect(true, true);
+    });
+  });
+}
+
+```
+
+3. Replace the folder ```lib/l10n/arb``` by ```kit/app_initial/lib/l10n/arb```
 
 2. Move the ```kit/app_initial/lib/src``` to ```lib/```
 
-3. Delete the folder ```kit/app_initial```
+3. Go to ```kit/app_initial/lib/bootstrap.dart.template``` copy the content and paste in ```lib/bootstrap.dart```
 
-4. Paste in the file ```lib/bootstrap.dart``` this content
-
-```
-import 'dart:async';
-import 'dart:developer';
-
-import 'package:<project-name>/src/facades/facades.dart';
-import 'package:bloc/bloc.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:<project-name>/firebase_options.dart';
-
-class AppBlocObserver extends BlocObserver {
-  const AppBlocObserver();
-
-  @override
-  void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
-    super.onChange(bloc, change);
-  }
-
-  @override
-  void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    log('onError(${bloc.runtimeType}, $error, $stackTrace)');
-    super.onError(bloc, error, stackTrace);
-  }
-}
-
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
-  FlutterError.onError = (details) {
-    log(details.exceptionAsString(), stackTrace: details.stack);
-  };
-
-  Bloc.observer = const AppBlocObserver();
-
-  FlutterNativeSplash.preserve(
-    widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
-  );
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  await Preference.instance.init();
-
-  runApp(await builder());
-}
-```
-
-5. Paste in the file ```lib/app/view/app.dart``` this content
-
-```
-import 'dart:async';
-
-import 'package:app_core/app_core.dart';
-import 'package:<project-name>/l10n/l10n.dart';
-import 'package:<project-name>/src/facades/facades.dart';
-import 'package:<project-name>/src/facades/router.dart' as router;
-import 'package:<project-name>/src/helpers/helpers.dart';
-import 'package:app_ui/app_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:reactive_forms/reactive_forms.dart';
-
-class App extends StatefulWidget {
-  const App({super.key});
-
-  @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  late final StreamSubscription<Preference> _subscription;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _subscription = Preference.instance.stream.listen((_) {
-      setState(() {});
-    });
-  }
-
-  @override
-  void dispose() {
-    _subscription.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final themeMode = Preference.instance.themeMode;
-    final locale = Preference.instance.locale;
-
-    return ReactiveFormConfig(
-      validationMessages: validationMessages,
-      child: MaterialApp.router(
-        scaffoldMessengerKey: AppKeys.instance.scaffoldMessengerKey,
-        theme: UIThemeLight.instance.theme,
-        darkTheme: UIThemeDark.instance.theme,
-        themeMode: themeMode,
-        locale: locale,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        routerConfig: router.Router.instance.goRouter,
-        onGenerateTitle: (context) {
-          Localization.buildContext = context;
-          return context.l10n.appName;
-        },
-      ),
-    );
-  }
-}
-```
-
-6. Run this command to fix the path's dependencies
+5. Run this command to fix the path's dependencies
 
 ```
 ./replace_text.sh ./lib "app_initial" "<project-name>"
@@ -339,17 +240,25 @@ class _AppState extends State<App> {
 flutter pub get
 ```
 
+6. Go to every ```main_<env>``` and fix the ```App``` dependencie
+
+```
+import 'package:<project-name>/src/app/app.dart';
+```
+
+6. Delete the folder ```kit/app_initial``` and ```example``` folder
+
 ### Set Firabase environments in the project
 
 Before to start with this step remember to finish all the steps about create projects in the "Firebase" section
 
-Instal flutterfire_cli to config the firebase console with the app
+1. Instal flutterfire_cli to config the firebase console with the app
 
 ```
 dart pub global activate flutterfire_cli
 ```
 
-Then config run this command
+2. Then config run this command
 
 ```
 ./configure_firebase.sh \
@@ -359,7 +268,7 @@ Then config run this command
     --env="<env>"
 ```
 
-Set the platforms
+3. Set the platforms
 
 <img width="823" alt="image" src="https://github.com/user-attachments/assets/47e51403-2d00-4ba1-be47-f906a59c512f" />
 
@@ -371,7 +280,16 @@ At the seccion "Your apps", you will see your apps
 
 <img width="996" alt="image" src="https://github.com/user-attachments/assets/63f3b9e7-38fd-41ed-b6bf-3877e3a7ba81" />
 
-Will apear four new files in the project.
+Will apear four new files in ```firebase/environments/<env>/```.
+
+```
+* firebase_options.dart
+* GoogleService-Info.plist
+* google-services.json
+* firebase.json
+```
+
+After run the project with vscode, this files with be paste in their correct position
 
 ```
 * lib/firebase_options.dart
@@ -380,9 +298,18 @@ Will apear four new files in the project.
 * firebase.json
 ```
 
-That new files was saved in the ```firebase/environments/<env>``` folder, and when you run your project with vscode will switch the files depending the environment
+Repeat this process for each environment (if you configurated the other environment).
 
-Repeat this process for each environment.
+4. From the root of the project run ```make <env>``` to paste the firebase config files in their positions (this proccess in automatic with vscode)
+
+5. Go to ```lib/bootstrap.dart``` and uncomment this lines
+
+```
+/// UNCOMMENT THIS LIKE AFTER ADDING FIREBASE CONFIGURATION
+// await Firebase.initializeApp(
+//   options: DefaultFirebaseOptions.currentPlatform,
+// );
+```
 
 ## Set plaforms
 
@@ -408,7 +335,7 @@ open ios/Runner.xcworkspace
 
 <img width="1079" alt="image" src="https://github.com/user-attachments/assets/bb7d4493-2563-4c46-bfb0-18e60eb24684" />
 
-#### Set min-version-ios
+#### Set Min Version iOS
 
 In the ```Podfile``` set the min version in ```13``` (required by firebase_auth). Go to ```ios/Podfile```, past
 
@@ -471,7 +398,7 @@ If you can't find the ```REVERSED_CLIENT_ID``` it's because the Sign in with Goo
 }
 ```
 
-#### Andoird
+### Andoird
 
 #### Set Namespace
 
