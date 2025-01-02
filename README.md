@@ -552,9 +552,11 @@ will be necessary set ```webAuthenticationOptions```
 <img width="820" alt="image" src="https://github.com/user-attachments/assets/eef52c35-9758-47d8-87d9-28b4deb20595" />
 
 
-### <a name="#emulators">Emulators</a> 
+### Emulators
 
 To use the emulators, it's necessary to choose a real firebase project, use one of created before (recommended dev environment).
+
+### Use emulators
 
 ```
 firebase use <project-name>-<env>
@@ -565,7 +567,7 @@ Some services like Firestore doesn't need to be activated in the console of fire
 To start the emulator run
 
 ```
-firebase emulators:start --debug
+firebase emulators:start --debug --import export/ --export-on-exit export/
 ```
 
 Install the function dependencies (if you want to use it)
@@ -578,4 +580,28 @@ python3 -m venv venv
 source venv/bin/activate
 
 pip install -r requirements.txt
+```
+
+In the app, call this methods
+
+```
+// Connect to Firestore emulator
+FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+
+// Connect to Auth emulator
+FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+```
+
+#### Import
+
+There isn't a way to export the data and insert in the emulator
+
+To export the data from firestore and import the data in the emulators we need to follow some steps
+
+##### Firebase Auth
+
+1. Export data
+
+```
+firebase auth:export export/firebase_users.json --format=JSON --project <project-name>-<env> 
 ```
