@@ -24,6 +24,7 @@ The goal of this repository is to be a helpful starting point without imposing r
   * Create the app
   * Install the kit
 * Emulators
+* Export data from Firebase
 
 ## Download Kit
 
@@ -451,7 +452,7 @@ And select the android app
 
 6. Update the environment files with the command ```./configure_firebase.sh``` (check the documentation about generate if you forgot the proccess)
 
-### Emulators
+## Emulators
 
 To use the emulators, it's necessary to choose a real firebase project, use one of created before (recommended dev environment).
 
