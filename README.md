@@ -588,3 +588,20 @@ cd firebase
 
 firestore-export -a ./<service-account-key>.json -b ./<data-namefile>.json
 ```
+
+## Devices
+
+<img width="517" alt="image" src="https://github.com/user-attachments/assets/999e2b94-a968-4aca-897e-a5408fa53841" />
+
+<img width="948" alt="image" src="https://github.com/user-attachments/assets/a709b38d-3e51-40d6-8bbf-22c20dad7fea" />
+
+<img width="323" alt="image" src="https://github.com/user-attachments/assets/2d5e1179-5b59-4f08-bcd8-35e370e9870c" />
+
+<img width="706" alt="image" src="https://github.com/user-attachments/assets/d4cbe70a-a97b-4eb6-a683-409b120054e3" />
+
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/448fd603-a8c2-4700-b1ac-065f50eab04a" />
+
+<img width="424" alt="image" src="https://github.com/user-attachments/assets/499758c7-f3de-4779-9f43-80f2b7daeffa" />
+
+<img width="1019" alt="image" src="https://github.com/user-attachments/assets/30ba2634-65fa-4c7f-aae9-6fd34c04eeeb" />
+
