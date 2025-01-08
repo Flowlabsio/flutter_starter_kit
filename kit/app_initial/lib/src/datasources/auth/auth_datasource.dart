@@ -16,6 +16,12 @@ abstract class AuthDatasource {
     String? accessToken,
   });
 
+  Future<UserCredential> signInWithFacebook({
+    String? idToken,
+    String? accessToken,
+    String? rawNonce,
+  });
+
   Future<UserCredential> signInWithEmailAndPassword({
     required String email,
     required String password,
@@ -33,4 +39,6 @@ abstract class AuthDatasource {
   Future<void> delete();
 
   Future<List<AuthProvider>> providers();
+
+  Future<void> resetPassword(String password);
 }

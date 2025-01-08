@@ -1,6 +1,8 @@
 import 'package:app_initial/src/datasources/datasources.dart';
 import 'package:app_initial/src/features/settings/settings.dart';
-import 'package:app_initial/src/repositories/repositories.dart';
+import 'package:app_initial/src/repositories/auth/auth.dart';
+import 'package:app_initial/src/repositories/storage/storage.dart';
+import 'package:app_initial/src/repositories/user/user.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 

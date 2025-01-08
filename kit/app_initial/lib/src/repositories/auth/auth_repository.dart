@@ -16,6 +16,12 @@ abstract class AuthRepository {
     String? accessToken,
   });
 
+  Future<UserCredential> signInWithFacebook({
+    String? idToken,
+    String? accessToken,
+    String? rawNonce,
+  });
+
   Future<UserCredential> signInWithEmailAndPassword({
     required String email,
     required String password,
@@ -33,6 +39,8 @@ abstract class AuthRepository {
   Future<void> delete();
 
   Future<List<AuthProvider>> providers();
+
+  Future<void> resetPassword(String password);
 }
 
 class EmailDoesNotVerifiedException implements Exception {}
@@ -50,3 +58,5 @@ class WeakPasswordException implements Exception {}
 class UserDisabledException implements Exception {}
 
 class UserAuthNotFoundException implements Exception {}
+
+class AccountExistsWithDifferentCredentialException implements Exception {}

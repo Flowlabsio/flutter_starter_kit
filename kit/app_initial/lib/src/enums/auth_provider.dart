@@ -1,7 +1,8 @@
 enum AuthProvider {
   emailAndPassword,
   google,
-  apple;
+  apple,
+  facebook;
 
   static AuthProvider fromString(String value) {
     switch (value) {
@@ -11,6 +12,8 @@ enum AuthProvider {
         return AuthProvider.apple;
       case 'password':
         return AuthProvider.emailAndPassword;
+      case 'facebook.com':
+        return AuthProvider.facebook;
       default:
         throw Exception('Unknown UserAuthProvider');
     }
@@ -24,6 +27,8 @@ enum AuthProvider {
         return 'apple.com';
       case AuthProvider.emailAndPassword:
         return 'password';
+      case AuthProvider.facebook:
+        return 'facebook.com';
     }
   }
 }

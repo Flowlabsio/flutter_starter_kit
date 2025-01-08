@@ -17,6 +17,7 @@ dev:
 	cp -f environments/dev/google-services.json android/app/google-services.json
 	cp -f environments/dev/env.json env.json
 	cp -f environments/dev/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
+	cp -f environments/dev/strings.xml android/app/src/main/res/values/strings.xml
 
 stg:
 	cp -f environments/stg/firebase_options.dart lib/firebase_options.dart
@@ -26,6 +27,7 @@ stg:
 	cp -f environments/stg/google-services.json android/app/google-services.json
 	cp -f environments/stg/env.json env.json
 	cp -f environments/stg/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
+	cp -f environments/stg/strings.xml android/app/src/main/res/values/strings.xml
 
 prod:
 	cp -f environments/prod/firebase_options.dart lib/firebase_options.dart
@@ -35,6 +37,7 @@ prod:
 	cp -f environments/prod/google-services.json android/app/google-services.json
 	cp -f environments/prod/env.json env.json
 	cp -f environments/prod/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
+	cp -f environments/prod/strings.xml android/app/src/main/res/values/strings.xml
 
 build-ios:
 	make prod

@@ -6,14 +6,29 @@ import 'package:app_initial/src/repositories/user/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserFirebaseDatasource implements UserDatasource {
-  final _usersCollection = FirebaseFirestore.instance
-      .collection(UserFirebaseDatasource._collectionName);
-
-  static const String _collectionName = 'users';
+  final _usersCollection = FirebaseFirestore.instance.collection('users');
 
   @override
   Future<void> deleteById(String id) async {
-    await _usersCollection.doc(id).delete();
+    final userDocRef = _usersCollection.doc(id);
+
+    final subCollections = [
+      'devices',
+    ];
+
+    for (final subCollectionName in subCollections) {
+      final subCollectionRef = userDocRef.collection(subCollectionName);
+      final querySnapshot = await subCollectionRef.get();
+
+      final batch = FirebaseFirestore.instance.batch();
+      for (final doc in querySnapshot.docs) {
+        batch.delete(doc.reference);
+      }
+
+      await batch.commit();
+    }
+
+    await userDocRef.delete();
   }
 
   @override
@@ -43,9 +58,9 @@ class UserFirebaseDatasource implements UserDatasource {
     String? id,
     String? photo,
   }) async {
-    final docRef = _usersCollection.doc(id);
+    final ref = _usersCollection.doc(id);
 
-    final userData = {
+    await ref.set({
       'id': id,
       'firstName': firstName,
       'lastName': lastName,
@@ -53,10 +68,9 @@ class UserFirebaseDatasource implements UserDatasource {
       'photo': photo,
       'updatedAt': FieldValue.serverTimestamp(),
       'createdAt': FieldValue.serverTimestamp(),
-    };
+    });
 
-    await docRef.set(userData);
-    final createdSnapshot = await docRef.get();
+    final createdSnapshot = await ref.get();
 
     if (!createdSnapshot.exists) {
       throw Exception('User not created');
@@ -73,7 +87,6 @@ class UserFirebaseDatasource implements UserDatasource {
     String? email,
     Parameter<String?>? photo,
   }) async {
-    final docRef = _usersCollection.doc(id);
     final updates = <String, dynamic>{};
 
     if (firstName != null) {
@@ -94,8 +107,11 @@ class UserFirebaseDatasource implements UserDatasource {
 
     updates['updatedAt'] = FieldValue.serverTimestamp();
 
-    await docRef.update(updates);
-    final updatedSnapshot = await docRef.get();
+    final ref = _usersCollection.doc(id);
+
+    await ref.update(updates);
+
+    final updatedSnapshot = await ref.get();
 
     if (!updatedSnapshot.exists) {
       throw Exception('User not updated');

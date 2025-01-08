@@ -16,11 +16,6 @@ class ForgotPasswordPage extends StatelessWidget {
       bottomPadding = UISpacing.space4x;
     }
 
-    var topPadding = MediaQuery.of(context).padding.top;
-    if (topPadding == 0) {
-      topPadding = UISpacing.space4x;
-    }
-
     final form = context.read<ForgotPasswordBloc>().form;
 
     final buttonsProvider = Theme.of(context).buttonStyles;

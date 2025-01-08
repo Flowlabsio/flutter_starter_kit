@@ -88,8 +88,16 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         );
       } else if (provider == AuthProvider.emailAndPassword) {
         await authRepository.signInWithEmailAndPassword(
-          email: Auth.instance.user()!.email,
+          email: user.email,
           password: formDeleteAccount.control('password').value as String,
+        );
+      } else if (provider == AuthProvider.facebook) {
+        final (facebookCredential, rawNonce) =
+            await AuthHelper.instance.signInWithFacebook();
+
+        await authRepository.signInWithFacebook(
+          accessToken: facebookCredential.accessToken!.tokenString,
+          rawNonce: rawNonce,
         );
       }
 
@@ -100,6 +108,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       await authRepository.delete();
 
       await Preference.instance.removePreference();
+
+      await Security.instance.removeSecurity();
 
       add(SignOutSettings());
     } on CancelledByUserException {

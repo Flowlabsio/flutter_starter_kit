@@ -2,9 +2,12 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /users/{id} {
-      allow read, write: if request.auth != null && 
-        (resource == null || resource.data.id == request.auth.uid);
+    match /users/{userId} {
+      allow read, write: if request.auth != null && userId == request.auth.uid;
+
+      match /{document=**} {
+        allow read, write: if request.auth != null && userId == request.auth.uid;
+      }
     }
   }
 }

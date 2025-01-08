@@ -156,4 +156,7 @@ class UIColorLight extends UIColor {
 
   @override
   Color get googleLogo => const Color(0xFF4285F4);
+
+  @override
+  Color get facebookLogo => const Color(0xFF1877F2);
 }

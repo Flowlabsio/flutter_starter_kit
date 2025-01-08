@@ -107,4 +107,5 @@ abstract class UIColor {
   Color get warning;
   Color get appleLogo;
   Color get googleLogo;
+  Color get facebookLogo;
 }

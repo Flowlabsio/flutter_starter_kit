@@ -1,7 +1,12 @@
 export 'forgot_password/forgot_password.dart';
 export 'futures.dart';
 export 'home/home.dart';
+export 'lock/lock.dart';
+export 'notifications/notifications.dart';
 export 'profile/profile.dart';
+export 'public_onboard/public_onboard.dart';
+export 'reset_password/reset_password.dart';
 export 'settings/settings.dart';
 export 'sign_in/sign_in.dart';
 export 'sign_up/sign_up.dart';
+export 'splash/splash.dart';

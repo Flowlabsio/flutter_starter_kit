@@ -37,4 +37,13 @@ class UIIconDark extends UIIcon {
       size: UISpacing.space4x,
     );
   }
+
+  @override
+  Widget facebook({double? size}) {
+    return FaIcon(
+      FontAwesomeIcons.facebook,
+      color: _colors.facebookLogo,
+      size: UISpacing.space4x,
+    );
+  }
 }

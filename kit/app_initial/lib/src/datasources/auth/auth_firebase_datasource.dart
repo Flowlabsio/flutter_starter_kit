@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:app_initial/src/datasources/auth/auth.dart';
 import 'package:app_initial/src/enums/enums.dart';
 import 'package:app_initial/src/models/models.dart';
@@ -16,9 +18,15 @@ class AuthFirebaseDatasource implements AuthDatasource {
       throw UserAuthNotFoundException();
     }
 
-    return UserCredential(
+    try {
+      await user.reload();
+    } catch (e) {
+      throw UserAuthNotFoundException();
+    }
+
+    return UserCredential.initial(
       id: user.uid,
-      email: user.email!,
+      email: user.email,
       providers: await providers(),
     );
   }
@@ -28,22 +36,35 @@ class AuthFirebaseDatasource implements AuthDatasource {
     String? idToken,
     String? accessToken,
   }) async {
-    final credentials = fa.OAuthProvider(
-      AuthProvider.google.providerId,
-    ).credential(
-      accessToken: accessToken,
-      idToken: idToken,
-    );
+    try {
+      final credentials = fa.OAuthProvider(
+        AuthProvider.google.providerId,
+      ).credential(
+        accessToken: accessToken,
+        idToken: idToken,
+      );
 
-    final uc = await fa.FirebaseAuth.instance.signInWithCredential(
-      credentials,
-    );
+      final uc = await fa.FirebaseAuth.instance.signInWithCredential(
+        credentials,
+      );
 
-    return UserCredential(
-      id: uc.user!.uid,
-      email: uc.user!.email!,
-      providers: const [AuthProvider.google],
-    );
+      final profile = uc.additionalUserInfo?.profile;
+
+      return UserCredential.initial(
+        id: uc.user!.uid,
+        email: uc.user!.email,
+        firstName: profile?['given_name'] as String?,
+        lastName: profile?['family_name'] as String?,
+        providers: const [AuthProvider.google],
+      );
+    } catch (e) {
+      if (e is fa.FirebaseAuthException) {
+        if (e.code == 'account-exists-with-different-credential') {
+          throw AccountExistsWithDifferentCredentialException();
+        }
+      }
+      rethrow;
+    }
   }
 
   @override
@@ -51,22 +72,82 @@ class AuthFirebaseDatasource implements AuthDatasource {
     String? idToken,
     String? accessToken,
   }) async {
-    final credentials = fa.OAuthProvider(
-      AuthProvider.apple.providerId,
-    ).credential(
-      accessToken: accessToken,
-      idToken: idToken,
-    );
+    try {
+      final credentials = fa.OAuthProvider(
+        AuthProvider.apple.providerId,
+      ).credential(
+        accessToken: accessToken,
+        idToken: idToken,
+      );
 
-    final uc = await fa.FirebaseAuth.instance.signInWithCredential(
-      credentials,
-    );
+      final uc = await fa.FirebaseAuth.instance.signInWithCredential(
+        credentials,
+      );
 
-    return UserCredential(
-      id: uc.user!.uid,
-      email: uc.user!.email!,
-      providers: const [AuthProvider.apple],
-    );
+      final profile = uc.additionalUserInfo?.profile;
+
+      return UserCredential.initial(
+        id: uc.user!.uid,
+        email: uc.user!.email ?? profile?['email'] as String?,
+        providers: const [AuthProvider.apple],
+      );
+    } catch (e) {
+      if (e is fa.FirebaseAuthException) {
+        if (e.code == 'account-exists-with-different-credential') {
+          throw AccountExistsWithDifferentCredentialException();
+        }
+      }
+      rethrow;
+    }
+  }
+
+  @override
+  Future<UserCredential> signInWithFacebook({
+    String? idToken,
+    String? accessToken,
+    String? rawNonce,
+  }) async {
+    assert(accessToken != null, 'Facebook access token is required');
+    if (Platform.isIOS) {
+      assert(rawNonce != null, 'Facebook raw nonce is required');
+    }
+
+    fa.OAuthCredential credentials;
+    if (Platform.isIOS) {
+      credentials = fa.OAuthCredential(
+        idToken: accessToken,
+        providerId: AuthProvider.facebook.providerId,
+        signInMethod: 'oauth',
+        rawNonce: rawNonce,
+      );
+    } else {
+      credentials = fa.FacebookAuthProvider.credential(
+        accessToken!,
+      );
+    }
+
+    try {
+      final uc = await fa.FirebaseAuth.instance.signInWithCredential(
+        credentials,
+      );
+
+      final profile = uc.additionalUserInfo?.profile;
+
+      return UserCredential.initial(
+        id: uc.user!.uid,
+        email: uc.user!.email ?? profile?['email'] as String?,
+        firstName: profile?['first_name'] as String?,
+        lastName: profile?['last_name'] as String?,
+        providers: const [AuthProvider.facebook],
+      );
+    } catch (e) {
+      if (e is fa.FirebaseAuthException) {
+        if (e.code == 'account-exists-with-different-credential') {
+          throw AccountExistsWithDifferentCredentialException();
+        }
+      }
+      rethrow;
+    }
   }
 
   @override
@@ -84,9 +165,9 @@ class AuthFirebaseDatasource implements AuthDatasource {
         throw EmailDoesNotVerifiedException();
       }
 
-      return UserCredential(
+      return UserCredential.initial(
         id: userCredential.user!.uid,
-        email: userCredential.user!.email!,
+        email: userCredential.user!.email,
         providers: const [AuthProvider.emailAndPassword],
       );
     } catch (e) {
@@ -124,9 +205,9 @@ class AuthFirebaseDatasource implements AuthDatasource {
 
       await userCredential.user!.sendEmailVerification();
 
-      return UserCredential(
+      return UserCredential.initial(
         id: userCredential.user!.uid,
-        email: userCredential.user!.email!,
+        email: userCredential.user!.email,
         providers: const [AuthProvider.emailAndPassword],
       );
     } catch (e) {
@@ -174,5 +255,14 @@ class AuthFirebaseDatasource implements AuthDatasource {
     }
 
     return providers;
+  }
+
+  @override
+  Future<void> resetPassword(String password) async {
+    final currentUser = _firebaseAuth.currentUser;
+
+    if (currentUser == null) throw UserAuthNotFoundException();
+
+    await currentUser.updatePassword(password);
   }
 }
