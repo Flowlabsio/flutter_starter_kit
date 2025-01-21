@@ -1,2 +1,1 @@
 firebase_functions~=0.1.0
-cryptography
