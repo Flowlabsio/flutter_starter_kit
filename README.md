@@ -111,11 +111,14 @@ https://github.com/user-attachments/assets/23c022ec-fa74-4810-abbd-3d5d567ff8e1
       * Set Hashes and Package Name
       * Set Hashes and Package Name (Alternative)
     * Biometric config
+    * Config Schedule Notification
 * Emulators
 * Export data from Firebase
   * Firebase Auth
   * Firestore
 * Notifications
+  * Local
+  * Remote
 
 ## Download Kit
 
@@ -1001,6 +1004,16 @@ class MainActivity: FlutterFragmentActivity() {
 }
 ```
 
+#### Config Schedule Notification
+
+1. Go to ```environments/<env>/AndroidManifest.xml``` and uncomment the lines between. Check the ```manifest``` and ```application``` context because there are two blocks
+
+```
+<!-- Schedule Notifications -->
+...
+<!-- Schedule Notifications -->
+```
+
 ## Emulators
 
 To use the emulators, it's necessary to choose a real firebase project, use one of created before (recommended dev environment).
@@ -1090,7 +1103,18 @@ firestore-export -a ./<service-account-key>.json -b ./<data-namefile>.json
 
 ## Notifications
 
-### Send notifications
+### Local
+
+There is a class call ```LocalNotificationHelper``` and that be able to send notifications. There is two types of notifications instant or scheduled. To use the instant notification call ```LocalNotificationHelper.instance.showNotification()``` and for the scheduled ```.scheduleNotification()```.  To remove a scheduled notification use ```.cancelNotification()```
+
+Also this class have three listeners
+* ```onBackgroundMessage```: This method is executed when the app receives a notification in killed or background
+* ```onMessage```: This method is executed when the app receives a notification in foreground
+* ```onMessageOpenedApp```: This method is executed when the app receives a notification and the user tap on it, a that open the app
+
+### Remote
+
+To use the service there are many options (Firebase Cloud Messaging API, Cloud Functions, use your own service or third-party service with the server). This decision depends on the developer team and available resources. To test the remote push notification there is a function in Cloud Functions that send notifications to each device of a user. This service work in the emulator but remember active the service in Firebase Console. Every request to this service generate a notification document to the user in Firestore
 
 From emulator
 
@@ -1122,8 +1146,6 @@ curl -X POST https://<region>-<project-name>-<env>.cloudfunctions.net/send_notif
      }'
 ```
 
-You can even use (instead of cloud functions) the messaging service from Firebase
-
-Clarification: Find the FCM token in firestore ```users/{id}/devices/{id}``` the attribute ```fcmToken```
+Another option to test the remote notifications is with the offered service by Firebase. Find the FCM token in firestore ```users/{id}/devices/{id}``` the attribute ```fcmToken```
 
 <img width="762" alt="image" src="https://github.com/user-attachments/assets/26ce4dd3-4070-442c-a474-868ad10af83a" />

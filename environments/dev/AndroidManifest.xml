@@ -12,9 +12,9 @@
     <!-- Camera and Gallery Permissions -->
 
     <!-- Schedule Notifications -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" /> -->
     <!-- Schedule Notifications -->
 
     <!-- Facebook -->
@@ -29,7 +29,7 @@
         android:icon="@mipmap/ic_launcher">
 
         <!-- Schedule Notifications -->
-        <receiver android:exported="false"
+        <!-- <receiver android:exported="false"
             android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
         <receiver android:exported="false"
             android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
@@ -39,7 +39,7 @@
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
                 <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
-        </receiver>
+        </receiver> -->
         <!-- Schedule Notifications -->
 
         <!-- Facebook -->
