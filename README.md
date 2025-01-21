@@ -871,6 +871,8 @@ And select the android app
 
 #### Sign in with Facebook
 
+1. Go to ```environments/<env>/AndroidManifest.xml``` and uncomment the lines between ```<!-- Facebook -->```
+
 ##### Set Facebook keys
 
 1. Go to Facebook console and press App Settings -> Basic

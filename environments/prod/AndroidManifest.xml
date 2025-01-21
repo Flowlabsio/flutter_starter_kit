@@ -18,9 +18,9 @@
     <!-- Schedule Notifications -->
 
     <!-- Facebook -->
-    <queries>
+    <!-- <queries>
         <provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
-    </queries>
+    </queries> -->
     <!-- Facebook -->
 
     <application
@@ -43,12 +43,12 @@
         <!-- Schedule Notifications -->
 
         <!-- Facebook -->
-        <meta-data
+        <!-- <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
         <meta-data
             android:name="com.facebook.sdk.ClientToken"
-            android:value="@string/facebook_client_token" />
+            android:value="@string/facebook_client_token" /> -->
         <!-- Facebook -->
 
         <activity
