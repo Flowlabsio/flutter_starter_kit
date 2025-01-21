@@ -102,6 +102,7 @@ https://github.com/user-attachments/assets/23c022ec-fa74-4810-abbd-3d5d567ff8e1
     * Set Push Notifications from Firebase
       * Xcode
       * Apple Developer and Firebase
+    * Biometric
   * Android
     * Set Namespace
     * Update min-sdk-version
@@ -112,6 +113,7 @@ https://github.com/user-attachments/assets/23c022ec-fa74-4810-abbd-3d5d567ff8e1
       * Set Hashes and Package Name (Alternative)
     * Biometric config
     * Config Schedule Notification
+    * Biometric
 * Emulators
 * Export data from Firebase
   * Firebase Auth
@@ -797,6 +799,17 @@ This key will use for testing and development environment. You can even use this
 
 <img width="704" alt="image" src="https://github.com/user-attachments/assets/de9e3835-ef41-4d24-93d1-9d67d6c4a790" />
 
+### Biometric
+
+Uncomment these lines in ```environments/<env>/Info.plist```
+
+```
+<!-- Biometric -->
+<!-- <key>NSFaceIDUsageDescription</key>
+<string>The app requires access to Face ID</string> -->
+<!-- Biometric -->
+```
+
 ### Android
 
 #### Set Namespace
@@ -1014,6 +1027,16 @@ class MainActivity: FlutterFragmentActivity() {
 <!-- Schedule Notifications -->
 ...
 <!-- Schedule Notifications -->
+```
+
+### Biometric
+
+Uncomment these lines in ```environments/<env>/AndroidManifest.xml```
+
+```
+<!-- Biometric -->
+<!-- <uses-permission android:name="android.permission.USE_BIOMETRIC"/> -->
+<!-- Biometric -->
 ```
 
 ## Emulators

@@ -16,8 +16,8 @@
     </array>
 
 	<!-- Biometric -->
-	<key>NSFaceIDUsageDescription</key>
-	<string>The app requires access to Face ID</string>
+	<!-- <key>NSFaceIDUsageDescription</key>
+	<string>The app requires access to Face ID</string> -->
 	<!-- Biometric -->
 
 	<!-- Facebook -->
