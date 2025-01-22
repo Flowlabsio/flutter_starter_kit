@@ -1,3 +1,4 @@
+import 'package:app_initial/src/enums/enums.dart';
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
@@ -7,6 +8,7 @@ class User extends Equatable {
     required this.lastName,
     required this.email,
     required this.photo,
+    required this.roles,
     required this.updatedAt,
     required this.createdAt,
   });
@@ -17,6 +19,7 @@ class User extends Equatable {
     this.lastName = '',
     this.email = '',
     this.photo = '',
+    this.roles = const [],
     DateTime? updatedAt,
     DateTime? createdAt,
   })  : updatedAt = updatedAt ?? DateTime.now(),
@@ -27,6 +30,7 @@ class User extends Equatable {
   final String lastName;
   final String email;
   final String? photo;
+  final List<UserRole> roles;
   final DateTime updatedAt;
   final DateTime createdAt;
 
@@ -42,6 +46,7 @@ class User extends Equatable {
     String? lastName,
     String? email,
     String? photo,
+    List<UserRole>? roles,
     DateTime? updatedAt,
     DateTime? createdAt,
   }) {
@@ -51,6 +56,7 @@ class User extends Equatable {
       lastName: lastName ?? this.lastName,
       email: email ?? this.email,
       photo: photo ?? this.photo,
+      roles: roles ?? this.roles,
       updatedAt: updatedAt ?? this.updatedAt,
       createdAt: createdAt ?? this.createdAt,
     );
@@ -63,6 +69,7 @@ class User extends Equatable {
         lastName,
         email,
         photo,
+        roles,
         updatedAt,
         createdAt,
       ];

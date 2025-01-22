@@ -1,7 +1,8 @@
 from firebase_functions import https_fn
-from firebase_admin import initialize_app, messaging, auth, storage
+from firebase_admin import initialize_app
 
 from src.functions.send_notification import send_notification
+from src.functions.set_user_roles import set_user_roles
 
 initialize_app()
 
