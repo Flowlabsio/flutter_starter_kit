@@ -14,6 +14,7 @@ class UserFirebaseDatasource implements UserDatasource {
 
     final subCollections = [
       'devices',
+      'notifications',
     ];
 
     for (final subCollectionName in subCollections) {
@@ -66,6 +67,7 @@ class UserFirebaseDatasource implements UserDatasource {
       'lastName': lastName,
       'email': email,
       'photo': photo,
+      'roles': <String, bool>{},
       'updatedAt': FieldValue.serverTimestamp(),
       'createdAt': FieldValue.serverTimestamp(),
     });
