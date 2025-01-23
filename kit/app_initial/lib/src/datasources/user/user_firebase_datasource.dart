@@ -14,6 +14,7 @@ class UserFirebaseDatasource implements UserDatasource {
 
     final subCollections = [
       'devices',
+      'notifications',
     ];
 
     for (final subCollectionName in subCollections) {
