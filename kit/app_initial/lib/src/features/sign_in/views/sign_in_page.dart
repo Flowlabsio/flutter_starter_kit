@@ -43,6 +43,10 @@ class SignInPage extends StatelessWidget {
       (SignInBloc bloc) => bloc.state.isSingingWithApple,
     );
 
+    final isSingingWithFacebook = context.select(
+      (SignInBloc bloc) => bloc.state.isSingingWithFacebook,
+    );
+
     final l10n = context.l10n;
 
     return Scaffold(
@@ -204,6 +208,29 @@ class SignInPage extends StatelessWidget {
                           iconProvider.google(),
                           const SizedBox(width: UISpacing.space2x),
                           Text(l10n.signInWithGoogle),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: UISpacing.space4x),
+                  SizedBox(
+                    width: UISpacing.infinity,
+                    child: LoadingButton(
+                      type: ButtonType.outlined,
+                      isLoading: isSingingWithFacebook,
+                      onPressed: () {
+                        context
+                            .read<SignInBloc>()
+                            .add(SignInWithFacebookAccount());
+                      },
+                      style: buttonsProvider.primaryOutline,
+                      loaderColor: colorsProvider.primary,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          iconProvider.facebook(),
+                          const SizedBox(width: UISpacing.space2x),
+                          Text(l10n.signInWithFacebook),
                         ],
                       ),
                     ),

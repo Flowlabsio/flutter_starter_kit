@@ -9,23 +9,19 @@ class AuthRepositoryImpl implements AuthRepository {
   final AuthDatasource authDatasource;
 
   @override
-  Future<void> delete() {
-    return authDatasource.delete();
-  }
-
-  @override
   Future<UserCredential> getCurrentUser() {
     return authDatasource.getCurrentUser();
   }
 
   @override
-  Future<List<AuthProvider>> providers() {
-    return authDatasource.providers();
-  }
-
-  @override
-  Future<void> sendPasswordResetEmail(String email) {
-    return authDatasource.sendPasswordResetEmail(email);
+  Future<UserCredential> signInWithGoogle({
+    String? idToken,
+    String? accessToken,
+  }) {
+    return authDatasource.signInWithGoogle(
+      idToken: idToken,
+      accessToken: accessToken,
+    );
   }
 
   @override
@@ -36,6 +32,19 @@ class AuthRepositoryImpl implements AuthRepository {
     return authDatasource.signInWithApple(
       idToken: idToken,
       accessToken: accessToken,
+    );
+  }
+
+  @override
+  Future<UserCredential> signInWithFacebook({
+    String? idToken,
+    String? accessToken,
+    String? rawNonce,
+  }) {
+    return authDatasource.signInWithFacebook(
+      idToken: idToken,
+      accessToken: accessToken,
+      rawNonce: rawNonce,
     );
   }
 
@@ -51,22 +60,6 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<UserCredential> signInWithGoogle({
-    String? idToken,
-    String? accessToken,
-  }) {
-    return authDatasource.signInWithGoogle(
-      idToken: idToken,
-      accessToken: accessToken,
-    );
-  }
-
-  @override
-  Future<void> signOut() {
-    return authDatasource.signOut();
-  }
-
-  @override
   Future<UserCredential> signUpWithEmailAndPassword({
     required String email,
     required String password,
@@ -75,5 +68,30 @@ class AuthRepositoryImpl implements AuthRepository {
       email: email,
       password: password,
     );
+  }
+
+  @override
+  Future<void> sendPasswordResetEmail(String email) {
+    return authDatasource.sendPasswordResetEmail(email);
+  }
+
+  @override
+  Future<void> signOut() {
+    return authDatasource.signOut();
+  }
+
+  @override
+  Future<void> delete() {
+    return authDatasource.delete();
+  }
+
+  @override
+  Future<List<AuthProvider>> providers() {
+    return authDatasource.providers();
+  }
+
+  @override
+  Future<void> resetPassword(String password) {
+    return authDatasource.resetPassword(password);
   }
 }

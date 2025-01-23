@@ -104,6 +104,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
     emit(state.copyWith(isUpdatingPhoto: true));
 
+    Security.instance.isPaused = true;
+
     try {
       final hasPermission = await PermissionHelper.instance.requestPermission(
         permission: Permission.camera,
@@ -171,6 +173,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       AppLogger.error(e.toString(), stackTrace: s);
     } finally {
       emit(state.copyWith(isUpdatingPhoto: false));
+      Security.instance.isPaused = false;
     }
   }
 

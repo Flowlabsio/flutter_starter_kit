@@ -17,8 +17,10 @@ class User extends Equatable {
     this.lastName = '',
     this.email = '',
     this.photo = '',
-  })  : updatedAt = DateTime.now(),
-        createdAt = DateTime.now();
+    DateTime? updatedAt,
+    DateTime? createdAt,
+  })  : updatedAt = updatedAt ?? DateTime.now(),
+        createdAt = createdAt ?? DateTime.now();
 
   final String id;
   final String firstName;

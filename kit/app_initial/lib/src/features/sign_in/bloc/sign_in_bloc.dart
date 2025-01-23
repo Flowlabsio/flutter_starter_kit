@@ -8,6 +8,7 @@ import 'package:app_initial/src/features/sign_up/views/views.dart';
 import 'package:app_initial/src/helpers/helpers.dart';
 import 'package:app_initial/src/models/models.dart';
 import 'package:app_initial/src/repositories/auth/auth.dart';
+import 'package:app_initial/src/repositories/device/device.dart';
 import 'package:app_initial/src/repositories/user/user.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -16,31 +17,22 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc({
     required this.authRepository,
     required this.userRepository,
+    required this.deviceRepository,
   }) : super(const SignInState.initial()) {
     on<SignInWithEmailAndPassword>(_onLoginWithEmailAndPassword);
     on<SignInWithGoogleAccount>(_onLoginWithGoogleAccount);
     on<SignInWithAppleAccount>(_onLoginWithAppleAccount);
+    on<SignInWithFacebookAccount>(_onLoginWithFacebookAccount);
     on<SignUpAccount>(_onSignUpAccount);
     on<ForgotPassword>(_onForgotPassword);
   }
 
   final AuthRepository authRepository;
   final UserRepository userRepository;
+  final DeviceRepository deviceRepository;
 
   Future<void> _getUserAndSaveState(UserCredential userCredential) async {
-    User user;
-    try {
-      user = await userRepository.findById(
-        userCredential.id,
-      );
-    } on UserNotFound {
-      user = await userRepository.store(
-        id: userCredential.id,
-        firstName: '',
-        lastName: '',
-        email: userCredential.email,
-      );
-    }
+    final user = await AuthHelper.instance.getUserByCredentials(userCredential);
 
     Auth.instance.setUser(user);
 
@@ -128,6 +120,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       await _getUserAndSaveState(userCredentials);
     } on CancelledByUserException {
       return;
+    } on AccountExistsWithDifferentCredentialException {
+      CustomSnackbar.instance.error(
+        text: Localization.instance.tr.exception_credentialAlreadyExists,
+      );
     } on PermissionDeniedUsers catch (e, s) {
       CustomSnackbar.instance.error(
         text: Localization.instance.tr.contactSupport,
@@ -164,6 +160,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       await _getUserAndSaveState(userCredentials);
     } on CancelledByUserException {
       return;
+    } on AccountExistsWithDifferentCredentialException {
+      CustomSnackbar.instance.error(
+        text: Localization.instance.tr.exception_credentialAlreadyExists,
+      );
     } catch (e, s) {
       CustomSnackbar.instance.error(
         text: Localization.instance.tr.generalError,
@@ -174,12 +174,46 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     }
   }
 
+  Future<void> _onLoginWithFacebookAccount(
+    SignInWithFacebookAccount event,
+    Emitter<SignInState> emit,
+  ) async {
+    if (state.isSingingWithFacebook) return;
+
+    emit(state.copyWith(isSingingWithFacebook: true));
+
+    try {
+      final (loginResult, rawNonce) =
+          await AuthHelper.instance.signInWithFacebook();
+
+      final userCredentials = await authRepository.signInWithFacebook(
+        accessToken: loginResult.accessToken!.tokenString,
+        rawNonce: rawNonce,
+      );
+
+      await _getUserAndSaveState(userCredentials);
+    } on CancelledByUserException {
+      return;
+    } on AccountExistsWithDifferentCredentialException {
+      CustomSnackbar.instance.error(
+        text: Localization.instance.tr.exception_credentialAlreadyExists,
+      );
+    } catch (e, s) {
+      CustomSnackbar.instance.error(
+        text: Localization.instance.tr.generalError,
+      );
+      AppLogger.error(e.toString(), stackTrace: s);
+    } finally {
+      emit(state.copyWith(isSingingWithFacebook: false));
+    }
+  }
+
   Future<void> _onSignUpAccount(
     SignUpAccount event,
     Emitter<SignInState> emit,
   ) async {
-    final value =
-        await Router.instance.pushNamed<Map<String, String>>(SignUpScreen.path);
+    final value = await Router.instance.goRouter
+        .pushNamed<Map<String, String>>(SignUpScreen.path);
 
     if (value == null) return;
 
@@ -194,7 +228,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     ForgotPassword event,
     Emitter<SignInState> emit,
   ) async {
-    final email = await Router.instance.pushNamed<String>(
+    final email = await Router.instance.goRouter.pushNamed<String>(
       ForgotPasswordScreen.path,
       queryParameters: {
         'email': form.control('email').value,

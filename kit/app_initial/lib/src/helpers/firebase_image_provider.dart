@@ -17,7 +17,6 @@ class FirebaseImageProvider extends ImageProvider<Uri> {
 
   @override
   Future<Uri> obtainKey(ImageConfiguration configuration) {
-
     final result = Uri.parse(path).replace(
       queryParameters: <String, String>{
         'dpr': '${configuration.devicePixelRatio}',

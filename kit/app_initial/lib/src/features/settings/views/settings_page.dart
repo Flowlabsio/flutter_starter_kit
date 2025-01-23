@@ -2,6 +2,7 @@ import 'package:app_helpers/app_helpers.dart';
 import 'package:app_initial/l10n/l10n.dart';
 import 'package:app_initial/src/enums/enums.dart';
 import 'package:app_initial/src/facades/facades.dart';
+import 'package:app_initial/src/features/reset_password/views/views.dart';
 import 'package:app_initial/src/features/settings/bloc/bloc.dart';
 import 'package:app_initial/src/widgets/widgets.dart';
 import 'package:app_ui/app_ui.dart';
@@ -83,6 +84,32 @@ class SettingsPage extends StatelessWidget {
                 children: [
                   const ToggleButtonTheme(),
                   const SizedBox(height: UISpacing.space4x),
+                  Container(
+                    width: UISpacing.infinity,
+                    height: UISpacing.space12x,
+                    decoration: BoxDecoration(
+                      color: colorsProvider.primary,
+                      borderRadius: BorderRadius.circular(UISpacing.space2x),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: UISpacing.space4x,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            l10n.biometric,
+                            style: textStylesProvider.bodyMedium.copyWith(
+                              color: colorsProvider.onPrimary,
+                            ),
+                          ),
+                          const BiometricSwitcher(),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: UISpacing.space4x),
                   SizedBox(
                     width: UISpacing.infinity,
                     child: LoadingButton(
@@ -147,6 +174,23 @@ class SettingsPage extends StatelessWidget {
                       },
                       style: buttonsProvider.primaryFilled,
                       child: Text(l10n.settings_language),
+                    ),
+                  ),
+                  const SizedBox(height: UISpacing.space4x),
+                  SizedBox(
+                    width: UISpacing.infinity,
+                    child: LoadingButton(
+                      type: ButtonType.filled,
+                      onPressed:
+                          !providers.contains(AuthProvider.emailAndPassword) ||
+                                  isFetchingProviders ||
+                                  providers.isEmpty
+                              ? null
+                              : () {
+                                  context.pushNamed(ResetPasswordScreen.path);
+                                },
+                      style: buttonsProvider.primaryFilled,
+                      child: Text(l10n.settings_resetPassword),
                     ),
                   ),
                   const SizedBox(height: UISpacing.space4x),

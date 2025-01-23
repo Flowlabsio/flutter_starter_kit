@@ -40,7 +40,7 @@ class LoadingButton extends StatefulWidget {
 }
 
 class _LoadingButtonState extends State<LoadingButton> {
-  late double _childHeight = 0;
+  double _childHeight = 0;
 
   @override
   void initState() {
@@ -50,8 +50,11 @@ class _LoadingButtonState extends State<LoadingButton> {
 
   void _updateChildSize() {
     final renderBox = context.findRenderObject() as RenderBox?;
+
+    if (renderBox == null || !context.mounted) return;
+
     setState(() {
-      _childHeight = renderBox?.size.height ?? 0;
+      _childHeight = renderBox.size.height;
     });
   }
 

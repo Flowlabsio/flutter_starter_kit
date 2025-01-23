@@ -1,6 +1,7 @@
 import 'package:app_helpers/app_helpers.dart';
 import 'package:app_initial/src/facades/facades.dart';
 import 'package:app_initial/src/features/forgot_password/bloc/bloc.dart';
+import 'package:app_initial/src/helpers/helpers.dart';
 import 'package:app_initial/src/repositories/auth/auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -54,7 +55,7 @@ class ForgotPasswordBloc
         text: Localization.instance.tr.forgotPassword_emailSent,
       );
 
-      Router.instance.pop(form.control('email').value);
+      Router.instance.goRouter.pop(form.control('email').value);
     } catch (e, s) {
       CustomSnackbar.instance
           .error(text: Localization.instance.tr.generalError);

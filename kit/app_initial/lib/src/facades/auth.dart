@@ -23,7 +23,7 @@ class Auth {
 
   bool check() => _user != null;
 
-  void dispose() {
-    _streamController.close();
+  Future<void> dispose() async {
+    await _streamController.close();
   }
 }

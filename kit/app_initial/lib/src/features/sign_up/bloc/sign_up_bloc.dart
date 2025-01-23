@@ -74,12 +74,12 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         id: userCredential.id,
         firstName: form.control('firstName').value as String,
         lastName: form.control('lastName').value as String,
-        email: userCredential.email,
+        email: userCredential.email ?? '',
       );
 
       await authRepository.signOut();
 
-      Router.instance.pop({
+      Router.instance.goRouter.pop({
         'email': form.control('email').value as String,
         'password': form.control('password').value as String,
       });

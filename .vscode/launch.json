@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch development",
+      "name": "Development - Debug",
       "request": "launch",
       "type": "dart",
       "program": "lib/main_development.dart",
@@ -14,10 +14,42 @@
         "--dart-define-from-file",
         "env.json"
       ],
-      "preLaunchTask": "dev"
+      "preLaunchTask": "dev",
     },
     {
-      "name": "Launch staging",
+      "name": "Development - Profile",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_development.dart",
+      "args": [
+        "--flavor",
+        "development",
+        "--target",
+        "lib/main_development.dart",
+        "--dart-define-from-file",
+        "env.json"
+      ],
+      "preLaunchTask": "dev",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "Development - Release",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_development.dart",
+      "args": [
+        "--flavor",
+        "development",
+        "--target",
+        "lib/main_development.dart",
+        "--dart-define-from-file",
+        "env.json"
+      ],
+      "preLaunchTask": "dev",
+      "flutterMode": "release"
+    },
+    {
+      "name": "Staging - Debug",
       "request": "launch",
       "type": "dart",
       "program": "lib/main_staging.dart",
@@ -29,10 +61,42 @@
         "--dart-define-from-file",
         "env.json"
       ],
-      "preLaunchTask": "stg"
+      "preLaunchTask": "stg",
     },
     {
-      "name": "Launch production",
+      "name": "Staging - Profile",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_staging.dart",
+      "args": [
+        "--flavor",
+        "staging",
+        "--target",
+        "lib/main_staging.dart",
+        "--dart-define-from-file",
+        "env.json"
+      ],
+      "preLaunchTask": "stg",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "Staging - Release",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_staging.dart",
+      "args": [
+        "--flavor",
+        "staging",
+        "--target",
+        "lib/main_staging.dart",
+        "--dart-define-from-file",
+        "env.json"
+      ],
+      "preLaunchTask": "stg",
+      "flutterMode": "release"
+    },
+    {
+      "name": "Production - Debug",
       "request": "launch",
       "type": "dart",
       "program": "lib/main_production.dart",
@@ -44,7 +108,39 @@
         "--dart-define-from-file",
         "env.json"
       ],
-      "preLaunchTask": "prod"
+      "preLaunchTask": "prod",
+    },
+    {
+      "name": "Production - Profile",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_production.dart",
+      "args": [
+        "--flavor",
+        "production",
+        "--target",
+        "lib/main_production.dart",
+        "--dart-define-from-file",
+        "env.json"
+      ],
+      "preLaunchTask": "prod",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "Production - Release",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_production.dart",
+      "args": [
+        "--flavor",
+        "production",
+        "--target",
+        "lib/main_production.dart",
+        "--dart-define-from-file",
+        "env.json"
+      ],
+      "preLaunchTask": "prod",
+      "flutterMode": "release"
     }
   ]
 }

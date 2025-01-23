@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:app_initial/src/models/models.dart';
-
 class DataNotifier<R> {
   final _controller = StreamController<R>.broadcast();
 
@@ -16,4 +14,3 @@ class DataNotifier<R> {
   }
 }
 
-final userUpdateNotifier = DataNotifier<User>();

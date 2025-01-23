@@ -1,32 +1,25 @@
 import 'dart:async';
 import 'package:app_helpers/app_helpers.dart';
 import 'package:app_initial/src/facades/facades.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:app_initial/src/helpers/helpers.dart';
 import 'package:flutter/widgets.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
-class ConnectivityHelper with WidgetsBindingObserver {
+class ConnectivityHelper {
   ConnectivityHelper._singleton();
 
   static final ConnectivityHelper instance = ConnectivityHelper._singleton();
 
-  final connectivity = Connectivity();
-  late final StreamSubscription<InternetStatus> subscription;
-
   late final AppLifecycleListener listener;
-
-  AppLifecycleState lastAppStatus = AppLifecycleState.detached;
 
   bool hasConnection = true;
 
-  void initialize() {
-    WidgetsBinding.instance.addObserver(this);
+  Future<void> initialize() async {
+    InternetConnection().onStatusChange.listen((InternetStatus status) async {
+      final state = AppLifecycleHelper.instance.previousEvent.state;
 
-    subscription = InternetConnection()
-        .onStatusChange
-        .listen((InternetStatus status) async {
-      if (lastAppStatus != AppLifecycleState.detached &&
-          lastAppStatus != AppLifecycleState.resumed) {
+      if (state != AppLifecycleState.inactive &&
+          state != AppLifecycleState.resumed) {
         return;
       }
 
@@ -40,12 +33,6 @@ class ConnectivityHelper with WidgetsBindingObserver {
         }
       }
     });
-
-    listener = AppLifecycleListener(
-      onResume: subscription.resume,
-      onHide: subscription.pause,
-      onPause: subscription.pause,
-    );
   }
 
   Future<bool> checkConnection({
@@ -54,23 +41,14 @@ class ConnectivityHelper with WidgetsBindingObserver {
     return InternetConnection().hasInternetAccess;
   }
 
-  @override
-  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
-    final auxLastStatus = lastAppStatus;
-    lastAppStatus = state;
+  Future<void> analyzeConnection() async {
+    final check = await checkConnection();
 
-    final isAppBack = auxLastStatus == AppLifecycleState.inactive &&
-        state == AppLifecycleState.resumed;
-
-    if (isAppBack) {
-      final check = await checkConnection();
-
-      if (!check) {
-        showNoConnectionSnackbar();
-      } else {
-        if (!hasConnection) {
-          showConnectedSnackbar();
-        }
+    if (!check) {
+      showNoConnectionSnackbar();
+    } else {
+      if (!hasConnection) {
+        showConnectedSnackbar();
       }
     }
   }
@@ -90,11 +68,5 @@ class ConnectivityHelper with WidgetsBindingObserver {
       text: Localization.instance.tr.notConnected,
       duration: const Duration(seconds: 10),
     );
-  }
-
-  Future<void> dispose() async {
-    WidgetsBinding.instance.removeObserver(this);
-    await subscription.cancel();
-    listener.dispose();
   }
 }

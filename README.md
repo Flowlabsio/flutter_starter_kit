@@ -17,7 +17,17 @@ This kit is not a "framework"; rather, it's a guide for initializing a project w
   <img src="https://github.com/user-attachments/assets/3864c504-81bc-4e5e-96f2-7835760b98b5" width="312px"/> 
   <img src="https://github.com/user-attachments/assets/fcbf9d52-5d92-470b-9a89-ae96186bb9d5" width="312px"/> 
   <img src="https://github.com/user-attachments/assets/2c55e900-3a3c-41df-a4e8-c2dcd61ad716" width="312px"/> 
+  <img src="https://github.com/user-attachments/assets/572c0397-180d-4523-8d88-7bcabbcb606a" width="312px"/>
+  <img src="https://github.com/user-attachments/assets/e6343f5e-f582-40d7-805a-e47455dedd7f" width="312px"/>
+  <img src="https://github.com/user-attachments/assets/8dfd5cff-1154-43d9-a889-0def38a21495" width="312px"/>
+  <img src="https://github.com/user-attachments/assets/f1cadad8-4568-42be-98d9-6d18491a3a6a" width="312px"/>
+  <img src="https://github.com/user-attachments/assets/45174e7a-c8a6-4999-a153-bddf145d90e3" width="312px"/>
+  <img src="https://github.com/user-attachments/assets/79999edf-f05d-4bdd-ae45-17034fd4c47c" width="312px"/>
 </div>
+
+https://github.com/user-attachments/assets/770d044f-48d2-4402-81ad-04b9bc44a714
+
+https://github.com/user-attachments/assets/23c022ec-fa74-4810-abbd-3d5d567ff8e1
 
 ## Platforms
 
@@ -29,32 +39,40 @@ This kit is not a "framework"; rather, it's a guide for initializing a project w
 * Sign In
   * Google
   * Apple
-* Sign Up 
+  * Facebook
+* Sign In/Up Email-Password
   * Email/Password
-* Validate Email
-* Forgot Password
+  * Validate Email
+  * Forgot Password
+  * Reset Password
 * Profile
+* Locked Screen (Biometric)
 * Preferences
-  * Lenguage
+  * Language
   * Theme
     * Light
     * Dark
-* Delete user
+* Delete User
+* Local Notifications
+  * Push Notifications
+  * Schedule Push Notifications
+  * Listeners
+* Notifications Screen
+* Public Onboarding
+* Emulators
 * Export data
-  * Auth
-  * Firestore
-* Emulators 
 
 ## Index
 
 * Download Kit
-* Firebase 
-  * Install firebase CLI 
+* Firebase
+  * Install firebase CLI
   * Create firebase projects
   * Configuration services
     * Authentication
       * Google
       * Apple
+      * Facebook
       * Email and password
     * Firebase Database
     * Storage
@@ -66,27 +84,38 @@ This kit is not a "framework"; rather, it's a guide for initializing a project w
     * Install VGV project
     * Add dependencies
     * Copy the app_initial
-    * Set Firabase environments in the project
+    * Set Firebase environments in the project
   * Create the app
   * Install the kit
-* Set plaforms
+* Set platforms
   * IOS
     * Set BundleId
     * Set Min Version iOS
     * Add Permissions
     * Sign in with Apple
-    * Sign in with Google 
+    * Sign in with Google
+    * Sign in with Facebook
+      * Set Bundle ID
+      * Set Bundle ID (Alternative)
+      * Set env Info.plist
+    * Edit AppDelegate
+    * Set Push Notifications from Firebase
+      * Xcode
+      * Apple Developer and Firebase
   * Android
     * Set Namespace
     * Update min-sdk-version
     * Sign in with Google
+    * Sign in with Facebook
+      * Set Facebook keys
+      * Set Hashes and Package Name
+      * Set Hashes and Package Name (Alternative)
+    * Biometric config
 * Emulators
-  * Run emulators
-  * Functions
-  * Config App
 * Export data from Firebase
   * Firebase Auth
-  * Firestore 
+  * Firestore
+* Notifications
 
 ## Download Kit
 
@@ -122,7 +151,7 @@ We will go to create the firebase projects for each environment
 
 1. Open ```firebase/Makefile``` and rename the var ```PROJECT_NAME```
 
-Aclaration: If you will have more than three envirnments, add you other envirnments in the var ```ENVIRONMENTS``` on ```firebase/Makefile``` 
+Clarification: If you will have more than three envirnments, add you other envirnments in the var ```ENVIRONMENTS``` on ```firebase/Makefile``` 
 
 2. Create the projects for each envirnments
 
@@ -184,6 +213,88 @@ You will see this title when you try to sign-in with Google in the app.
 2. Press "Save"
 
 <img width="782" alt="image" src="https://github.com/user-attachments/assets/56db5852-625f-425e-a32d-ddf694a2ef86" />
+
+##### Facebook
+
+Clarification: The Auth Emulator does not support facebook.com sign-in
+
+1. Create an app in Facebook console (```https://developers.facebook.com/```)
+
+Clarification: You could create an app for environment
+
+<img width="1349" alt="image" src="https://github.com/user-attachments/assets/2a0573a5-97de-4152-b1ac-4cb481a91aba" />
+
+2. Select the Auth service
+
+<img width="832" alt="image" src="https://github.com/user-attachments/assets/0f7cf76a-24e4-49b4-87ca-afc10432e892" />
+
+3. Select "I don’t want to connect a business portfolio yet."
+
+<img width="1079" alt="image" src="https://github.com/user-attachments/assets/92f939e1-5659-48b4-8eb5-171b9c87dd4d" />
+
+4. Go to App Settings -> Basic
+
+<img width="318" alt="image" src="https://github.com/user-attachments/assets/1b059444-1ed9-4f2b-b32f-d72a945b324c" />
+
+5. Copy the "App ID" and the "App secret"
+
+<img width="794" alt="image" src="https://github.com/user-attachments/assets/b875ecb7-b6fa-4937-98e6-ed531e8eeef1" />
+
+6. Go to Firebase Console and add Facebook provider in the Authentication service
+
+<img width="1002" alt="image" src="https://github.com/user-attachments/assets/9890d41e-060b-4bb6-a009-32328c57c3b6" />
+
+7. Paste the "App ID" and the "App secret", set enabled and press "Save" 
+
+<img width="974" alt="image" src="https://github.com/user-attachments/assets/266bfe35-ab50-436f-96d5-ddc46dc27251" />
+
+8. Press "Edit" facebook provider
+
+<img width="978" alt="image" src="https://github.com/user-attachments/assets/a179de0d-0ba2-4499-b5c6-8a0cb39171d6" />
+
+9.  Copy the OAuth redirect link
+
+<img width="597" alt="image" src="https://github.com/user-attachments/assets/e21f7feb-69c5-4e0f-8d1e-2cb5c2def084" />
+
+10. Go back to the Facebook dashboard, press "Use cases"
+
+<img width="321" alt="image" src="https://github.com/user-attachments/assets/456747b5-d549-4dbf-b624-e297d48f1897" />
+
+11. Press "Customize"
+
+<img width="1030" alt="image" src="https://github.com/user-attachments/assets/788f6075-7664-404c-8522-3d5e98beb203" />
+
+12. Select "Settings"
+
+<img width="334" alt="image" src="https://github.com/user-attachments/assets/7589255d-9a53-4888-93d4-59e330f8300c" />
+
+13. Look the input "Valid OAuth Redirect URIs" and paste the OAuth redirect link from Firebase
+
+<img width="615" alt="image" src="https://github.com/user-attachments/assets/545befac-76ec-48a8-b1b3-18df17e82abc" />
+
+14. Select "Permissions"
+
+<img width="331" alt="image" src="https://github.com/user-attachments/assets/a2e76dab-b9d9-4c28-ab36-112f16fdb4dd" />
+
+15. Look "email" and press "Add"
+
+<img width="958" alt="image" src="https://github.com/user-attachments/assets/b5f81d24-914d-4020-ae1e-3d69ba8e5aa9" />
+
+16. Go to App Settings -> Basic (again)
+
+<img width="323" alt="image" src="https://github.com/user-attachments/assets/2240c791-c3fe-40a2-bfcc-ced99f3ead94" />
+
+17. Got to App roles -> Roles
+
+<img width="318" alt="image" src="https://github.com/user-attachments/assets/2a11d219-0c93-4071-a2ae-2eac5870dcf8" />
+
+18. Press "Add People"
+
+<img width="204" alt="image" src="https://github.com/user-attachments/assets/c4f60a4e-92d4-4712-8f1c-93371e4c021f" />
+
+19. Add the user that are allow to use this service (facebook username). This user should have an facebook developer account
+
+<img width="645" alt="image" src="https://github.com/user-attachments/assets/98ecfc5d-4468-4b62-b186-5390d2e91b4e" />
 
 ##### Email and password
 
@@ -303,6 +414,7 @@ flutter pub add go_router \
   reactive_forms \
   google_sign_in \
   sign_in_with_apple \
+  flutter_facebook_auth \
   firebase_core \
   firebase_auth \
   cloud_firestore \
@@ -310,7 +422,13 @@ flutter pub add go_router \
   image_cropper \
   image_picker \
   permission_handler \
-  shared_preferences
+  shared_preferences \
+  internet_connection_checker_plus \
+  device_info_plus \
+  firebase_messaging \
+  flutter_local_notifications \
+  timezone \
+  crypto
 ```
 
 ### Copy the app_initial
@@ -539,6 +657,143 @@ If you can't find the ```REVERSED_CLIENT_ID``` it's because the Sign in with Goo
 }
 ```
 
+#### Sign in with Facebook
+
+##### Set Bundle ID
+
+1. Go to App Settings -> Basic
+
+<img width="318" alt="image" src="https://github.com/user-attachments/assets/1b059444-1ed9-4f2b-b32f-d72a945b324c" />
+
+2. Scroll to the bottom of the page and press "Add platform"
+
+<img width="1026" alt="image" src="https://github.com/user-attachments/assets/a3154202-9b1a-478e-ba9f-87a44eb3b1ef" />
+
+3. Select iOS
+
+<img width="624" alt="image" src="https://github.com/user-attachments/assets/2e724c0c-d72a-444f-8999-7611a525323a" />
+
+4. Fill the Bundle ID and press "Save changes"
+
+<img width="980" alt="image" src="https://github.com/user-attachments/assets/09642cc2-2449-4890-9bcf-871b65d5699f" />
+
+##### Set Bundle ID (alternative)
+
+1. Go to https://developers.facebook.com/docs/facebook-login/ios
+
+2. Select the app
+
+<img width="699" alt="image" src="https://github.com/user-attachments/assets/592bc717-096b-4aaf-96f1-205871fd3854" />
+
+3. Add your Bundle ID and press "Save"
+
+<img width="847" alt="image" src="https://github.com/user-attachments/assets/1a15f7f8-64e2-4d78-964f-1192179a7c95" />
+
+##### Set env Info.plist
+
+1. Go to App Settings -> Basic
+
+<img width="318" alt="image" src="https://github.com/user-attachments/assets/1b059444-1ed9-4f2b-b32f-d72a945b324c" />
+
+2. Copy the ```App Id``` and go to ```environments/<env>/Info.plist```
+
+Replace the ```FACEBOOK_APP_ID``` by the id (there are two places)
+
+3. Go to App Settings -> Advanced
+
+<img width="315" alt="image" src="https://github.com/user-attachments/assets/782a239f-2c41-40de-b57a-8e76bf815946" />
+
+4. Copy the ```Client token``` and go to ```environments/<env>/Info.plist```
+
+Replace the ```FACEBOOK_CLIENT_TOKEN``` by the token
+
+5. Replace the ```FACEBOOK_DISPLAY_NAME``` by the name what you want to show to the user
+
+#### Edit AppDelegate
+
+1. Edit ```application``` method
+
+```
+override func application(
+  _ application: UIApplication,
+  didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+) -> Bool {
+  FlutterLocalNotificationsPlugin.setPluginRegistrantCallback { (registry) in
+    GeneratedPluginRegistrant.register(with: registry)
+  }
+  GeneratedPluginRegistrant.register(with: self)
+  if #available(iOS 10.0, *) {
+    UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+  }
+  return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+}
+```
+
+1. Add import
+```
+import flutter_local_notifications
+```
+
+#### Set Push Notifications from Firebase
+
+##### Xcode
+
+1. Open xcode ```open ios/Runner.xcworkspace```
+
+2. Press Runner -> Signing & Capability
+
+<img width="759" alt="image" src="https://github.com/user-attachments/assets/eeb1177a-cb26-4849-987c-acc7025b2de4" />
+
+3. Press "+ Capability"
+
+<img width="101" alt="image" src="https://github.com/user-attachments/assets/b29baf74-bc9d-4658-8066-fe59f2c5f6b8" />
+
+4. Add "Push Notifications"
+
+<img width="738" alt="image" src="https://github.com/user-attachments/assets/ef896ed5-6011-4a54-9a85-176697026c47" />
+
+5. Press "+ Capability" again
+
+<img width="101" alt="image" src="https://github.com/user-attachments/assets/b29baf74-bc9d-4658-8066-fe59f2c5f6b8" />
+
+6. Add "Background Modes"
+
+<img width="709" alt="image" src="https://github.com/user-attachments/assets/4cfe4360-572c-4f72-b451-320c58bd0447" />
+
+7. Select "Background fetch" and "Remote notifications" 
+
+<img width="554" alt="image" src="https://github.com/user-attachments/assets/53da6ccd-d989-4703-a2f5-f0955347f492" />
+
+##### Apple Developer and Firebase
+
+This key will use for testing and development environment. You can even use this key in another apps, but is not recommended because if you revoke the key, every app that use the key will lose the services
+
+1. Go to Apple Developer (```https://developer.apple.com/account```)
+
+2. Go to "Keys"
+
+<img width="328" alt="image" src="https://github.com/user-attachments/assets/fb7d86c5-38a0-4047-9e81-6429b0a9cf6c" />
+
+3. Add a new key and select the service "Apple Push Notifications service (APNs)"
+
+<img width="1252" alt="image" src="https://github.com/user-attachments/assets/d348e426-8b53-4f6d-93b4-c4ca26a5f7d6" />
+
+4. Download the key
+
+<img width="1192" alt="image" src="https://github.com/user-attachments/assets/0d9c9e3c-0310-4fee-83b1-0d177c9bdd5d" />
+
+5. Go to Firebase console -> Project settings
+
+<img width="431" alt="image" src="https://github.com/user-attachments/assets/68888edc-a700-4805-b7a3-99bcc673f648" />
+
+6. Go to "Cloud Messaging"
+
+<img width="286" alt="image" src="https://github.com/user-attachments/assets/1df2dd7d-38bb-48e6-b4e5-76ad74e67e9c" />
+
+7. Scroll down and set your key
+
+<img width="704" alt="image" src="https://github.com/user-attachments/assets/de9e3835-ef41-4d24-93d1-9d67d6c4a790" />
+
 ### Android
 
 #### Set Namespace
@@ -555,14 +810,32 @@ flutter pub add --dev change_app_package_name
 dart run change_app_package_name:main com.<org>.<project-name> --android
 ```
 
-#### Update min-sdk-version
+#### Update build.gradle
 
-Go to ```android/app/build.gradle``` and set ```minSdkVersion```
+Go to ```android/app/build.gradle``` 
+
+1. Set ```minSdkVersion```
 
 ```
-...
 minSdkVersion 23
-...
+```
+
+2. Add ```multiDexEnabled```
+
+```
+android {
+  defaultConfig {
+    multiDexEnabled true
+    ...
+  }
+  ...
+}
+```
+
+3. Set ```compileSdk```
+
+```
+compileSdk 34
 ```
 
 #### Sign in with Google
@@ -592,6 +865,141 @@ And select the android app
 6. Paste the  ```SHA1``` and press "Save"
 
 7. Update the environment files with the command ```./configure_firebase.sh``` (check the documentation about generate if you forgot the process)
+
+#### Sign in with Facebook
+
+##### Set Facebook keys
+
+1. Go to Facebook console and press App Settings -> Basic
+
+<img width="317" alt="image" src="https://github.com/user-attachments/assets/f1b3b5e6-1f70-40b9-a626-673a978e9aca" />
+
+2. Copy the "App id"
+
+<img width="479" alt="image" src="https://github.com/user-attachments/assets/af922c9c-5c90-499f-996d-28e0d9e1bc8b" />
+
+3. Go to ```environments/<env>/strings.xml``` and paste in the ```facebook_app_id``` section
+
+4. Go to Facebook console, and press App Settings -> Advanced
+
+<img width="313" alt="image" src="https://github.com/user-attachments/assets/8e579b33-e02d-41ce-8eac-6639e48c23d7" />
+
+5. Copy the "Client token"
+
+<img width="999" alt="image" src="https://github.com/user-attachments/assets/b4239ef7-c052-4e8e-8d8e-e2a9f5a89cfd" />
+
+6. Go to ```environments/<env>/strings.xml``` and paste in the ```facebook_client_token``` section
+
+##### Set Hashes and Package Name
+
+1. Go to App Settings -> Basic
+
+<img width="323" alt="image" src="https://github.com/user-attachments/assets/2240c791-c3fe-40a2-bfcc-ced99f3ead94" />
+
+2. Scroll to the bottom of the page and press "Add platform"
+
+<img width="1026" alt="image" src="https://github.com/user-attachments/assets/a3154202-9b1a-478e-ba9f-87a44eb3b1ef" />
+
+3. Select Android
+
+<img width="623" alt="image" src="https://github.com/user-attachments/assets/c8328577-c6ee-4219-8365-bc326867eb71" />
+
+4. Select the stores
+
+<img width="636" alt="image" src="https://github.com/user-attachments/assets/461c33c7-881a-4797-9a79-0c5014a52afd" />
+
+5. Fill inputs
+
+<img width="995" alt="image" src="https://github.com/user-attachments/assets/d5ffada7-b25f-4b5e-bdc4-67bb953bcf66" />
+
+To generate the hashes use (use password: "android"):
+
+For development
+```
+keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
+```
+
+For production
+``` 
+# Generate a keystore for porduction
+keytool -genkeypair -v -keystore release-key.keystore -keyalg RSA -keysize 2048 -validity 10000 -alias  release-key
+
+keytool -exportcert -alias release-key -keystore release-key | openssl sha1 -binary | openssl base64
+```
+
+After set every field press "Save"
+
+<img width="992" alt="image" src="https://github.com/user-attachments/assets/db8bb06f-b0a5-40f6-a040-b279d07ffa8f" />
+
+##### Set Hashes and Package Name (Alternative)
+
+1. Go to this link https://developers.facebook.com/docs/facebook-login/android/
+
+2. Select the app
+
+<img width="699" alt="image" src="https://github.com/user-attachments/assets/592bc717-096b-4aaf-96f1-205871fd3854" />
+
+3. Associate Your Package Name and Default Class
+
+<img width="862" alt="image" src="https://github.com/user-attachments/assets/e7eb8fd3-9039-406d-8e51-499348f09b68" />
+
+4. Press "Save"
+
+<img width="844" alt="image" src="https://github.com/user-attachments/assets/5a67b004-6c15-4b70-aa7a-0549b98c8846" />
+
+5. Add the Key Hashes
+
+<img width="835" alt="image" src="https://github.com/user-attachments/assets/3ede12a2-c72e-41ec-8f59-f5b8d91ba254" />
+
+To generate the hashes use:
+
+For development
+```      
+keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
+```
+
+For production
+``` 
+keytool -exportcert -alias YOUR_RELEASE_KEY_ALIAS -keystore YOUR_RELEASE_KEY_PATH | openssl sha1 -binary | openssl base64
+```
+
+If you got this error
+
+<img width="368" alt="image" src="https://github.com/user-attachments/assets/a7aa7860-1bad-4879-b850-7eb392fbe841" />
+
+Copy that hash in the hashes list in Facebook Console
+
+##### Error Emulator
+
+If you got this error
+
+```
+An internal error has occurred. Cleartext HTTP traffic to 10.0.2.2 not permitted
+```
+
+Go to ```AndroidManifest.xml``` and this flags
+
+```
+<application
+    ...
+    android:usesCleartextTraffic="true"
+    android:enableOnBackInvokedCallback="true"
+    ...
+    >
+```
+
+#### Biometric config
+
+1. Go to ```android/app/src/main/kotlin/com/<org>/<project-name>/MainActivity.kt```
+
+2. Edit the ```MainActivity.kt```
+
+```
+import io.flutter.embedding.android.FlutterFragmentActivity
+
+class MainActivity: FlutterFragmentActivity() {
+}
+```
 
 ## Emulators
 
@@ -679,3 +1087,43 @@ cd firebase
 
 firestore-export -a ./<service-account-key>.json -b ./<data-namefile>.json
 ```
+
+## Notifications
+
+### Send notifications
+
+From emulator
+
+```
+curl -X POST http://127.0.0.1:5001/<project-name>-<env>/<region>/send_notification \
+     -H "Content-Type: application/json" \
+     -d '{
+         "wheres": [
+             {"field": "id", "operator": "==", "value": "<user-id>"}
+         ],
+         "data": {"key": "value"},
+         "title": "Title",
+         "body": "Body"
+     }'
+```
+
+From Firebase
+
+```
+curl -X POST https://<region>-<project-name>-<env>.cloudfunctions.net/send_notification \
+     -H "Content-Type: application/json" \
+     -d '{
+         "wheres": [
+             {"field": "id", "operator": "==", "value": "<user-id>"}
+         ],
+         "data": {"key": "value"},
+         "title": "Title",
+         "body": "Body"
+     }'
+```
+
+You can even use (instead of cloud functions) the messaging service from Firebase
+
+Clarification: Find the FCM token in firestore ```users/{id}/devices/{id}``` the attribute ```fcmToken```
+
+<img width="762" alt="image" src="https://github.com/user-attachments/assets/26ce4dd3-4070-442c-a474-868ad10af83a" />

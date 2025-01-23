@@ -15,8 +15,8 @@ class Preference {
   ThemeMode themeMode = ThemeMode.system;
   Locale? locale;
 
-  final themeModeKey = 'themeMode';
-  final localeKey = 'locale';
+  final _themeModeKey = 'themeMode';
+  final _localeKey = 'locale';
 
   Future<void> initialize() async {
     await Future.wait([
@@ -26,7 +26,7 @@ class Preference {
   }
 
   Future<void> _themeModeInit() async {
-    final value = await Storage.instance.get<String>(themeModeKey);
+    final value = await Storage.instance.get<String>(_themeModeKey);
 
     switch (value) {
       case 'dark':
@@ -39,7 +39,7 @@ class Preference {
   }
 
   Future<void> _localeInit() async {
-    final value = await Storage.instance.get<String>(localeKey);
+    final value = await Storage.instance.get<String>(_localeKey);
 
     if (value != null) {
       locale = Locale(value);
@@ -50,7 +50,7 @@ class Preference {
     this.themeMode = themeMode;
     _streamController.add(this);
     await Storage.instance
-        .set(themeModeKey, themeMode.toString().split('.').last);
+        .set(_themeModeKey, themeMode.toString().split('.').last);
   }
 
   Future<void> setLocale(Locale? locale) async {
@@ -58,11 +58,11 @@ class Preference {
     _streamController.add(this);
 
     if (locale == null) {
-      await Storage.instance.remove(localeKey);
+      await Storage.instance.remove(_localeKey);
       return;
     }
 
-    await Storage.instance.set(localeKey, locale.languageCode);
+    await Storage.instance.set(_localeKey, locale.languageCode);
   }
 
   Future<void> removePreference() async {
@@ -71,11 +71,11 @@ class Preference {
 
     _streamController.add(this);
 
-    await Storage.instance.remove(themeModeKey);
-    await Storage.instance.remove(localeKey);
+    await Storage.instance.remove(_themeModeKey);
+    await Storage.instance.remove(_localeKey);
   }
 
-  void dispose() {
-    _streamController.close();
+  Future<void> dispose() async {
+    await _streamController.close();
   }
 }

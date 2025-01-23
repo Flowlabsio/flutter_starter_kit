@@ -40,12 +40,10 @@ class StorageFirebaseDatasource extends StorageDatasource {
 
     final listResult = await ref.listAll();
 
-    for (final fileRef in listResult.items) {
-      await fileRef.delete();
-    }
+    await Future.wait(listResult.items.map((fileRef) => fileRef.delete()));
 
-    for (final dirRef in listResult.prefixes) {
-      await deleteAll(path: dirRef.fullPath);
-    }
+    await Future.wait(
+      listResult.prefixes.map((dirRef) => deleteAll(path: dirRef.fullPath)),
+    );
   }
 }

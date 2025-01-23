@@ -6,4 +6,6 @@ abstract class UIIcon {
   Widget google({double? size});
 
   Widget apple({double? size});
+
+  Widget facebook({double? size});
 }
