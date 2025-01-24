@@ -9,6 +9,7 @@ import 'package:timezone/data/latest.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:app_initial/firebase_options.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await setup();
