@@ -428,7 +428,9 @@ flutter pub add go_router \
   firebase_messaging \
   flutter_local_notifications \
   timezone \
-  crypto
+  crypto \
+  smooth_page_indicator \
+  local_auth
 ```
 
 ### Copy the app_initial
