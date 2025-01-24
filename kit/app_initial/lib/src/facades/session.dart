@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:app_initial/app_initial.dart';
+import 'package:app_initial/src/facades/facades.dart';
 
 class Session {
   Session._singleton();
