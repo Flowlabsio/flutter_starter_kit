@@ -1,29 +1,11 @@
+import 'package:app_ui/src/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:material_color_utilities/material_color_utilities.dart';
 
 abstract class UIColor {
   static const Color black = Color(0xFF000000);
   static const Color white = Color(0xFFFFFFFF);
   static const Color transparent = Color(0x00000000);
-
-  static Map<int, Color> generateColorMap(Color baseColor) {
-    final Map<int, Color> colorMap = {};
-
-    const int midPoint = 40;
-
-    for (int i = 0; i <= 100; i++) {
-      double alpha;
-
-      if (i <= midPoint) {
-        alpha = i / midPoint;
-        colorMap[i] = Color.lerp(Colors.black, baseColor, alpha)!;
-      } else {
-        alpha = (i - midPoint) / (100 - midPoint);
-        colorMap[i] = Color.lerp(baseColor, Colors.white, alpha)!;
-      }
-    }
-
-    return colorMap;
-  }
 
   static const _primaryGenerator = 0xFF135986;
   static const _secondaryGenerator = 0xFF86929F;
@@ -33,23 +15,46 @@ abstract class UIColor {
   static const _neutralVariantGenerator = 0xFF8D9197;
 
   final MaterialColor primarySchema = MaterialColor(
-      _primaryGenerator, generateColorMap(const Color(_primaryGenerator)));
+    _primaryGenerator,
+    HctColor.generateMaterial3TonesHct(
+      Hct.fromInt(_primaryGenerator),
+    ),
+  );
 
   final MaterialColor secondarySchema = MaterialColor(
-      _secondaryGenerator, generateColorMap(const Color(_secondaryGenerator)));
+    _secondaryGenerator,
+    HctColor.generateMaterial3TonesHct(
+      Hct.fromInt(_secondaryGenerator),
+    ),
+  );
 
   final MaterialColor tertiarySchema = MaterialColor(
-      _tertiaryGenerator, generateColorMap(const Color(_tertiaryGenerator)));
+    _tertiaryGenerator,
+    HctColor.generateMaterial3TonesHct(
+      Hct.fromInt(_tertiaryGenerator),
+    ),
+  );
 
   final MaterialColor errorSchema = MaterialColor(
-      _errorGenerator, generateColorMap(const Color(_errorGenerator)));
+    _errorGenerator,
+    HctColor.generateMaterial3TonesHct(
+      Hct.fromInt(_errorGenerator),
+    ),
+  );
 
   final MaterialColor neutralSchema = MaterialColor(
-      _neutralGenerator, generateColorMap(const Color(_neutralGenerator)));
+    _neutralGenerator,
+    HctColor.generateMaterial3TonesHct(
+      Hct.fromInt(_neutralGenerator),
+    ),
+  );
 
   final MaterialColor neutralVariantSchema = MaterialColor(
-      _neutralVariantGenerator,
-      generateColorMap(const Color(_neutralVariantGenerator)));
+    _neutralVariantGenerator,
+    HctColor.generateMaterial3TonesHct(
+      Hct.fromInt(_neutralVariantGenerator),
+    ),
+  );
 
   Color get primary;
   Color get onPrimary;
