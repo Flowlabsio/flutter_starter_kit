@@ -66,6 +66,7 @@ class UserFirebaseDatasource implements UserDatasource {
       'lastName': lastName,
       'email': email,
       'photo': photo,
+      'roles': <String, bool>{},
       'updatedAt': FieldValue.serverTimestamp(),
       'createdAt': FieldValue.serverTimestamp(),
     });
