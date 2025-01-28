@@ -2,7 +2,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- Biometric -->
-    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+    <!-- <uses-permission android:name="android.permission.USE_BIOMETRIC"/> -->
     <!-- Biometric -->
 
     <!-- Camera and Gallery Permissions -->
@@ -12,15 +12,15 @@
     <!-- Camera and Gallery Permissions -->
 
     <!-- Schedule Notifications -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" /> -->
     <!-- Schedule Notifications -->
 
     <!-- Facebook -->
-    <queries>
+    <!-- <queries>
         <provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
-    </queries>
+    </queries> -->
     <!-- Facebook -->
 
     <application
@@ -29,7 +29,7 @@
         android:icon="@mipmap/ic_launcher">
 
         <!-- Schedule Notifications -->
-        <receiver android:exported="false"
+        <!-- <receiver android:exported="false"
             android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
         <receiver android:exported="false"
             android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
@@ -39,16 +39,16 @@
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
                 <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
-        </receiver>
+        </receiver> -->
         <!-- Schedule Notifications -->
 
         <!-- Facebook -->
-        <meta-data
+        <!-- <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
         <meta-data
             android:name="com.facebook.sdk.ClientToken"
-            android:value="@string/facebook_client_token" />
+            android:value="@string/facebook_client_token" /> -->
         <!-- Facebook -->
 
         <activity

@@ -10,30 +10,29 @@
             <key>CFBundleURLSchemes</key>
             <array>
                 <string>[GOOGLE_REVERSED_CLIENT_ID]</string>
-				<string>fb[FACEBOOK_APP_ID]</string>
+				<!-- <string>fb[FACEBOOK_APP_ID]</string> -->
             </array>
         </dict>
     </array>
 
 	<!-- Biometric -->
-	<key>NSFaceIDUsageDescription</key>
-	<string>The app requires access to Face ID</string>
+	<!-- <key>NSFaceIDUsageDescription</key>
+	<string>The app requires access to Face ID</string> -->
 	<!-- Biometric -->
 
 	<!-- Facebook -->
-	<key>FacebookAppID</key>
+	<!-- <key>FacebookAppID</key>
 	<string>[FACEBOOK_APP_ID]</string>
 	<key>FacebookClientToken</key>
 	<string>[FACEBOOK_CLIENT_TOKEN]</string>
 	<key>FacebookDisplayName</key>
 	<string>[FACEBOOK_DISPLAY_NAME]</string>
-	<!-- Facebook -->
-
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
 		<string>fb-messenger-share-api</string>
-	</array>
+	</array> -->
+	<!-- Facebook -->
 
 	<!-- Camera and Gallery -->
 	<key>NSPhotoLibraryUsageDescription</key>
