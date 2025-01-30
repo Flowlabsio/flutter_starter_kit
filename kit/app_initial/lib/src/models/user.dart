@@ -18,7 +18,7 @@ class User extends Equatable {
     this.firstName = '',
     this.lastName = '',
     this.email = '',
-    this.photo = '',
+    this.photo,
     this.roles = const [],
     DateTime? updatedAt,
     DateTime? createdAt,

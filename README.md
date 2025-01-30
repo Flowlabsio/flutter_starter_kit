@@ -438,14 +438,24 @@ flutter pub add go_router \
   local_auth
 ```
 
-### Copy the app_initial
-
-1. Delete the folder ```lib/app```, ```lib/counter```, ```test/counter```
-
-2. Go to ```test/app/view/app_test.dart``` and paste this
+And update the version
 
 ```
-import 'package:flutter_test/flutter_test.dart';
+flutter pub upgrade --major-versions
+```
+
+### Copy the app_initial
+
+1. Delete the folders
+
+```
+rm -rf lib/app lib/counter test/counter
+```
+
+2. Update ```app_test.dart```
+
+```
+echo "import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('App', () {
@@ -453,17 +463,28 @@ void main() {
       expect(true, true);
     });
   });
-}
-
+}" > test/app/view/app_test.dart
 ```
 
-4. Replace the folder ```lib/l10n/arb``` by ```kit/app_initial/lib/l10n/arb```
+1. Replace localizations
 
-2. Move the ```kit/app_initial/lib/src``` to ```lib/```
+```
+rm -rf lib/l10n && mv kit/app_initial/lib/l10n lib/l10n
+```
 
-4. Go to ```kit/app_initial/lib/bootstrap.dart.template``` copy the content and paste in ```lib/bootstrap.dart```
+1. Move the ```kit/app_initial/lib/src``` to ```lib/```
 
-6. Run this command to fix the path's dependencies
+```
+cp -r kit/app_initial/lib/src lib/
+```
+
+2. Go to ```kit/app_initial/lib/bootstrap.dart.template``` copy the content and paste in ```lib/bootstrap.dart```
+
+```
+cp kit/app_initial/lib/bootstrap.dart.template lib/bootstrap.dart
+```
+
+3. Run this command to fix the path's dependencies
 
 ```
 ./replace_text.sh ./lib "app_initial" "<project-name>"
@@ -478,6 +499,10 @@ import 'package:<project-name>/src/app/app.dart';
 ```
 
 6. Delete the folder ```kit/app_initial```
+
+```
+rm -rf kit/app_initial
+```
 
 ### Set Firabase environments in the project
 

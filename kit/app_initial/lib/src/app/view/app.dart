@@ -23,6 +23,10 @@ class _AppState extends State<App> {
   void initState() {
     super.initState();
 
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await ConnectivityHelper.instance.initialize();
+    });
+
     _subscription = Preference.instance.stream.listen((_) {
       setState(() {});
     });

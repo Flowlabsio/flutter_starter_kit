@@ -41,7 +41,6 @@ Future<void> setup() async {
   await Security.instance.initialize();
   await Session.instance.initialize();
   await LocalNotificationHelper.instance.initialize();
-  await ConnectivityHelper.instance.initialize();
 
   final user = await AuthHelper.instance.getLoggedUserFromServer();
   if (user != null) {
