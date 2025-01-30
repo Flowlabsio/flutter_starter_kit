@@ -1,5 +1,5 @@
 import 'package:app_initial/src/helpers/helpers.dart';
-import 'package:app_initial/src/models/user.dart';
+import 'package:app_initial/src/models/user/user.dart';
 
 abstract class UserRepository {
   Future<User> findById(String id);

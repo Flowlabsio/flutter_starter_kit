@@ -1,5 +1,5 @@
 import 'package:app_initial/src/enums/enums.dart';
-import 'package:app_initial/src/models/user.dart';
+import 'package:app_initial/src/models/user/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserMapper {

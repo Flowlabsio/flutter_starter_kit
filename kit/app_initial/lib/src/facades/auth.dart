@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:app_initial/src/models/user.dart';
+import 'package:app_initial/src/models/user/user.dart';
 
 class Auth {
   Auth._singleton();
@@ -12,7 +12,7 @@ class Auth {
 
   Stream<Auth> get stream => _streamController.stream;
 
-  String? id() => _user?.id;
+  String? id() => '1';
 
   User? user() => _user;
 
