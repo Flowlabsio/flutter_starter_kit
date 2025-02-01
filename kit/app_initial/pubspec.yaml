@@ -41,6 +41,7 @@ dependencies:
   local_auth: ^2.3.0
   permission_handler: ^11.3.1
   reactive_forms: ^17.0.1
+  result_dart: ^2.0.0
   shared_preferences: ^2.3.4
   sign_in_with_apple: ^6.1.4
   smooth_page_indicator: ^1.2.0+3
@@ -53,6 +54,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ^2.5.8
   json_serializable: ^6.9.3
+  mockito: ^5.4.5
   very_good_analysis: ^7.0.0
 
 flutter:

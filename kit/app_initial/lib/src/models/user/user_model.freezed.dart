@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'user.dart';
+part of 'user_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -20,13 +20,28 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
+  /// The user's id.
   String get id => throw _privateConstructorUsedError;
+
+  /// The user's first name.
   String get firstName => throw _privateConstructorUsedError;
+
+  /// The user's last name.
   String get lastName => throw _privateConstructorUsedError;
+
+  /// The user's email.
   String get email => throw _privateConstructorUsedError;
+
+  /// The user's photo.
   String? get photo => throw _privateConstructorUsedError;
+
+  /// The user's roles.
   List<UserRole> get roles => throw _privateConstructorUsedError;
+
+  /// The user's updated at.
   DateTime get updatedAt => throw _privateConstructorUsedError;
+
+  /// The user's created at.
   DateTime get createdAt => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
@@ -209,17 +224,30 @@ class _$UserImpl extends _User {
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
 
+  /// The user's id.
   @override
   final String id;
+
+  /// The user's first name.
   @override
   final String firstName;
+
+  /// The user's last name.
   @override
   final String lastName;
+
+  /// The user's email.
   @override
   final String email;
+
+  /// The user's photo.
   @override
   final String? photo;
+
+  /// The user's roles.
   final List<UserRole> _roles;
+
+  /// The user's roles.
   @override
   List<UserRole> get roles {
     if (_roles is EqualUnmodifiableListView) return _roles;
@@ -227,8 +255,11 @@ class _$UserImpl extends _User {
     return EqualUnmodifiableListView(_roles);
   }
 
+  /// The user's updated at.
   @override
   final DateTime updatedAt;
+
+  /// The user's created at.
   @override
   final DateTime createdAt;
 
@@ -291,20 +322,35 @@ abstract class _User extends User {
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
+  /// The user's id.
   @override
   String get id;
+
+  /// The user's first name.
   @override
   String get firstName;
+
+  /// The user's last name.
   @override
   String get lastName;
+
+  /// The user's email.
   @override
   String get email;
+
+  /// The user's photo.
   @override
   String? get photo;
+
+  /// The user's roles.
   @override
   List<UserRole> get roles;
+
+  /// The user's updated at.
   @override
   DateTime get updatedAt;
+
+  /// The user's created at.
   @override
   DateTime get createdAt;
 

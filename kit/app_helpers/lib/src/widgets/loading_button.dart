@@ -41,6 +41,8 @@ class LoadingButton extends StatefulWidget {
 
 class _LoadingButtonState extends State<LoadingButton> {
   double _childHeight = 0;
+  double _childWidth = 0;
+  final GlobalKey _childKey = GlobalKey();
 
   @override
   void initState() {
@@ -49,12 +51,14 @@ class _LoadingButtonState extends State<LoadingButton> {
   }
 
   void _updateChildSize() {
-    final renderBox = context.findRenderObject() as RenderBox?;
+    final renderBox =
+        _childKey.currentContext?.findRenderObject() as RenderBox?;
 
     if (renderBox == null || !context.mounted) return;
 
     setState(() {
       _childHeight = renderBox.size.height;
+      _childWidth = renderBox.size.width;
     });
   }
 
@@ -74,24 +78,31 @@ class _LoadingButtonState extends State<LoadingButton> {
   Widget build(BuildContext context) {
     final colorsProvider = Theme.of(context).colors;
 
+    final childWidget = SizedBox(
+      key: _childKey,
+      child: widget.child,
+    );
+
     final content = AnimatedSwitcher(
         duration: widget.duration,
         transitionBuilder: widget.transitionBuilder ?? _defaultFadeTransition,
         child: widget.isLoading
-            ? widget.loader ??
-                SizedBox(
-                  width: _childHeight * 0.5,
-                  height: _childHeight * 0.5,
-                  child: SizedBox(
-                    width: _childHeight,
-                    height: _childHeight,
-                    child: CircularProgressIndicator(
-                      strokeWidth: widget.strokeWidth ?? UISpacing.px1,
-                      color: widget.loaderColor ?? colorsProvider.onPrimary,
-                    ),
-                  ),
-                )
-            : widget.child);
+            ? SizedBox(
+                width: _childWidth,
+                height: _childHeight,
+                child: SizedBox(
+                  width: _childHeight,
+                  height: _childHeight,
+                  child: widget.loader ??
+                      FittedBox(
+                        child: CircularProgressIndicator(
+                          strokeWidth: widget.strokeWidth ?? UISpacing.px1,
+                          color: widget.loaderColor ?? colorsProvider.onPrimary,
+                        ),
+                      ),
+                ),
+              )
+            : childWidget);
 
     if (widget.type == ButtonType.elevated) {
       return ElevatedButton(

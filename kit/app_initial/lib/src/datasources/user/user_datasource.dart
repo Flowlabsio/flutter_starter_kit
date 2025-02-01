@@ -1,8 +1,9 @@
 import 'package:app_initial/src/helpers/helpers.dart';
 import 'package:app_initial/src/models/user/user.dart';
+import 'package:result_dart/result_dart.dart';
 
 abstract class UserDatasource {
-  Future<User> findById(String id);
+  Future<Result<User>> findById(String id);
 
   Future<User> store({
     required String firstName,

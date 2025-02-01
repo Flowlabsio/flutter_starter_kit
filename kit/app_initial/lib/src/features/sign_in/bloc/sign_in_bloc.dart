@@ -228,11 +228,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     ForgotPassword event,
     Emitter<SignInState> emit,
   ) async {
-    final email = await Router.instance.goRouter.pushNamed<String>(
-      ForgotPasswordScreen.path,
-      queryParameters: {
-        'email': form.control('email').value,
-      },
+    final email = await AppNavigator.instance.pushForgotPassword(
+      email: form.control('email').value as String?,
     );
 
     if (email == null) return;

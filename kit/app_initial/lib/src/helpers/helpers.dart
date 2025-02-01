@@ -1,5 +1,6 @@
 export 'app_lifecycle_helper.dart';
 export 'app_logger.dart';
+export 'app_navigator.dart';
 export 'auth_helper.dart';
 export 'auth_scaffold.dart';
 export 'connectivity_helper.dart';

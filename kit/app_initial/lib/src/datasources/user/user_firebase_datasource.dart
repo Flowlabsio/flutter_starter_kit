@@ -4,6 +4,7 @@ import 'package:app_initial/src/mappers/mappers.dart';
 import 'package:app_initial/src/models/models.dart';
 import 'package:app_initial/src/repositories/user/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:result_dart/result_dart.dart';
 
 class UserFirebaseDatasource implements UserDatasource {
   final _usersCollection = FirebaseFirestore.instance.collection('users');
@@ -33,7 +34,7 @@ class UserFirebaseDatasource implements UserDatasource {
   }
 
   @override
-  Future<User> findById(String id) async {
+  Future<Result<User>> findById(String id) async {
     try {
       final docRef = _usersCollection.doc(id);
       final docSnapshot = await docRef.get();
@@ -42,12 +43,12 @@ class UserFirebaseDatasource implements UserDatasource {
         throw UserNotFound();
       }
 
-      return UserMapper().fromDocumentSnapshot(docSnapshot);
-    } catch (e) {
+      return UserMapper().fromDocumentSnapshot(docSnapshot).toSuccess();
+    } on Exception catch (e) {
       if (e is FirebaseException && e.code == 'permission-denied') {
-        throw PermissionDeniedUsers();
+        return PermissionDeniedUsers().toFailure();
       }
-      rethrow;
+      return e.toFailure();
     }
   }
 
