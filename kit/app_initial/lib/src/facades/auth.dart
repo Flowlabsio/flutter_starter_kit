@@ -12,7 +12,7 @@ class Auth {
 
   Stream<Auth> get stream => _streamController.stream;
 
-  String? id() => '1';
+  String? id() => _user?.id;
 
   User? user() => _user;
 

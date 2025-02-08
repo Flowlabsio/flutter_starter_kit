@@ -1,3 +1,5 @@
+import 'dart:developer' as dev;
+
 import 'package:flutter/foundation.dart';
 
 enum LogLevel { debug, info, warning, error }
@@ -17,9 +19,9 @@ class AppLogger {
     }
 
     if (kDebugMode) {
-      print('${level.name.toUpperCase()}: $message');
+      dev.log('${level.name.toUpperCase()}: $message');
       if (stackTrace != null) {
-        print('$stackTrace');
+        dev.log('$stackTrace');
       }
 
       if (level == LogLevel.error) {

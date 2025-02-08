@@ -42,7 +42,7 @@ class LoadingButton extends StatefulWidget {
 class _LoadingButtonState extends State<LoadingButton> {
   double _childHeight = 0;
   double _childWidth = 0;
-  final GlobalKey _childKey = GlobalKey();
+  final GlobalKey _childKey = GlobalKey(debugLabel: 'loading-button');
 
   @override
   void initState() {
@@ -79,7 +79,7 @@ class _LoadingButtonState extends State<LoadingButton> {
     final colorsProvider = Theme.of(context).colors;
 
     final childWidget = SizedBox(
-      key: _childKey,
+      key: _childHeight == 0 ? _childKey : UniqueKey(),
       child: widget.child,
     );
 

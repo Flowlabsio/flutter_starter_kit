@@ -2,7 +2,6 @@ import 'package:app_initial/src/datasources/user/user.dart';
 import 'package:app_initial/src/helpers/helpers.dart';
 import 'package:app_initial/src/models/models.dart';
 import 'package:app_initial/src/repositories/user/user.dart';
-import 'package:result_dart/result_dart.dart';
 
 class UserRepositoryImpl extends UserRepository {
   UserRepositoryImpl({required this.userDatasource});
@@ -15,7 +14,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Result<User>> findById(String id) {
+  Future<User> findById(String id) {
     return userDatasource.findById(id);
   }
 

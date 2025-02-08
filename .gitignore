@@ -110,14 +110,10 @@ app.*.map.json
 !/dev/ci/**/Gemfile.lock
 !.vscode/extensions.json
 !.vscode/launch.json
+!.vscode/tasks.json
 !.idea/codeStyles/
 !.idea/dictionaries/
 !.idea/runConfigurations/
 ios/Runner.xcodeproj/project.pbxproj
 
 example
-firebase.json
-lib/firebase_options.dart
-ios/Runner/GoogleService-Info.plist
-ios/Runner/Info.plist
-android/app/google-services.json

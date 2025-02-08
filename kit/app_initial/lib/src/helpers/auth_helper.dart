@@ -95,11 +95,9 @@ class AuthHelper {
 
     User user;
     try {
-      final result  = await userRepository.findById(
+      user = await userRepository.findById(
         userCredential.id,
       );
-
-      user = result.getOrThrow();
     } on UserNotFound {
       if (!storeUserIfNotFound) {
         throw UserNotFound();

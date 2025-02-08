@@ -7,7 +7,7 @@ abstract class UIButtonStyle {
 
   ButtonStyle get primaryFilledTonal;
 
-  ButtonStyle get primaryOutline;
+  ButtonStyle get primaryOutlined;
 
   ButtonStyle get primaryText;
 }

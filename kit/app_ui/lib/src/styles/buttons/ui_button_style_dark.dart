@@ -128,7 +128,7 @@ class UIButtonStyleDark extends UIButtonStyle {
   }
 
   @override
-  ButtonStyle get primaryOutline {
+  ButtonStyle get primaryOutlined {
     return ButtonStyle(
       minimumSize: WidgetStateProperty.all(
         const Size(UISpacing.zero, UISpacing.space12x),
