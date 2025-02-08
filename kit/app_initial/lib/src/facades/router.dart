@@ -28,7 +28,7 @@ class Router {
     goRouter.refresh();
   }
 
-  final goRouter = GoRouter(
+  GoRouter goRouter = GoRouter(
     navigatorKey: AppKeys.instance.rootNavigatorKey,
     initialLocation: SplashScreen.path,
     routes: [

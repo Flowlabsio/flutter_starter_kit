@@ -20,6 +20,15 @@ extension ThemeDataExtension on ThemeData {
     }
   }
 
+  UIAsset get assets {
+    final isDarkMode = brightness == Brightness.dark;
+    if (isDarkMode) {
+      return UIAssetDark.instance;
+    } else {
+      return UIAssetLight.instance;
+    }
+  }
+
   UIButtonStyle get buttonStyles {
     final isDarkMode = brightness == Brightness.dark;
     if (isDarkMode) {

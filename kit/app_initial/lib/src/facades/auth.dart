@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:app_initial/src/models/user.dart';
+import 'package:app_initial/src/models/user/user.dart';
 
 class Auth {
   Auth._singleton();

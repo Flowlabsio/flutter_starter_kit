@@ -142,7 +142,7 @@ class SignInPage extends StatelessWidget {
                       onPressed: () {
                         context.read<SignInBloc>().add(SignUpAccount());
                       },
-                      style: buttonsProvider.primaryOutline,
+                      style: buttonsProvider.primaryOutlined,
                       child: Text(l10n.signUp),
                     ),
                   ),
@@ -176,7 +176,7 @@ class SignInPage extends StatelessWidget {
                               .read<SignInBloc>()
                               .add(SignInWithAppleAccount());
                         },
-                        style: buttonsProvider.primaryOutline,
+                        style: buttonsProvider.primaryOutlined,
                         loaderColor: colorsProvider.primary,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -200,7 +200,7 @@ class SignInPage extends StatelessWidget {
                             .read<SignInBloc>()
                             .add(SignInWithGoogleAccount());
                       },
-                      style: buttonsProvider.primaryOutline,
+                      style: buttonsProvider.primaryOutlined,
                       loaderColor: colorsProvider.primary,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -223,7 +223,7 @@ class SignInPage extends StatelessWidget {
                             .read<SignInBloc>()
                             .add(SignInWithFacebookAccount());
                       },
-                      style: buttonsProvider.primaryOutline,
+                      style: buttonsProvider.primaryOutlined,
                       loaderColor: colorsProvider.primary,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

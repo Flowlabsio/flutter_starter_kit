@@ -413,6 +413,12 @@ flutter pub add app_ui --path=./kit/app_ui
 flutter pub add app_core --path=./kit/app_core
 flutter pub add app_helpers --path=./kit/app_helpers
 
+flutter pub add freezed_annotation
+flutter pub add dev:build_runner
+flutter pub add dev:freezed
+flutter pub add json_annotation
+flutter pub add dev:json_serializable
+
 flutter pub add go_router \
   equatable \
   flutter_native_splash \
@@ -1201,3 +1207,15 @@ curl -X POST https://<region>-<project-name>-<env>.cloudfunctions.net/send_notif
 Another option to test the remote notifications is with the offered service by Firebase. Find the FCM token in firestore ```users/{id}/devices/{id}``` the attribute ```fcmToken```
 
 <img width="762" alt="image" src="https://github.com/user-attachments/assets/26ce4dd3-4070-442c-a474-868ad10af83a" />
+
+## Testing
+
+```
+# Generate `coverage/lcov.info` file
+flutter test --coverage
+# Generate HTML report
+# Note: on macOS you need to have lcov installed on your system (`brew install lcov`) to use this:
+genhtml coverage/lcov.info -o coverage/html
+# Open the report
+open coverage/html/index.html
+```

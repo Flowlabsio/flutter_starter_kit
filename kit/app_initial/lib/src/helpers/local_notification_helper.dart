@@ -1,11 +1,11 @@
+import 'package:app_initial/src/helpers/helpers.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart';
 
 Future<void> onBackgroundMessage(RemoteMessage message) async {
   /// Handles messages received when the app is in the background or terminated.
-  debugPrint('onBackgroundMessage');
+  AppLogger.debug('onBackgroundMessage');
 
   if (message.data.isNotEmpty) {
     /// Handle data messages.
