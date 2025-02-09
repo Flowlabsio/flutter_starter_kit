@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:app_core/app_core.dart';
 import 'package:app_helpers/app_helpers.dart';
 import 'package:app_initial/src/facades/facades.dart';
 import 'package:app_initial/src/helpers/helpers.dart';
@@ -56,6 +57,10 @@ class ConnectivityHelper {
   void showConnectedSnackbar() {
     hasConnection = true;
 
+    final context = AppKeys.instance.getRootContext();
+
+    if (context == null) return;
+
     CustomSnackbar.instance.info(
       text: Localization.instance.tr.connected,
     );
@@ -63,6 +68,10 @@ class ConnectivityHelper {
 
   void showNoConnectionSnackbar() {
     hasConnection = false;
+
+    final context = AppKeys.instance.getRootContext();
+
+    if (context == null) return;
 
     CustomSnackbar.instance.error(
       text: Localization.instance.tr.notConnected,

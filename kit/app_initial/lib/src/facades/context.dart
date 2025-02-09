@@ -9,6 +9,6 @@ class Context {
   final appKeys = AppKeys.instance;
 
   T of<T>(T Function(BuildContext context) callback) {
-    return callback(appKeys.getRootContext());
+    return callback(appKeys.getRootContext()!);
   }
 }

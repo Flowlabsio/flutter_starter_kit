@@ -52,7 +52,7 @@ class CustomDialog {
   }) async {
     return await showDialog<T>(
       barrierDismissible: barrierDismissible,
-      context: buildContext ?? AppKeys.instance.getRootContext(),
+      context: buildContext ?? AppKeys.instance.getRootContext()!,
       builder: (BuildContext context) {
         return AlertDialog(
           titlePadding: title != null

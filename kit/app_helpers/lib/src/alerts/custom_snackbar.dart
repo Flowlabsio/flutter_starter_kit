@@ -46,6 +46,8 @@ class CustomSnackbar {
   }) {
     final context = AppKeys.instance.getRootContext();
 
+    if (context == null) return;
+
     final colorsProvider = Theme.of(context).colors;
 
     show(
@@ -86,6 +88,8 @@ class CustomSnackbar {
   }) {
     final context = AppKeys.instance.getRootContext();
 
+    if (context == null) return;
+
     final colorsProvider = Theme.of(context).colors;
 
     show(
@@ -124,13 +128,15 @@ class CustomSnackbar {
     BorderRadius? borderRadius,
     void Function()? onTap,
   }) {
+    final context = AppKeys.instance.getRootContext();
+
+    if (context == null) return;
+
     if (!force) {
       if (isSnackbarActive) return;
     }
 
     isSnackbarActive = true;
-
-    final context = AppKeys.instance.getRootContext();
 
     final colorsProvider = Theme.of(context).colors;
     final textStylesProvider = Theme.of(context).textStyles;

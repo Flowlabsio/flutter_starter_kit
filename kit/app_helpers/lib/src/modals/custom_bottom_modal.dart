@@ -21,7 +21,7 @@ class CustomBottomModal {
     return showModalBottomSheet<T>(
       isDismissible: isDismissible,
       useSafeArea: useSafeArea,
-      context: AppKeys.instance.getRootContext(),
+      context: AppKeys.instance.getRootContext()!,
       isScrollControlled: isScrollControlled || useFullHeight,
       builder: (BuildContext context) {
         final height = MediaQuery.of(context).size.height;

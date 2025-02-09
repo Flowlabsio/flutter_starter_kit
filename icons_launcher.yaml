@@ -1,0 +1,12 @@
+icons_launcher:
+  platforms:
+    android:
+      enable: true
+      image_path: "config/app_icon/android/app_icon_android.png"
+      notification_image: "config/app_icon/android/app_icon_android_foreground.png"
+      adaptive_background_image: "config/app_icon/android/app_icon_android_background.png"
+      adaptive_foreground_image: "config/app_icon/android/app_icon_android_foreground.png"
+    ios:
+      enable: true
+      image_path: "config/app_icon/ios/app_icon_ios_light.png"
+      dark_path: "config/app_icon/ios/app_icon_ios_dark.png"

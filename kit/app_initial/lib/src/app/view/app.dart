@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app_core/app_core.dart';
+import 'package:app_helpers/app_helpers.dart';
 import 'package:app_initial/l10n/l10n.dart';
 import 'package:app_initial/src/facades/facades.dart';
 import 'package:app_initial/src/facades/router.dart' as r;
@@ -46,6 +47,8 @@ class _AppState extends State<App> {
     return ReactiveFormConfig(
       validationMessages: validationMessages,
       child: MaterialApp.router(
+        debugShowCheckedModeBanner:
+            Env.environment == 'dev' || Env.environment == 'stg',
         scaffoldMessengerKey: AppKeys.instance.scaffoldMessengerKey,
         theme: UIThemeLight.instance.theme,
         darkTheme: UIThemeDark.instance.theme,

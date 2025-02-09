@@ -56,7 +56,7 @@ class PermissionHelper {
   }) async {
     final l10n = Localization.instance.tr;
 
-    final context = AppKeys.instance.getRootContext();
+    final context = AppKeys.instance.getRootContext()!;
 
     if (!context.mounted) {
       throw Exception('Context is not mounted');

@@ -10,7 +10,7 @@ class AppKeys {
   GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
 
-  BuildContext getRootContext() {
-    return rootNavigatorKey.currentContext!;
+  BuildContext? getRootContext() {
+    return rootNavigatorKey.currentContext;
   }
 }

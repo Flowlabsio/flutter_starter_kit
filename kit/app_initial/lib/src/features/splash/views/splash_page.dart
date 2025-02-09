@@ -25,14 +25,15 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    final iconProvider = Theme.of(context).icons;
-
     return Scaffold(
       body: Center(
         child: Hero(
           tag: 'logo',
-          child: iconProvider.logo(
-            size: UISpacing.space20x,
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(
+              Theme.of(context).colorScheme.primary,
+            ),
+            strokeWidth: 2,
           ),
         ),
       ),
