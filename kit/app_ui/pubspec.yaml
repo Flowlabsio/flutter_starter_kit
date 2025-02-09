@@ -23,4 +23,6 @@ dev_dependencies:
 flutter:
   assets:
     - assets/dark/icons/
+    - assets/dark/images/
     - assets/light/icons/
+    - assets/light/images/

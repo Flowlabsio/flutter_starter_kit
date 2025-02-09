@@ -1,0 +1,15 @@
+flutter_native_splash:
+  android: true
+  ios: true
+
+  color: "#f7f9ff"
+  image: config/splash_screen/ios/light.png
+
+  color_dark: "#27282A"
+  image_dark: config/splash_screen/ios/dark.png
+
+  android_12:
+    image: config/splash_screen/android/light.png
+    icon_background_color: "#f7f9ff"
+    image_dark: config/splash_screen/android/dark.png
+    icon_background_color_dark: "#27282A"

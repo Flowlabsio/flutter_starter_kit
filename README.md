@@ -418,6 +418,7 @@ flutter pub add dev:build_runner
 flutter pub add dev:freezed
 flutter pub add json_annotation
 flutter pub add dev:json_serializable
+flutter pub add dev:icons_launcher
 
 flutter pub add go_router \
   equatable \
@@ -1219,3 +1220,15 @@ genhtml coverage/lcov.info -o coverage/html
 # Open the report
 open coverage/html/index.html
 ```
+
+### Edit app name iOS (by env)
+
+1. Open Xcode
+
+2. Go to Runner -> Build Settings
+
+<img width="949" alt="image" src="https://github.com/user-attachments/assets/43097148-d290-4fcd-94d4-4c3456f87398" />
+
+3. Filter by ```FLAVOR_APP_NAME```. You will see the current names
+
+<img width="923" alt="image" src="https://github.com/user-attachments/assets/e364015d-d0d3-42b0-9b1a-116f5d661090" />
